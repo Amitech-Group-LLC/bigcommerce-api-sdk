@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "lib": ["ES2015", "DOM"],
+    "declarationDir": "./dist",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "target": "es5",
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "typedocOptions": {
+    "mode": "file",
+    "out": "docs",
+    "name": "bigcommerce-javascript-sdk",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "theme": "docs-templates"
+  }
+}
