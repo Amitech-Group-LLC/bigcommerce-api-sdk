@@ -56,7 +56,7 @@ class BrandMetafields {
   }
 
   public async get(
-    url_params: {
+    urlParams: {
       brand_id: number
       metafield_id: number
     },
@@ -68,7 +68,7 @@ class BrandMetafields {
   ): Promise<Result<BrandMetafield>> {
     return await http
       .get(
-        `/v3/catalog/brands/${url_params.brand_id}/metafields/${url_params.metafield_id}`,
+        `/v3/catalog/brands/${urlParams.brand_id}/metafields/${urlParams.metafield_id}`,
         {
           ...requestOptions,
           params: { ...params },
@@ -83,7 +83,7 @@ class BrandMetafields {
   }
 
   public async update<TData extends BrandMetafield>(
-    url_params: {
+    urlParams: {
       brand_id: number
       metafield_id: number
     },
@@ -92,7 +92,7 @@ class BrandMetafields {
   ): Promise<Result<BrandMetafield>> {
     return await http
       .put(
-        `/v3/catalog/brands/${url_params.brand_id}/metafields/${url_params.metafield_id}`,
+        `/v3/catalog/brands/${urlParams.brand_id}/metafields/${urlParams.metafield_id}`,
         { ...requestOptions, data }
       )
       .catch(ex => {
@@ -104,7 +104,7 @@ class BrandMetafields {
   }
 
   public async delete(
-    url_params: {
+    urlParams: {
       brand_id: number
       metafield_id: number
     },
@@ -112,7 +112,7 @@ class BrandMetafields {
   ): Promise<undefined> {
     return await http
       .delete(
-        `/v3/catalog/brands/${url_params.brand_id}/metafields/${url_params.metafield_id}`,
+        `/v3/catalog/brands/${urlParams.brand_id}/metafields/${urlParams.metafield_id}`,
         { ...requestOptions }
       )
       .catch(ex => {
