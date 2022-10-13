@@ -1,16 +1,17 @@
-import { Brand, BrandFilterParam } from '../models/brand'
-import { Result } from '../models/result'
+import { BrandFilterParam, BrandMetafield } from '../models/brand'
+import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class Brands {
+class BrandMetafields {
   public async list(
+    brand_id: number,
     filterParams: BrandFilterParam = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Brand[]>> {
+  ): Promise<ListResult<BrandMetafield[]>> {
     return await http
-      .get(`/v3/catalog/brands`, {
+      .get(`/v3/catalog/brands/${brand_id}/metafields`, {
         ...requestOptions,
         params: {
           id: filterParams.id,
@@ -36,21 +37,43 @@ class Brands {
       })
   }
 
+  public async create<TData extends BrandMetafield>(
+    brand_id: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<BrandMetafield>> {
+    return await http
+      .post(`/v3/catalog/brands/${brand_id}/metafields`, {
+        ...requestOptions,
+        data,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
   public async get(
-    brand_id: number,
+    url_params: {
+      brand_id: number
+      metafield_id: number
+    },
     params: {
-      exclude_fields?: string
       include_fields?: string
+      exclude_fields?: string
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Brand>> {
+  ): Promise<Result<BrandMetafield>> {
     return await http
-      .get(`/v3/catalog/brands/${brand_id}`, {
-        ...requestOptions,
-        params: {
-          ...params,
-        },
-      })
+      .get(
+        `/v3/catalog/brands/${url_params.brand_id}/metafields/${url_params.metafield_id}`,
+        {
+          ...requestOptions,
+          params: { ...params },
+        }
+      )
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -59,47 +82,19 @@ class Brands {
       })
   }
 
-  public async create<TData extends Brand>(
+  public async update<TData extends BrandMetafield>(
+    url_params: {
+      brand_id: number
+      metafield_id: number
+    },
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Brand>> {
+  ): Promise<Result<BrandMetafield>> {
     return await http
-      .post(`/v3/catalog/brands`, { ...requestOptions, data })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async deleteMany(
-    params: {
-      name?: string
-      page_title?: string
-    } = {},
-    requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
-    return await http
-      .delete(`/v3/catalog/brands`, {
-        ...requestOptions,
-        params: { ...params },
-      })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async update<TData extends Brand>(
-    brand_id: number,
-    data: TData,
-    requestOptions: RequestOptions = {}
-  ): Promise<Result<Brand>> {
-    return await http
-      .put(`/v3/catalog/brands/${brand_id}`, { ...requestOptions, data })
+      .put(
+        `/v3/catalog/brands/${url_params.brand_id}/metafields/${url_params.metafield_id}`,
+        { ...requestOptions, data }
+      )
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -109,11 +104,17 @@ class Brands {
   }
 
   public async delete(
-    brand_id: number,
+    url_params: {
+      brand_id: number
+      metafield_id: number
+    },
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/brands/${brand_id}`, { ...requestOptions })
+      .delete(
+        `/v3/catalog/brands/${url_params.brand_id}/metafields/${url_params.metafield_id}`,
+        { ...requestOptions }
+      )
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -123,4 +124,4 @@ class Brands {
   }
 }
 
-export default new Brands()
+export default new BrandMetafields()
