@@ -30,24 +30,7 @@ class Customers {
     return await http
       .get('/v3/customers', {
         ...requestOptions,
-        params: {
-          'company:in': filterParams['company:in'],
-          'customer_group_id:in': filterParams['customer_group_id:in'],
-          'date_created:max': filterParams['date_created:max'],
-          'date_created:min': filterParams['date_created:min'],
-          date_modified: filterParams.date_modified,
-          'date_modified:max': filterParams['date_modified:max'],
-          'date_modified:min': filterParams['date_modified:min'],
-          'email:in': filterParams['email:in'],
-          'id:in': filterParams['id:in'],
-          include: filterParams.include,
-          limit: filterParams.limit,
-          'name:in': filterParams['name:in'],
-          'name:like': filterParams['name:like'],
-          page: filterParams.page,
-          'registration_ip_address:in': filterParams['registration_ip_address:in'],
-          sort: filterParams.sort
-        }
+        params: filterParams
       })
       .catch(ex => {
         if (ex.response) {

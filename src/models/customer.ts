@@ -11,15 +11,15 @@ export type Customer = {
   id: number,
   date_modified: string,
   date_created: string,
-  address_count: number,
-  attribute_count: number,
+  address_count?: number,
+  attribute_count?: number,
   authentication: {
     force_password_reset: boolean
   }
-  addresses: Address[],
-  attributes: Attribute[],
-  form_fields: FormField[],
-  store_credit_amounts: StoreCreditAmount[],
+  addresses?: Address[],
+  attributes?: Attribute[],
+  form_fields?: FormField[],
+  store_credit_amounts?: StoreCreditAmount[],
   accepts_product_review_abandoned_cart_emails: boolean,
   origin_channel_id: number,
   channel_ids: number[]
@@ -34,17 +34,17 @@ export type CreateData = {
   notes?: string,
   tax_exempt_category?: string,
   customer_group_id?: number,
-  authentication: {
-    force_password_reset: boolean,
-    new_password: string
+  authentication?: {
+    force_password_reset?: boolean,
+    new_password?: string
   }
-  addresses: CreateAddress[],
-  attributes: Pick<Attribute, 'attribute_id' | 'attribute_value'>[],
-  store_credit_amounts: StoreCreditAmount[],
-  accepts_product_review_abandoned_cart_emails: boolean,
-  origin_channel_id: number,
-  channel_ids: number[],
-  form_fields: Omit<FormField, 'customer_id'>[]
+  addresses?: CreateAddress[],
+  attributes?: Pick<Attribute, 'attribute_id' | 'attribute_value'>[],
+  store_credit_amounts?: StoreCreditAmount[],
+  accepts_product_review_abandoned_cart_emails?: boolean,
+  origin_channel_id?: number,
+  channel_ids?: number[],
+  form_fields?: Omit<FormField, 'customer_id'>[]
 }
 
 export type UpdateData = {
@@ -103,12 +103,12 @@ export type CreateAddress = {
 }
 
 export type Attribute = {
-  attribute_id: number,
-  attribute_value: string,
-  customer_id: number,
-  date_created: string,
-  date_modified: string,
-  id: number
+  attribute_id?: number,
+  attribute_value?: string,
+  customer_id?: number,
+  date_created?: string,
+  date_modified?: string,
+  id?: number
 }
 
 export type FormField = {
@@ -118,5 +118,5 @@ export type FormField = {
 }
 
 export type StoreCreditAmount = {
-  amount: number
+  amount?: number
 }
