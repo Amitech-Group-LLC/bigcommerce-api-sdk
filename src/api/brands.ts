@@ -1,4 +1,4 @@
-import { Brand, BrandFilterParam } from '../models/brand'
+import { Brand, BrandFilter } from '../models/brand'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -6,27 +6,13 @@ import { BigcommerceApiError } from '../utils/error'
 
 class Brands {
   public async list(
-    filterParams: BrandFilterParam = {},
+    filterParams: BrandFilter = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Brand[]>> {
     return await http
       .get(`/v3/catalog/brands`, {
         ...requestOptions,
-        params: {
-          id: filterParams.id,
-          include_fields: filterParams.include_fields,
-          exclude_fields: filterParams.exclude_fields,
-          limit: filterParams.limit,
-          name: filterParams.name,
-          page: filterParams.page,
-          page_title: filterParams.page_title,
-          'id:greater': filterParams['id:greater'],
-          'id:in': filterParams['id:in'],
-          'id:less': filterParams['id:less'],
-          'id:max': filterParams['id:max'],
-          'id:min': filterParams['id:min'],
-          'id:not_in': filterParams['id:not_in'],
-        },
+        params: filterParams,
       })
       .catch(ex => {
         if (ex.response) {
@@ -37,7 +23,7 @@ class Brands {
   }
 
   public async get(
-    brand_id: number,
+    itemId: number,
     params: {
       exclude_fields?: string
       include_fields?: string
@@ -45,11 +31,9 @@ class Brands {
     requestOptions: RequestOptions = {}
   ): Promise<Result<Brand>> {
     return await http
-      .get(`/v3/catalog/brands/${brand_id}`, {
+      .get(`/v3/catalog/brands/${itemId}`, {
         ...requestOptions,
-        params: {
-          ...params,
-        },
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -83,7 +67,7 @@ class Brands {
     return await http
       .delete(`/v3/catalog/brands`, {
         ...requestOptions,
-        params: { ...params },
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -94,12 +78,12 @@ class Brands {
   }
 
   public async update<TData extends Brand>(
-    brand_id: number,
+    itemId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<Brand>> {
     return await http
-      .put(`/v3/catalog/brands/${brand_id}`, { ...requestOptions, data })
+      .put(`/v3/catalog/brands/${itemId}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -109,11 +93,11 @@ class Brands {
   }
 
   public async delete(
-    brand_id: number,
+    itemId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/brands/${brand_id}`, { ...requestOptions })
+      .delete(`/v3/catalog/brands/${itemId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

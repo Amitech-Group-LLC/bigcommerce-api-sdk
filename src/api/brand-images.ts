@@ -6,11 +6,16 @@ import { BigcommerceApiError } from '../utils/error'
 
 class BrandImages {
   public async create(
-    brand_id: number,
+    itemId: number,
+    image_file: File,
     requestOptions: RequestOptions = {}
   ): Promise<Result<BrandImage>> {
     return await http
-      .post(`/v3/catalog/brands/${brand_id}/image`, { ...requestOptions })
+      .post(`/v3/catalog/brands/${itemId}/image`, {
+        ...requestOptions,
+        params: { image_file },
+        headers: { "Content-Type": "multipart/form-data" }
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -20,11 +25,11 @@ class BrandImages {
   }
 
   public async delete(
-    brand_id: number,
+    itemId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/brands/${brand_id}/image`, { ...requestOptions })
+      .delete(`/v3/catalog/brands/${itemId}/image`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

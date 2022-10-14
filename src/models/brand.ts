@@ -16,7 +16,7 @@ export type BrandImage = {
   image_url?: string
 }
 
-export type BrandFilterParam = {
+export type BrandFilter = {
   id?: number
   include_fields?: string
   exclude_fields?: string
