@@ -14,7 +14,7 @@ class CategoryImages {
       .post(`/v3/catalog/categories/${itemId}/image`, {
         ...requestOptions,
         params: { image_file: imageFile },
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { 'Content-Type': 'multipart/form-data' }
       })
       .catch(ex => {
         if (ex.response) {
