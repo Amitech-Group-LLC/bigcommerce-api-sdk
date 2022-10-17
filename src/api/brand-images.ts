@@ -7,13 +7,13 @@ import { BigcommerceApiError } from '../utils/error'
 class BrandImages {
   public async create(
     itemId: number,
-    image_file: File,
+    imageFile: File,
     requestOptions: RequestOptions = {}
   ): Promise<Result<BrandImage>> {
     return await http
       .post(`/v3/catalog/brands/${itemId}/image`, {
         ...requestOptions,
-        params: { image_file },
+        params: { image_file: imageFile },
         headers: { "Content-Type": "multipart/form-data" }
       })
       .catch(ex => {
