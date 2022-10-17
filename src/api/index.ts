@@ -4,6 +4,7 @@ import cartItems from './cart-items'
 import brands from './brands'
 import brandImages from './brand-images'
 import brandMetafields from './brand-metafields'
+import customerAddresses from './customer-addresses'
 
 export {
   cartItems,
@@ -12,4 +13,5 @@ export {
   brands,
   brandImages,
   brandMetafields,
+  customerAddresses
 }
