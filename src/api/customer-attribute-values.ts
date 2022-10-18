@@ -32,6 +32,22 @@ class CustomerAttributeValues {
         throw ex
       })
   }
+
+  public async deleteMany(
+    params: {
+      'id:in': number[]
+    },
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete('/v3/customers/attribute-values', { ...requestOptions, params })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new CustomerAttributeValues()
