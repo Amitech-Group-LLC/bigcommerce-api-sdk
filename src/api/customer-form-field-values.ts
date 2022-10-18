@@ -18,6 +18,20 @@ class CustomerFormFieldValues {
         throw ex
       })
   }
+
+  public async upsertMany<TData extends CustomerFormFieldData>(
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CustomerFormFieldData[]>> {
+    return await http
+      .put('/v3/customers/form-field-values', { ...requestOptions, data})
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new CustomerFormFieldValues()

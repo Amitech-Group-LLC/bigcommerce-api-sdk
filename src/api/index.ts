@@ -7,6 +7,7 @@ import brandImages from './brand-images'
 import brandMetafields from './brand-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import customerFormFieldValues from './customer-form-field-values'
 
 export {
   cartItems,
@@ -18,4 +19,5 @@ export {
   brandMetafields,
   store,
   timeZones,
+  customerFormFieldValues,
 }
