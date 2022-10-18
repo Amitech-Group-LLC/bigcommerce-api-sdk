@@ -13,7 +13,6 @@ class CustomerAddresses {
       .get('/v3/customers/addresses', {
         ...requestOptions,
         params: filterParams,
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       })
       .catch(ex => {
         if (ex.response) {
@@ -31,7 +30,6 @@ class CustomerAddresses {
       .post('/v3/customers/addresses', { 
         ...requestOptions, 
         data,
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
        })
       .catch(ex => {
         if (ex.response) {
@@ -49,7 +47,6 @@ class CustomerAddresses {
       .put('/v3/customers/addresses', {
         ...requestOptions, 
         data,
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       })
       .catch(ex => {
         if (ex.response) {
@@ -69,7 +66,6 @@ class CustomerAddresses {
       .delete('/v3/customers/addresses', { 
         ...requestOptions, 
         params,
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       })
       .catch(ex => {
         if (ex.response) {
