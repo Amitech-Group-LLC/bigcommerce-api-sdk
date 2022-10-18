@@ -14,6 +14,7 @@ import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import customerStoredInstruments from './customer-stored-instruments'
 
 export {
   cartItems,
@@ -32,4 +33,5 @@ export {
   CategoryMetafields,
   store,
   timeZones,
+  customerStoredInstruments,
 }
