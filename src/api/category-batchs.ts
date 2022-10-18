@@ -1,16 +1,24 @@
-import { CustomerAttributeParams, CustomerAttributeData, CreateAttributeData, UpdateAttributeData } from '../models/customer-attribute'
-import { Result } from '../models/result'
+import {
+  Category,
+  CategoryBatchFilter,
+  CategoryBatchPost,
+  CategoryBatchMeta,
+  CategoryBatchError,
+  CategoryBatchDelete,
+  CategoryBatchUpdate
+} from '../models/category'
+import { Result, ListResult, ErrorResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerAttributes {
+class CategoryBatchs {
   public async list(
-    filterParams: CustomerAttributeParams = {},
+    filterParams: CategoryBatchFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAttributeData[]>> {
+  ): Promise<ListResult<Category[]>> {
     return await http
-      .get('/v3/customers/attributes', {
+      .get(`/v3/catalog/trees/categories`, {
         ...requestOptions,
         params: filterParams,
       })
@@ -22,12 +30,12 @@ class CustomerAttributes {
       })
   }
 
-  public async create<TData extends CreateAttributeData>(
+  public async create<TData extends CategoryBatchPost>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAttributeData[]>> {
+  ): Promise<ErrorResult<Category[], CategoryBatchError, CategoryBatchMeta>> {
     return await http
-      .post('/v3/customers/attributes', { ...requestOptions, data })
+      .post(`/v3/catalog/trees/categories`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -36,12 +44,12 @@ class CustomerAttributes {
       })
   }
 
-  public async update<TData extends UpdateAttributeData>(
+  public async update<TData extends CategoryBatchUpdate>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAttributeData[]>> {
+  ): Promise<Result<Category>> {
     return await http
-      .put('/v3/customers/attributes', { ...requestOptions, data })
+      .put(`/v3/catalog/trees/categories`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -50,14 +58,15 @@ class CustomerAttributes {
       })
   }
 
-  public async delete(
-    params: {
-      'id:in': number[]
-    },
+  public async delete<TData extends CategoryBatchDelete>(
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined>  {
+  ): Promise<Result<undefined, CategoryBatchMeta>> {
     return await http
-      .delete('/v3/customers/attributes', { ...requestOptions, params })
+      .delete(`/v3/catalog/trees/categories`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -67,4 +76,4 @@ class CustomerAttributes {
   }
 }
 
-export default new CustomerAttributes()
+export default new CategoryBatchs()

@@ -20,12 +20,12 @@ export type CustomerAttributeData = {
   date_created?: string
 }
 
-export type CreateData = {
+export type CreateAttributeData = {
   name: string
   type: string
 }
 
-export type UpdateData = {
+export type UpdateAttributeData = {
   name: string
   id: number
 }

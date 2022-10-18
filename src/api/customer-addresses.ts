@@ -1,16 +1,16 @@
-import { CustomerAttributeParams, CustomerAttributeData, CreateAttributeData, UpdateAttributeData } from '../models/customer-attribute'
+import { CustomerAddressData, CustomerAddressParams, CreateAddressData, UpdateAddressData } from '../models/customer-address'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerAttributes {
+class CustomerAddresses {
   public async list(
-    filterParams: CustomerAttributeParams = {},
+    filterParams: CustomerAddressParams = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAttributeData[]>> {
+  ): Promise<Result<CustomerAddressData[]>> {
     return await http
-      .get('/v3/customers/attributes', {
+      .get('/v3/customers/addresses', {
         ...requestOptions,
         params: filterParams,
       })
@@ -22,12 +22,15 @@ class CustomerAttributes {
       })
   }
 
-  public async create<TData extends CreateAttributeData>(
+  public async create<TData extends CreateAddressData>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAttributeData[]>> {
+  ): Promise<Result<CustomerAddressData[]>> {
     return await http
-      .post('/v3/customers/attributes', { ...requestOptions, data })
+      .post('/v3/customers/addresses', { 
+        ...requestOptions, 
+        data,
+       })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -36,12 +39,15 @@ class CustomerAttributes {
       })
   }
 
-  public async update<TData extends UpdateAttributeData>(
+  public async update<TData extends UpdateAddressData>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAttributeData[]>> {
+  ): Promise<Result<CustomerAddressData[]>>  {
     return await http
-      .put('/v3/customers/attributes', { ...requestOptions, data })
+      .put('/v3/customers/addresses', {
+        ...requestOptions, 
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -55,9 +61,12 @@ class CustomerAttributes {
       'id:in': number[]
     },
     requestOptions: RequestOptions = {}
-  ): Promise<undefined>  {
-    return await http
-      .delete('/v3/customers/attributes', { ...requestOptions, params })
+  ): Promise<undefined> {
+    return await http 
+      .delete('/v3/customers/addresses', { 
+        ...requestOptions, 
+        params,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -65,6 +74,6 @@ class CustomerAttributes {
         throw ex
       })
   }
-}
+ }
 
-export default new CustomerAttributes()
+export default new CustomerAddresses()
