@@ -24,3 +24,8 @@ export type CreateData = {
   name: string
   type: string
 }
+
+export type UpdateData = {
+  name: string
+  id: number
+}

@@ -1,4 +1,4 @@
-import { CustomerAttributeParams, CustomerAttributeData, CreateData } from '../models/customer-attribute'
+import { CustomerAttributeParams, CustomerAttributeData, CreateData, UpdateData } from '../models/customer-attribute'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -36,6 +36,35 @@ class CustomerAttributes {
       })
   }
 
+  public async update<TData extends UpdateData>(
+    data: TData[],
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CustomerAttributeData[]>> {
+    return await http
+      .put('/v3/customers/attributes', { ...requestOptions, data })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async delete(
+    params: {
+      'id:in': number[]
+    },
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined>  {
+    return await http
+      .delete('/v3/customers/attributes', { ...requestOptions, params })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new CustomerAttributes()
