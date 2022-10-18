@@ -5,7 +5,8 @@ import customers from './customers'
 import brands from './brands'
 import brandImages from './brand-images'
 import brandMetafields from './brand-metafields'
-import categoryImages from './categogory-images'
+import customerAddresses from './customer-addresses'
+import categoryImages from './category-images'
 import categories from './categories'
 import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
@@ -20,6 +21,7 @@ export {
   brands,
   brandImages,
   brandMetafields,
+  customerAddresses,
   categoryImages,
   categories,
   categoryBatchs,
