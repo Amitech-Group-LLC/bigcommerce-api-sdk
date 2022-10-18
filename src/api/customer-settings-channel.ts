@@ -1,10 +1,10 @@
-import { CustomerSettingsPerChannelData, UpdateCustomerSettingsPerChannelData } from '../models/customer-settings-per-channel'
+import { CustomerSettingsPerChannelData, UpdateCustomerSettingsPerChannelData } from '../models/customer-settings-channel'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerSettingsPerChannel {
+class CustomerSettingsChannel {
   public async get(
     channel_id: number,
     requestOptions: RequestOptions = {}
@@ -35,4 +35,4 @@ class CustomerSettingsPerChannel {
   }
 }
 
-export default new CustomerSettingsPerChannel()
+export default new CustomerSettingsChannel()
