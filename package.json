@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "build": "rollup --config",
     "test:server": "jest --config tests/config/server.config.js"
