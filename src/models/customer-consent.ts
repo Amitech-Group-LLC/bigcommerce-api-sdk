@@ -5,3 +5,5 @@ export type CustomerConsentData = {
 }
 
 export type CustomerConsentValues = 'essential' | 'functional' | 'analytics' | 'targeting'
+
+export type UpdateCustomerConsentData = Omit<CustomerConsentData, 'updated_at'>
