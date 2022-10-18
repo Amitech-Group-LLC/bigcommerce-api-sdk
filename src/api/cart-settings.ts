@@ -19,7 +19,7 @@ class CartSettings {
   }
 
   public async update<TData extends CartSetting>(
-    data: CartSetting,
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CartSetting>> {
     return await http
@@ -48,7 +48,7 @@ class CartSettings {
 
   public async updateForChannel<TData extends CartSetting>(
     channelId: number,
-    data: CartSetting,
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CartSetting>> {
     return await http
