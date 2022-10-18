@@ -9,3 +9,5 @@ export type CustomerSettingsPerChannelData = {
   }
   allow_global_logins?: boolean
 }
+
+export type UpdateCustomerSettingsPerChannelData = Omit<CustomerSettingsPerChannelData, 'allow_global_logins'>
