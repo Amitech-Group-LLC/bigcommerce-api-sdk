@@ -5,6 +5,8 @@ import customers from './customers'
 import brands from './brands'
 import brandImages from './brand-images'
 import brandMetafields from './brand-metafields'
+import store from './store'
+import timeZones from './time-zones'
 
 export {
   cartItems,
@@ -14,4 +16,6 @@ export {
   brands,
   brandImages,
   brandMetafields,
+  store,
+  timeZones,
 }
