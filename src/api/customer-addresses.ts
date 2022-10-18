@@ -1,4 +1,4 @@
-import { CustomerAddressData, CustomerAddressParams, CreateData, UpdateData } from '../models/customer-address'
+import { CustomerAddressData, CustomerAddressParams, CreateAddressData, UpdateAddressData } from '../models/customer-address'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -22,7 +22,7 @@ class CustomerAddresses {
       })
   }
 
-  public async create<TData extends CreateData>(
+  public async create<TData extends CreateAddressData>(
     data: TData[],
     requestOptions: RequestOptions = {}
   ): Promise<Result<CustomerAddressData[]>> {
@@ -39,7 +39,7 @@ class CustomerAddresses {
       })
   }
 
-  public async update<TData extends UpdateData>(
+  public async update<TData extends UpdateAddressData>(
     data: TData[],
     requestOptions: RequestOptions = {}
   ): Promise<Result<CustomerAddressData[]>>  {

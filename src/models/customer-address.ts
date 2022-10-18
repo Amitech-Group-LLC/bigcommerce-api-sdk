@@ -32,7 +32,7 @@ export type FormFields = {
   address_id: number
 }
 
-export type CreateData = {
+export type CreateAddressData = {
   first_name: string
   last_name: string
   company?: string
@@ -48,7 +48,7 @@ export type CreateData = {
   form_fields?: Omit<FormFields, 'address_id'>[]
 }
 
-export type UpdateData = {
+export type UpdateAddressData = {
   first_name?: string
   last_name?: string
   company?: string

@@ -3,6 +3,12 @@ export type Result<TResult, TMeta = object> = {
   meta: TMeta
 }
 
+export type ErrorResult<TResult, TError, TMeta = object> = {
+  data: TResult
+  errors: TError
+  meta: TMeta
+}
+
 type Meta = {
   pagination: {
     total: number
