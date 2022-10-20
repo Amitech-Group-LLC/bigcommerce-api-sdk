@@ -6,7 +6,6 @@ import { BigcommerceApiError } from '../utils/error'
 
 class Summaries {
   public async get(
-    itemId: number,
     requestOptions: RequestOptions = {}
   ): Promise<Result<Summary>> {
     return await http
