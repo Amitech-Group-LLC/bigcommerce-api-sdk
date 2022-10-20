@@ -19,6 +19,21 @@ class Checkout {
         throw ex
       })
   }
+
+  public async update(
+    checkoutId: string,
+    customer_message: string,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CheckoutData>> {
+    return await http
+      .put(`/v3/checkouts/${checkoutId}`, { ...requestOptions, data: { customer_message } })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new Checkout()
