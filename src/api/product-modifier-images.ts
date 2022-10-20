@@ -9,7 +9,7 @@ class ProductModifierImages {
     itemId: number,
     modifierId: number,
     valueId: number,
-    imageFile?: File,
+    imageFile: File,
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductImageUrl>> {
     return await http

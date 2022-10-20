@@ -8,7 +8,7 @@ class ProductVariantImages {
   public async create(
     itemId: number,
     variantId: number,
-    imageFile?: File,
+    imageFile: File,
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductImageUrl>> {
     return await http
