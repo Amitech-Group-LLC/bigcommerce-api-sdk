@@ -4,7 +4,7 @@ import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerSettingsChannel {
+class CustomerSettingsChannels {
   public async get(
     channel_id: number,
     requestOptions: RequestOptions = {}
@@ -35,4 +35,4 @@ class CustomerSettingsChannel {
   }
 }
 
-export default new CustomerSettingsChannel()
+export default new CustomerSettingsChannels()
