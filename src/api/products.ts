@@ -30,9 +30,9 @@ class Products {
 
   public async updateMany<TData extends ProductPost>(
     data: TData[],
-    params?: {
-      include_fields?: string
-    },
+    params: {
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Product[]>> {
     return await http
@@ -47,9 +47,9 @@ class Products {
 
   public async create<TData extends ProductPost>(
     data: TData[],
-    params?: {
-      include_fields?: string
-    },
+    params: {
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http
@@ -68,7 +68,7 @@ class Products {
 
   public async deleteMany(
     requestOptions: RequestOptions = {},
-    params: ProductDelete
+    params: ProductDelete = {}
   ): Promise<undefined> {
     return await http
       .delete(`/v3/catalog/products`, { ...requestOptions, params })
@@ -82,11 +82,11 @@ class Products {
 
   public async get(
     itemId: number,
-    params?: {
+    params: {
       include?: string
-      exclude_fields?: string
-      include_fields?: string
-    },
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http
@@ -105,9 +105,9 @@ class Products {
   public async update<TData extends ProductUpdate>(
     itemId: number,
     data: TData,
-    params?: {
-      include_fields: string
-    },
+    params: {
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http

@@ -8,12 +8,12 @@ class ProductModifierValues {
   public async list(
     itemId: number,
     modifierId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
       limit?: number
       page?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductModifierOptionValue[]>> {
     return await http
@@ -52,10 +52,10 @@ class ProductModifierValues {
     itemId: number,
     modifierId: number,
     valueId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
-    },
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductModifierOptionValue>> {
     return await http
