@@ -20,6 +20,22 @@ class CheckoutBillingAddress {
         throw ex
       })
   }
+
+  public async update<TData extends CheckoutBillingAddressData>(
+    addressId: number,
+    checkoutId: string,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CheckoutData>> {
+    return await http
+      .put(`/v3/checkouts/${checkoutId}/billing-address/${addressId}`, {...requestOptions, data})
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new CheckoutBillingAddress()

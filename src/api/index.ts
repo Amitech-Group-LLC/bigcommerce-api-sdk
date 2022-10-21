@@ -42,6 +42,7 @@ import productVariantOptions from './product-variant-options'
 import productVariants from './product-variants'
 import productVideos from './product-videos'
 import products from './products'
+import checkoutBillingAddress from './checkout-billing-address'
 
 export {
   cartItems,
@@ -88,4 +89,5 @@ export {
   productVariants,
   productVideos,
   products,
+  checkoutBillingAddress,
 }
