@@ -42,8 +42,8 @@ class CategoryMetafields {
     itemId: number,
     metafieldId: number,
     params: {
-      exclude_fields?: string
-      include_fields?: string
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<CategoryMetafield>> {
