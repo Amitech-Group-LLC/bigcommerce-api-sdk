@@ -7,12 +7,12 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductVariantOptions {
   public async list(
     itemId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
       limit?: number
       page?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductOption[]>> {
     return await http
@@ -49,10 +49,10 @@ class ProductVariantOptions {
   public async get(
     itemId: number,
     optionId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
-    },
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductOption>> {
     return await http

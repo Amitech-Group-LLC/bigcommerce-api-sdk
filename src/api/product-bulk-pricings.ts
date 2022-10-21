@@ -7,12 +7,12 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductBulkPricings {
   public async list(
     itemId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
       limit?: number
       page?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductBulkPricing[]>> {
     return await http
@@ -31,10 +31,10 @@ class ProductBulkPricings {
   public async create<TData extends ProductBulkPricing>(
     itemId: number,
     data: TData[],
-    params?: {
+    params: {
       limit?: number
       page?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductBulkPricing>> {
     return await http
@@ -54,10 +54,10 @@ class ProductBulkPricings {
   public async get(
     itemId: number,
     bulkPricingRuleId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
-    },
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductBulkPricing>> {
     return await http
@@ -80,9 +80,9 @@ class ProductBulkPricings {
     itemId: number,
     bulkPricingRuleId: number,
     data: TData,
-    params?: {
-      include_fields?: string
-    },
+    params: {
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductBulkPricing>> {
     return await http

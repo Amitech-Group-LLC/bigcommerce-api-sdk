@@ -15,6 +15,13 @@ import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
 import summaries from './summaries'
+import checkout from './checkout'
+import customerSettingsChannels from './customer-settings-channel'
+import customerSettings from './customer-settings'
+import customerStoredInstruments from './customer-stored-instruments'
+import customerConsent from './customer-consent'
+import customerFormFieldValues from './customer-form-field-values'
+import customerValidateCredentials from './customer-validate-credentials'
 import productBulkPricings from './product-bulk-pricings'
 import productCategoryAssigments from './product-category-assigments'
 import productChannelAssigments from './product-channel-assigments'
@@ -52,6 +59,13 @@ export {
   store,
   timeZones,
   summaries,
+  checkout,
+  customerSettingsChannels,
+  customerSettings,
+  customerStoredInstruments,
+  customerConsent,
+  customerFormFieldValues,
+  customerValidateCredentials,
   productBulkPricings,
   productCategoryAssigments,
   productChannelAssigments,

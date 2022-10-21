@@ -7,12 +7,12 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductComplexRules {
   public async list(
     itemId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
       limit?: number
       page?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductComplexRule[]>> {
     return await http
@@ -31,10 +31,10 @@ class ProductComplexRules {
   public async create<TData extends ProductComplexRule>(
     itemId: number,
     data: TData[],
-    params?: {
+    params: {
       limit?: number
       page?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductComplexRule>> {
     return await http
@@ -54,10 +54,10 @@ class ProductComplexRules {
   public async get(
     itemId: number,
     complexRuleId: number,
-    params?: {
-      exclude_fields?: string
-      include_fields?: string
-    },
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductComplexRule>> {
     return await http
