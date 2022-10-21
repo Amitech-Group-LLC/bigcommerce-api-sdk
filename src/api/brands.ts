@@ -25,8 +25,8 @@ class Brands {
   public async get(
     itemId: number,
     params: {
-      exclude_fields?: string
-      include_fields?: string
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Brand>> {
