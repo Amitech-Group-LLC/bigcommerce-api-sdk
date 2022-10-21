@@ -14,6 +14,7 @@ import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import customerConsent from './customer-consent'
 import customerFormFieldValues from './customer-form-field-values'
 import customerValidateCredentials from './customer-validate-credentials'
 import productBulkPricings from './product-bulk-pricings'
@@ -52,6 +53,7 @@ export {
   CategoryMetafields,
   store,
   timeZones,
+  customerConsent,
   customerFormFieldValues,
   customerValidateCredentials,
   productBulkPricings,
