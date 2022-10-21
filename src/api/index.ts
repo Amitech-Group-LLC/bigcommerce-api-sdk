@@ -14,6 +14,7 @@ import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import customerSettings from './customer-settings'
 import customerStoredInstruments from './customer-stored-instruments'
 import customerConsent from './customer-consent'
 import customerFormFieldValues from './customer-form-field-values'
@@ -54,6 +55,7 @@ export {
   CategoryMetafields,
   store,
   timeZones,
+  customerSettings,
   customerStoredInstruments,
   customerConsent,
   customerFormFieldValues,
