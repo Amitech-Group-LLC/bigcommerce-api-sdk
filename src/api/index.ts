@@ -14,6 +14,7 @@ import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import customerValidateCredentials from './customer-validate-credentials'
 import productBulkPricings from './product-bulk-pricings'
 import productCategoryAssigments from './product-category-assigments'
 import productChannelAssigments from './product-channel-assigments'
@@ -50,6 +51,7 @@ export {
   CategoryMetafields,
   store,
   timeZones,
+  customerValidateCredentials,
   productBulkPricings,
   productCategoryAssigments,
   productChannelAssigments,
