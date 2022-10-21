@@ -14,6 +14,7 @@ import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import categorytrees from './category-trees'
 import variants from './variants'
 import summaries from './summaries'
 import checkout from './checkout'
@@ -59,6 +60,7 @@ export {
   CategoryMetafields,
   store,
   timeZones,
+  categorytrees,
   variants,
   summaries,
   checkout,
