@@ -333,7 +333,7 @@ export type ProductFilter = {
   'date_modified:max'?: string
   'date_modified:min'?: string
   direction?: string
-  exclude_fields?: string | string[]
+  exclude_fields?: Array<keyof Product>
   id?: number
   'id:greater'?: number[]
   'id:in'?: number[]
@@ -342,7 +342,7 @@ export type ProductFilter = {
   'id:min'?: number[]
   'id:not_in'?: number[]
   include?: string
-  include_fields?: string | string[]
+  include_fields?: Array<keyof Product>
   inventory_level?: number
   'inventory_level:greater'?: number
   'inventory_level:in'?: number
@@ -499,10 +499,6 @@ export type ProductMetafield = {
   id?: number
   date_created?: string
   date_modified?: string
-}
-
-export type ProductImageUrl = {
-  image_url: string
 }
 
 export type ProductReview = {

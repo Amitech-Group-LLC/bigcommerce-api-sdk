@@ -5,6 +5,7 @@ import {
   ProductDelete,
   ProductUpdate,
 } from '../models/product'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -30,9 +31,7 @@ class Products {
 
   public async updateMany<TData extends ProductPost>(
     data: TData[],
-    params: {
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<Product> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Product[]>> {
     return await http
@@ -47,9 +46,7 @@ class Products {
 
   public async create<TData extends ProductPost>(
     data: TData[],
-    params: {
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<Product> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http
@@ -84,8 +81,8 @@ class Products {
     itemId: number,
     params: {
       include?: string
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
+      include_fields?: Array<keyof Product>
+      exclude_fields?: Array<keyof Product>
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
@@ -105,9 +102,7 @@ class Products {
   public async update<TData extends ProductUpdate>(
     itemId: number,
     data: TData,
-    params: {
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<Product> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http

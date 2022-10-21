@@ -20,7 +20,7 @@ export type Category = {
 }
 
 export type CategoryFilter = {
-  exclude_fields?: string | string[]
+  exclude_fields?: Array<keyof Category>
   id?: number
   'id?:greater'?: number[]
   'id?:in'?: number[]
@@ -28,7 +28,7 @@ export type CategoryFilter = {
   'id?:max'?: number[]
   'id?:min'?: number[]
   'id?:not_in'?: number[]
-  include_fields?: string | string[]
+  include_fields?: Array<keyof Category>
   is_visible?: boolean
   keyword?: string
   limit?: number
@@ -50,8 +50,8 @@ export type CategoryBatchFilter = {
   'category_id:not_in'?: string
   'category_uuid:in'?: string
   'category_uuid:not_in'?: string
-  exclude_fields?: string | string[]
-  include_fields?: string | string[]
+  exclude_fields?: Array<keyof Category>
+  include_fields?: Array<keyof Category>
   is_visible?: boolean
   keyword?: string
   limit?: number
@@ -134,7 +134,7 @@ export type CategoryBatchError = {
 }
 
 export type CategoryMetafieldFilter = {
-  exclude_fields?: string | string[]
+  exclude_fields?: Array<keyof CategoryMetafield>
   id?: number
   'id:greater'?: number[]
   'id:in'?: number[]
@@ -142,7 +142,7 @@ export type CategoryMetafieldFilter = {
   'id:max'?: number[]
   'id:min'?: number[]
   'id:not_in'?: number[]
-  include_fields?: string | string[]
+  include_fields?: Array<keyof CategoryMetafield>
   key?: string
   limit?: number
   namespace?: string
@@ -160,8 +160,4 @@ export type CategoryMetafield = {
   id?: number
   date_created?: string
   date_modified?: string
-}
-
-export type CategoryImage = {
-  image_url: string
 }

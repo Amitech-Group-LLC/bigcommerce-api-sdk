@@ -1,4 +1,5 @@
 import { ProductBulkPricing } from '../models/product'
+import { FilterParam, ProductFilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -7,12 +8,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductBulkPricings {
   public async list(
     itemId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-      limit?: number
-      page?: number
-    } = {},
+    params: ProductFilterParam<ProductBulkPricing> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductBulkPricing[]>> {
     return await http
@@ -54,10 +50,7 @@ class ProductBulkPricings {
   public async get(
     itemId: number,
     bulkPricingRuleId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductBulkPricing> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductBulkPricing>> {
     return await http
@@ -80,9 +73,7 @@ class ProductBulkPricings {
     itemId: number,
     bulkPricingRuleId: number,
     data: TData,
-    params: {
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductBulkPricing> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductBulkPricing>> {
     return await http

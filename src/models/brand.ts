@@ -12,14 +12,10 @@ export type Brand = {
   }
 }
 
-export type BrandImage = {
-  image_url?: string
-}
-
 export type BrandFilter = {
   id?: number
-  include_fields?: string | string[]
-  exclude_fields?: string | string[]
+  include_fields?: Array<keyof BrandFilter>
+  exclude_fields?: Array<keyof BrandFilter>
   limit?: number
   name?: string
   page?: number
