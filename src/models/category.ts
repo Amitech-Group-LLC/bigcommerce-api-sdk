@@ -20,7 +20,7 @@ export type Category = {
 }
 
 export type CategoryFilter = {
-  exclude_fields?: string
+  exclude_fields?: string | string[]
   id?: number
   'id?:greater'?: number[]
   'id?:in'?: number[]
@@ -28,7 +28,7 @@ export type CategoryFilter = {
   'id?:max'?: number[]
   'id?:min'?: number[]
   'id?:not_in'?: number[]
-  include_fields?: string
+  include_fields?: string | string[]
   is_visible?: boolean
   keyword?: string
   limit?: number
@@ -50,8 +50,8 @@ export type CategoryBatchFilter = {
   'category_id:not_in'?: string
   'category_uuid:in'?: string
   'category_uuid:not_in'?: string
-  exclude_fields?: string
-  include_fields?: string
+  exclude_fields?: string | string[]
+  include_fields?: string | string[]
   is_visible?: boolean
   keyword?: string
   limit?: number
@@ -134,7 +134,7 @@ export type CategoryBatchError = {
 }
 
 export type CategoryMetafieldFilter = {
-  exclude_fields?: string
+  exclude_fields?: string | string[]
   id?: number
   'id:greater'?: number[]
   'id:in'?: number[]
@@ -142,7 +142,7 @@ export type CategoryMetafieldFilter = {
   'id:max'?: number[]
   'id:min'?: number[]
   'id:not_in'?: number[]
-  include_fields?: string
+  include_fields?: string | string[]
   key?: string
   limit?: number
   namespace?: string
