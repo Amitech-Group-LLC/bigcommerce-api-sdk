@@ -45,8 +45,8 @@ class BrandMetafields {
     itemId: number,
     metafieldId: number,
     params: {
-      include_fields?: string
-      exclude_fields?: string
+      include_fields?: string | string[]
+      exclude_fields?: string | string[]
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<BrandMetafield>> {
