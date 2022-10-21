@@ -1,9 +1,6 @@
 import { BillingAddressCustomFields } from './checkout'
 
-export type CheckoutConsignmentData = {
-  address: CheckoutConsignmentAddress
-  line_items: CheckoutConsignmentLineItems
-}
+export type CheckoutConsignmentData = Omit<CheckoutConsignmentUpdateData, 'shipping_option_id'>
 
 export type CheckoutConsignmentAddress = {
   first_name?: string
@@ -27,3 +24,9 @@ export type CheckoutConsignmentLineItems = {
 }
 
 export type CheckoutConsignmentIncludeParam = 'consignments.available_shipping_options'
+
+export type CheckoutConsignmentUpdateData = {
+  address: CheckoutConsignmentAddress
+  line_items: CheckoutConsignmentLineItems
+  shipping_option_id?: string
+}

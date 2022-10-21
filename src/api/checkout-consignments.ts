@@ -1,4 +1,4 @@
-import { CheckoutConsignmentData, CheckoutConsignmentIncludeParam } from '../models/checkout-consignment'
+import { CheckoutConsignmentData, CheckoutConsignmentIncludeParam, CheckoutConsignmentUpdateData } from '../models/checkout-consignment'
 import { CheckoutData } from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
@@ -22,6 +22,19 @@ class CheckoutConsignments {
         }
         throw ex
       })
+  }
+
+  public async update<TData extends CheckoutConsignmentUpdateData>(
+    checkoutId: string,
+    consignmentId: string,
+    data: TData[],
+    params: {
+      include?: CheckoutConsignmentIncludeParam,
+    },
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CheckoutData>> {
+    return await http
+      .put(`/v3/checkouts/${checkoutId}/consignments/${consignmentId}`, {...requestOptions, data, params })
   }
 }
 
