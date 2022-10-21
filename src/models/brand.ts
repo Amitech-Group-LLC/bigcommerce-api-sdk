@@ -18,8 +18,8 @@ export type BrandImage = {
 
 export type BrandFilter = {
   id?: number
-  include_fields?: string
-  exclude_fields?: string
+  include_fields?: string | string[]
+  exclude_fields?: string | string[]
   limit?: number
   name?: string
   page?: number
