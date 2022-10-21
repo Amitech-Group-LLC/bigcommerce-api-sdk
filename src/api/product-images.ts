@@ -1,54 +1,22 @@
-import { CategoryMetafield, CategoryMetafieldFilter } from '../models/category'
+import { ProductImage } from '../models/product'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CategoryMetafields {
+class ProductImages {
   public async list(
     itemId: number,
-    filterParams: CategoryMetafieldFilter = {},
-    requestOptions: RequestOptions = {}
-  ): Promise<ListResult<CategoryMetafield[]>> {
-    return await http
-      .get(`/v3/catalog/categories/${itemId}/metafields`, {
-        ...requestOptions,
-        params: filterParams,
-      })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async create<TData extends CategoryMetafield>(
-    itemId: number,
-    data: TData,
-    requestOptions: RequestOptions = {}
-  ): Promise<Result<CategoryMetafield>> {
-    return await http
-      .post(`/v3/catalog/categories/${itemId}/metafields`, { ...requestOptions, data })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async get(
-    itemId: number,
-    metafieldId: number,
     params: {
       exclude_fields?: string | string[]
       include_fields?: string | string[]
+      limit?: number
+      page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CategoryMetafield>> {
+  ): Promise<ListResult<ProductImage[]>> {
     return await http
-      .get(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, {
+      .get(`/v3/catalog/products/${itemId}/images`, {
         ...requestOptions,
         params,
       })
@@ -60,14 +28,58 @@ class CategoryMetafields {
       })
   }
 
-  public async update<TData extends CategoryMetafield>(
+  public async create<TData extends ProductImage>(
     itemId: number,
-    metafieldId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CategoryMetafield>> {
+  ): Promise<Result<ProductImage>> {
     return await http
-      .put(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, { ...requestOptions, data })
+      .post(`/v3/catalog/products/${itemId}/images`, {
+        ...requestOptions,
+        data,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async get(
+    itemId: number,
+    imageId: number,
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+    } = {},
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<ProductImage>> {
+    return await http
+      .get(`/v3/catalog/products/${itemId}/images/${imageId}`, {
+        ...requestOptions,
+        params,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async update<TData extends ProductImage>(
+    itemId: number,
+    imageId: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<ProductImage>> {
+    return await http
+      .put(`/v3/catalog/products/${itemId}/images/${imageId}`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -78,11 +90,13 @@ class CategoryMetafields {
 
   public async delete(
     itemId: number,
-    metafieldId: number,
+    imageId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, { ...requestOptions })
+      .delete(`/v3/catalog/products/${itemId}/images/${imageId}`, {
+        ...requestOptions,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -92,4 +106,4 @@ class CategoryMetafields {
   }
 }
 
-export default new CategoryMetafields()
+export default new ProductImages()
