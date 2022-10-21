@@ -6,7 +6,7 @@ import { BigcommerceApiError } from '../utils/error'
 
 class CustomerConsent {
   public async get(
-    customerId: string,
+    customerId: number,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CustomerConsentData>> {
     return await http
@@ -20,7 +20,7 @@ class CustomerConsent {
   }
 
   public async update<TData extends UpdateCustomerConsentData>(
-    customerId: string,
+    customerId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CustomerConsentData>> {
