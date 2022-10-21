@@ -6,7 +6,7 @@ import { BigcommerceApiError } from '../utils/error'
 
 class Variants {
   public async list(
-    params?: {
+    params: {
       exclude_fields?: string
       id?: number
       include_fields?: string
@@ -14,7 +14,7 @@ class Variants {
       page?: number
       product_id?: string
       sku?: string
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Variant[]>> {
     return await http
