@@ -1,19 +1,24 @@
-import { BrandFilter, BrandMetafield } from '../models/brand'
+import { ProductCustomField } from '../models/product'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class BrandMetafields {
+class ProductCustomFields {
   public async list(
     itemId: number,
-    filterParams: BrandFilter = {},
+    params: {
+      exclude_fields?: string | string[]
+      include_fields?: string | string[]
+      limit?: number
+      page?: number
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<BrandMetafield[]>> {
+  ): Promise<ListResult<ProductCustomField[]>> {
     return await http
-      .get(`/v3/catalog/brands/${itemId}/metafields`, {
+      .get(`v3/catalog/products/${itemId}/custom-fields`, {
         ...requestOptions,
-        params: filterParams,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -23,13 +28,13 @@ class BrandMetafields {
       })
   }
 
-  public async create<TData extends BrandMetafield>(
+  public async createMany<TData extends ProductCustomField>(
     itemId: number,
-    data: TData,
+    data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<BrandMetafield>> {
+  ): Promise<Result<ProductCustomField>> {
     return await http
-      .post(`/v3/catalog/brands/${itemId}/metafields`, {
+      .post(`v3/catalog/products/${itemId}/custom-fields`, {
         ...requestOptions,
         data,
       })
@@ -43,21 +48,18 @@ class BrandMetafields {
 
   public async get(
     itemId: number,
-    metafieldId: number,
+    customFieldId: number,
     params: {
-      include_fields?: string | string[]
       exclude_fields?: string | string[]
+      include_fields?: string | string[]
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<BrandMetafield>> {
+  ): Promise<Result<ProductCustomField>> {
     return await http
-      .get(
-        `/v3/catalog/brands/${itemId}/metafields/${metafieldId}`,
-        {
-          ...requestOptions,
-          params,
-        }
-      )
+      .get(`/v3/catalog/products/${itemId}/custom-fields/${customFieldId}`, {
+        ...requestOptions,
+        params,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -66,17 +68,17 @@ class BrandMetafields {
       })
   }
 
-  public async update<TData extends BrandMetafield>(
+  public async update<TData extends ProductCustomField>(
     itemId: number,
-    metafieldId: number,
+    customFieldId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<BrandMetafield>> {
+  ): Promise<Result<ProductCustomField>> {
     return await http
-      .put(
-        `/v3/catalog/brands/${itemId}/metafields/${metafieldId}`,
-        { ...requestOptions, data }
-      )
+      .put(`/v3/catalog/products/${itemId}/custom-fields/${customFieldId}`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -87,14 +89,13 @@ class BrandMetafields {
 
   public async delete(
     itemId: number,
-    metafieldId: number,
+    customFieldId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(
-        `/v3/catalog/brands/${itemId}/metafields/${metafieldId}`,
-        { ...requestOptions }
-      )
+      .delete(`/v3/catalog/products/${itemId}/custom-fields/${customFieldId}`, {
+        ...requestOptions,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -104,4 +105,4 @@ class BrandMetafields {
   }
 }
 
-export default new BrandMetafields()
+export default new ProductCustomFields()

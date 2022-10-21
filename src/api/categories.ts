@@ -1,17 +1,16 @@
-import { BrandFilter, BrandMetafield } from '../models/brand'
+import { Category, CategoryFilter } from '../models/category'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class BrandMetafields {
+class Categories {
   public async list(
-    itemId: number,
-    filterParams: BrandFilter = {},
+    filterParams: CategoryFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<BrandMetafield[]>> {
+  ): Promise<ListResult<Category[]>> {
     return await http
-      .get(`/v3/catalog/brands/${itemId}/metafields`, {
+      .get(`/v3/catalog/categories`, {
         ...requestOptions,
         params: filterParams,
       })
@@ -23,41 +22,19 @@ class BrandMetafields {
       })
   }
 
-  public async create<TData extends BrandMetafield>(
-    itemId: number,
-    data: TData,
-    requestOptions: RequestOptions = {}
-  ): Promise<Result<BrandMetafield>> {
-    return await http
-      .post(`/v3/catalog/brands/${itemId}/metafields`, {
-        ...requestOptions,
-        data,
-      })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
   public async get(
     itemId: number,
-    metafieldId: number,
     params: {
-      include_fields?: string | string[]
       exclude_fields?: string | string[]
+      include_fields?: string | string[]
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<BrandMetafield>> {
+  ): Promise<Result<Category>> {
     return await http
-      .get(
-        `/v3/catalog/brands/${itemId}/metafields/${metafieldId}`,
-        {
-          ...requestOptions,
-          params,
-        }
-      )
+      .get(`/v3/catalog/categories/${itemId}`, {
+        ...requestOptions,
+        params,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -66,17 +43,44 @@ class BrandMetafields {
       })
   }
 
-  public async update<TData extends BrandMetafield>(
-    itemId: number,
-    metafieldId: number,
+  public async create<TData extends Category>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<BrandMetafield>> {
+  ): Promise<Result<Category>> {
     return await http
-      .put(
-        `/v3/catalog/brands/${itemId}/metafields/${metafieldId}`,
-        { ...requestOptions, data }
-      )
+      .post(`/v3/catalog/categories`, { ...requestOptions, data })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async deleteMany(
+    filterParams: CategoryFilter = {},
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete(`/v3/catalog/categories`, {
+        ...requestOptions,
+        params: filterParams,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async update<TData extends Category>(
+    itemId: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<Category>> {
+    return await http
+      .put(`/v3/catalog/categories/${itemId}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -87,14 +91,10 @@ class BrandMetafields {
 
   public async delete(
     itemId: number,
-    metafieldId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(
-        `/v3/catalog/brands/${itemId}/metafields/${metafieldId}`,
-        { ...requestOptions }
-      )
+      .delete(`/v3/catalog/categories/${itemId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -104,4 +104,4 @@ class BrandMetafields {
   }
 }
 
-export default new BrandMetafields()
+export default new Categories()
