@@ -54,7 +54,7 @@ class CategoryTrees {
     itemId: number,
     params: {
       depth?: number
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<CategoryTree[]>> {
     return await http
