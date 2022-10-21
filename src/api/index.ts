@@ -14,6 +14,7 @@ import categoryBatchs from './category-batchs'
 import CategoryMetafields from './category-metafields'
 import store from './store'
 import timeZones from './time-zones'
+import summaries from './summaries'
 import checkout from './checkout'
 import customerSettingsChannels from './customer-settings-channel'
 import customerSettings from './customer-settings'
@@ -57,6 +58,7 @@ export {
   CategoryMetafields,
   store,
   timeZones,
+  summaries,
   checkout,
   customerSettingsChannels,
   customerSettings,
