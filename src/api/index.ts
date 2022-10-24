@@ -42,6 +42,9 @@ import productVariantOptions from './product-variant-options'
 import productVariants from './product-variants'
 import productVideos from './product-videos'
 import products from './products'
+import webhooks from './webhooks'
+import webhookAdmins from './webhook-admins'
+import webhookEvents from './webhook-events'
 
 export {
   cartItems,
@@ -88,4 +91,7 @@ export {
   productVariants,
   productVideos,
   products,
+  webhooks,
+  webhookAdmins,
+  webhookEvents,
 }

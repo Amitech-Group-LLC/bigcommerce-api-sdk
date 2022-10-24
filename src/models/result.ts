@@ -9,7 +9,7 @@ export type ErrorResult<TResult, TError, TMeta = object> = {
   meta: TMeta
 }
 
-type Meta = {
+export type Meta = {
   pagination: {
     total: number
     count: number
