@@ -6,7 +6,4 @@ export type FilterParam<T> = {
 export type ProductFilterParam<T> = FilterParam<T> & {
   limit?: number
   page?: number
-  key?: string
-  namespace?: string
-  status?: number
 }

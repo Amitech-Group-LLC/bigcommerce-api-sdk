@@ -73,7 +73,9 @@ class ProductBulkPricings {
     itemId: number,
     bulkPricingRuleId: number,
     data: TData,
-    params: FilterParam<ProductBulkPricing> = {},
+    params: {
+      include_fields?: Array<keyof ProductBulkPricing>
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductBulkPricing>> {
     return await http

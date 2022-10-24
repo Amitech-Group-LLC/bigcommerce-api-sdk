@@ -1,5 +1,5 @@
 import { ProductVariant } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -8,7 +8,13 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductVariants {
   public async list(
     itemId: number,
-    params: ProductFilterParam<ProductVariant> = {},
+    params: {
+      include_fields?: Array<keyof ProductVariant>
+      exclude_fields?: Array<keyof ProductVariant>
+      limit?: number
+      page?: number
+      status?: number
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductVariant[]>> {
     return await http

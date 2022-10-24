@@ -1,5 +1,5 @@
 import { ProductMetafield } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -8,7 +8,14 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductMetafields {
   public async list(
     itemId: number,
-    params: ProductFilterParam<ProductMetafield> = {},
+    params: {
+      include_fields?: Array<keyof ProductMetafield>
+      exclude_fields?: Array<keyof ProductMetafield>
+      limit?: number
+      page?: number
+      key?: string
+      namespace?: string
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductMetafield[]>> {
     return await http

@@ -5,7 +5,6 @@ import {
   ProductDelete,
   ProductUpdate,
 } from '../models/product'
-import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -31,7 +30,9 @@ class Products {
 
   public async updateMany<TData extends ProductPost>(
     data: TData[],
-    params: FilterParam<Product> = {},
+    params: {
+      include_fields?: Array<keyof Product>
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Product[]>> {
     return await http
@@ -46,7 +47,9 @@ class Products {
 
   public async create<TData extends ProductPost>(
     data: TData[],
-    params: FilterParam<Product> = {},
+    params: {
+      include_fields?: Array<keyof Product>
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http
@@ -102,7 +105,9 @@ class Products {
   public async update<TData extends ProductUpdate>(
     itemId: number,
     data: TData,
-    params: FilterParam<Product> = {},
+    params: {
+      include_fields?: Array<keyof Product>
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
     return await http

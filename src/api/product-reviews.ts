@@ -1,5 +1,5 @@
 import { ProductReview } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -8,7 +8,13 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductReviews {
   public async list(
     itemId: number,
-    params: ProductFilterParam<ProductReview> = {},
+    params: {
+      include_fields?: Array<keyof ProductReview>
+      exclude_fields?: Array<keyof ProductReview>
+      limit?: number
+      page?: number
+      status?: number
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductReview[]>> {
     return await http
