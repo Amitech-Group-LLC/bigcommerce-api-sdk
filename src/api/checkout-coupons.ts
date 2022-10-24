@@ -20,6 +20,21 @@ class CheckoutCoupons {
         throw ex
       })
   }
+
+  public async delete(
+    checkoutId: string,
+    couponCode: string,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CheckoutData>> {
+    return await http
+      .delete(`/v3/checkouts/${checkoutId}/coupons/${couponCode}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new CheckoutCoupons()
