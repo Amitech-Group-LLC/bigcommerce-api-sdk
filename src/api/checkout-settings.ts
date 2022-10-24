@@ -17,6 +17,20 @@ class CheckoutSettings {
         throw ex
       })
   }
+
+  public async update<TData extends CheckoutSettingData>(
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<CheckoutSettingData>> {
+    return await http
+      .put('/v3/checkouts/settings', { ...requestOptions, data })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new CheckoutSettings()
