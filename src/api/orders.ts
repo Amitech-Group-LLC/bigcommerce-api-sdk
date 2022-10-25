@@ -33,6 +33,20 @@ class Orders {
         throw ex
       })
   }
+
+  public async archive(
+    order_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete(`/v2/orders/${order_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new Orders()
