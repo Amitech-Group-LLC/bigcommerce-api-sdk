@@ -56,3 +56,13 @@ export type ShipmentsParams = {
   limit?: number
   page?: number
 }
+
+export type ShipmentsCreateData = {
+  order_address_id: number
+  tracking_number?: string
+  shipping_method?: string
+  shipping_provider?: 'auspost' | 'canadapost' | 'endicia' | 'usps' | 'fedex' | 'ups' | 'upsready' | 'upsonline' | 'shipperhq'
+  tracking_carrier?: string
+  comments?: string
+  items: Omit<ShipmentsItems, 'product_id'>[]
+}
