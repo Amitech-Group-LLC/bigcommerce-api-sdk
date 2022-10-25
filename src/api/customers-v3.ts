@@ -1,30 +1,12 @@
-import { Customer, CreateData, UpdateData } from '../models/customer'
+import { Customer, CreateData, UpdateData, CustomerFilter } from '../models/customer'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class Customers {
+class CustomersV3 {
   public async list(
-    filterParams: {
-      'company:in'?: string[]
-      'customer_group_id:in'?: string[]
-      date_created?: string
-      'date_created:max'?: string
-      'date_created:min'?: string
-      date_modified?: string
-      'date_modified:max'?: string
-      'date_modified:min'?: string
-      'email:in'?: string
-      'id:in'?: number[]
-      include?: 'addresses' | 'storecredit' | 'attributes' | 'formfields' | 'shopper_profile_id' | 'segment_ids'
-      limit?: number
-      'name:in'?: string[]
-      'name:like'?: string[]
-      page?: number
-      'registration_ip_address:in'?: number[]
-      sort?: 'date_created:asc' | 'date_created:desc' | 'last_name:asc' | 'last_name:desc' | 'date_modified:asc' | 'date_modified:desc'
-    } = {},
+    filterParams: CustomerFilter = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Customer[]>> {
     return await http
@@ -85,4 +67,4 @@ class Customers {
   }
 }
 
-export default new Customers()
+export default new CustomersV3()

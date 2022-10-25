@@ -1,4 +1,4 @@
-import { CustomerSettingData } from '../models/customer-setting'
+import { CustomerSettingData } from '../models/customer'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'

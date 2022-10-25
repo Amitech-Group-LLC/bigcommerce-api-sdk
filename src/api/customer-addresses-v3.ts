@@ -1,10 +1,10 @@
-import { CustomerAddressData, CustomerAddressParams, CreateAddressData, UpdateAddressData } from '../models/customer-address'
+import { CustomerAddressData, CustomerAddressParams, CreateAddressData, UpdateAddressData } from '../models/customer'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerAddresses {
+class CustomerV3Addresses {
   public async list(
     filterParams: CustomerAddressParams = {},
     requestOptions: RequestOptions = {}
@@ -76,4 +76,4 @@ class CustomerAddresses {
   }
  }
 
-export default new CustomerAddresses()
+export default new CustomerV3Addresses()

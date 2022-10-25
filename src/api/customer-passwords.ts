@@ -1,16 +1,20 @@
-import { CustomerValidateCredentialData, CustomerValidateCredential } from '../models/customer'
+import { CustomerV2Password, CustomerV2Result } from '../models/customer'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerValidateCredentials {
-  public async validate<TData extends CustomerValidateCredentialData>(
+class CustomerV2Passwords {
+  public async validate<TData extends CustomerV2Password>(
+    customerId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerValidateCredential>> {
+  ): Promise<Result<CustomerV2Result>> {
     return await http
-      .post('/v3/customers/validate-credentials', { ...requestOptions, data })
+      .post(`/v2/customers/${customerId}/validate`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -18,6 +22,6 @@ class CustomerValidateCredentials {
         throw ex
       })
   }
-}
+ }
 
-export default new CustomerValidateCredentials()
+export default new CustomerV2Passwords()

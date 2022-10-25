@@ -1,13 +1,15 @@
 import carts from './carts'
 import cartSettings from './cart-settings'
 import cartItems from './cart-items'
-import customers from './customers'
+import customersV3 from './customers-v3'
+import customersV2 from './customers-v2'
 import brands from './brands'
 import brandImages from './brand-images'
 import brandMetafields from './brand-metafields'
 import customerAttributeValues from './customer-attribute-values'
 import customerAttributes from './customer-attributes'
-import customerAddresses from './customer-addresses'
+import customerV3Addresses from './customer-addresses-v3'
+import customerV2Addresses from './customer-addresses-v2'
 import categoryImages from './category-images'
 import categories from './categories'
 import categoryBatchs from './category-batchs'
@@ -45,18 +47,22 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import customerGroups from './customer-groups'
+import customerPasswords from './customer-passwords'
 
 export {
   cartItems,
   carts,
   cartSettings,
-  customers,
+  customersV3,
+  customersV2,
   brands,
   brandImages,
   brandMetafields,
   customerAttributeValues,
   customerAttributes,
-  customerAddresses,
+  customerV3Addresses,
+  customerV2Addresses,
   categoryImages,
   categories,
   categoryBatchs,
@@ -94,4 +100,6 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  customerGroups,
+  customerPasswords,
 }
