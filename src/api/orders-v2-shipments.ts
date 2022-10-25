@@ -23,7 +23,7 @@ class OrdersV2Shipments {
           throw new BigcommerceApiError(ex)
         }
         throw ex
-      })  
+      })
   }
 
   public async create<TData extends ShipmentsCreateData>(
@@ -38,10 +38,10 @@ class OrdersV2Shipments {
           throw new BigcommerceApiError(ex)
         }
         throw ex
-      })  
+      })
   }
 
-  public async delete(
+  public async deleteMany(
     order_id: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
@@ -52,7 +52,7 @@ class OrdersV2Shipments {
           throw new BigcommerceApiError(ex)
         }
         throw ex
-      })  
+      })
   }
 
   public async count(
@@ -66,7 +66,7 @@ class OrdersV2Shipments {
           throw new BigcommerceApiError(ex)
         }
         throw ex
-      })  
+      })
   }
 
   public async get(
@@ -81,7 +81,7 @@ class OrdersV2Shipments {
           throw new BigcommerceApiError(ex)
         }
         throw ex
-      })  
+      })
   }
 
   public async update<TData extends ShipmentsUpdateData>(
@@ -97,7 +97,22 @@ class OrdersV2Shipments {
           throw new BigcommerceApiError(ex)
         }
         throw ex
-      })  
+      })
+  }
+
+  public async delete(
+    order_id: number,
+    shipment_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
   }
 }
 
