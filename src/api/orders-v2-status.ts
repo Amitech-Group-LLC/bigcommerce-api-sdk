@@ -17,6 +17,20 @@ class OrdersV2Status {
         throw ex
       })  
   }
+
+  public async get(
+    status_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV2StatusData>> {
+    return await http
+      .get(`/v2/order_statuses/${status_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })  
+  }
 }
 
 export default new OrdersV2Status()
