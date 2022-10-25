@@ -206,3 +206,18 @@ export type OrderShippingAddress = {
   email?: string
   shipping_method?: string
 }
+
+export type GetCountOrderData = {
+  statuses?: CountOrderStatus[]
+  count?: number
+}
+
+export type CountOrderStatus = {
+  id?: number
+  name?: string
+  system_label?: string
+  custom_label?: string
+  system_description?: string
+  count?: number
+  sort_order?: number
+}
