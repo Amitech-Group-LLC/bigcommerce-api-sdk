@@ -19,6 +19,21 @@ class OrdersV2ShippingAddresses {
         throw ex
       })
   }
+
+  public async get(
+    id: string,
+    order_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV2ShippingAddressData>> {
+    return await http
+      .get(`/v2/orders/${order_id}/shipping_addresses/${id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new OrdersV2ShippingAddresses()
