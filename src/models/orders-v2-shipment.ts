@@ -66,3 +66,7 @@ export type ShipmentsCreateData = {
   comments?: string
   items: Omit<ShipmentsItems, 'product_id'>[]
 }
+
+export type ShipmentsCountData = {
+  count?: number
+}

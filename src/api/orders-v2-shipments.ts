@@ -1,4 +1,4 @@
-import { OrdersV2ShipmentData, ShipmentsParams, ShipmentsCreateData } from '../models/orders-v2-shipment'
+import { OrdersV2ShipmentData, ShipmentsParams, ShipmentsCreateData, ShipmentsCountData } from '../models/orders-v2-shipment'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -41,6 +41,20 @@ class OrdersV2Shipments {
   ): Promise<undefined> {
     return await http
       .delete(`/v2/orders/${order_id}/shipments`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })  
+  }
+
+  public async count(
+    order_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<ShipmentsCountData>> {
+    return await http
+      .get(`/v2/orders/${order_id}/shipments/count`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
