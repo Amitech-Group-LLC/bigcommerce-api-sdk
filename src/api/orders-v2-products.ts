@@ -19,6 +19,21 @@ class OrderV2Products {
         throw ex
       })
   }
+
+  public async get(
+    order_id: number,
+    product_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV2ProductsData>> {
+    return await http
+      .get(`/v2/orders/${order_id}/products/${product_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new OrderV2Products()
