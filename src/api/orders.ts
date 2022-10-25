@@ -1,4 +1,4 @@
-import { OrderData, OrderUpdateData, GetCountOrderData, OrderParams } from '../models/order'
+import { OrderData, OrderUpdateData, GetCountOrderData, OrderParams, OrderCreateData } from '../models/order'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -67,6 +67,20 @@ class Orders {
   ): Promise<Result<OrderData>> {
     return await http
       .get('/v2/orders', { ...requestOptions, params })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async create<TData extends OrderCreateData>(
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrderData>> {
+    return await http
+      .post('/v2/orders', { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

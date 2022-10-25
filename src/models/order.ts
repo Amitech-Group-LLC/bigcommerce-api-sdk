@@ -104,49 +104,14 @@ export type OrderFormFields = {
   value?: string
 }
 
-export type OrderUpdateData = {
+export type OrderUpdateData = OrderDefaultData & {
   products?: (OrderCatalogProduct | OrderCustomProduct)[]
-  shipping_addresses?: OrderShippingAddress
-  base_handling_cost?: string
-  base_shipping_cost?: string
-  base_wrapping_cost?: string
   billing_address?: Omit<OrderBillingAddress, 'form_fields'>
-  channel_id?: number
-  customer_id?: number
-  customer_message?: string
-  date_created?: string
-  default_currency_code?: string
-  discount_amount?: string
-  ebay_order_id?: string
-  external_id?: string ///////////////
-  external_merchant_id?: string /////////
-  external_source?: string //////////
-  geoip_country?: string
-  geoip_country_iso2?: string
-  handling_cost_ex_tax?: string
-  handling_cost_inc_tax?: string
-  ip_address?: string
-  ip_address_v6?: string
-  is_deleted?: boolean
-  items_shipped?: number
-  items_total?: number
-  order_is_digital?: boolean
-  payment_method?: 'Credit Card' | 'Cash' | 'Test Payment Gateway' | 'Manual'
-  payment_provider_id?: string | number
-  refunded_amount?: string
-  shipping_cost_ex_tax?: string
-  shipping_cost_inc_tax?: string
-  staff_notes?: string
-  status_id?: number
-  subtotal_ex_tax?: string
-  subtotal_inc_tax?: string
-  tax_provider_id?: 'BasicTaxProvider' | 'AvaTaxProvider' | ''
-  customer_locale?: string
-  external_order_id?: string
-  total_ex_tax?: string
-  total_inc_tax?: string
-  wrapping_cost_ex_tax?: string
-  wrapping_cost_inc_tax?: string
+}
+
+export type OrderCreateData = OrderDefaultData & {
+  products: (OrderCatalogProduct | OrderCustomProduct)[]
+  billing_address: Omit<OrderBillingAddress, 'form_fields'>
 }
 
 export type OrderCatalogProduct = {
@@ -257,4 +222,46 @@ export type OrderSortParams = 'id:asc' |
   'channel_id:desc' |
   'external_id:asc' |
   'external_id:desc'
-  
+
+export type OrderDefaultData = {
+  shipping_addresses?: OrderShippingAddress
+  base_handling_cost?: string
+  base_shipping_cost?: string
+  base_wrapping_cost?: string
+  channel_id?: number
+  customer_id?: number
+  customer_message?: string
+  date_created?: string
+  default_currency_code?: string
+  discount_amount?: string
+  ebay_order_id?: string
+  external_id?: string ///////////////
+  external_merchant_id?: string /////////
+  external_source?: string //////////
+  geoip_country?: string
+  geoip_country_iso2?: string
+  handling_cost_ex_tax?: string
+  handling_cost_inc_tax?: string
+  ip_address?: string
+  ip_address_v6?: string
+  is_deleted?: boolean
+  items_shipped?: number
+  items_total?: number
+  order_is_digital?: boolean
+  payment_method?: 'Credit Card' | 'Cash' | 'Test Payment Gateway' | 'Manual'
+  payment_provider_id?: string | number
+  refunded_amount?: string
+  shipping_cost_ex_tax?: string
+  shipping_cost_inc_tax?: string
+  staff_notes?: string
+  status_id?: number
+  subtotal_ex_tax?: string
+  subtotal_inc_tax?: string
+  tax_provider_id?: 'BasicTaxProvider' | 'AvaTaxProvider' | ''
+  customer_locale?: string
+  external_order_id?: string
+  total_ex_tax?: string
+  total_inc_tax?: string
+  wrapping_cost_ex_tax?: string
+  wrapping_cost_inc_tax?: string
+}
