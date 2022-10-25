@@ -34,6 +34,20 @@ class OrdersV2Shipments {
         throw ex
       })  
   }
+
+  public async delete(
+    order_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete(`/v2/orders/${order_id}/shipments`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })  
+  }
 }
 
 export default new OrdersV2Shipments()
