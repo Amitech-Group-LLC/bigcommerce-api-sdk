@@ -221,3 +221,40 @@ export type CountOrderStatus = {
   count?: number
   sort_order?: number
 }
+
+export type OrderParams = {
+  cart_id?: string
+  channel_id?: number
+  customer_id?: number
+  email?: string
+  is_deleted?: boolean
+  limit?: number
+  max_date_created?: string
+  max_date_modified?: string
+  max_id?: number
+  max_total?: number
+  min_date_created?: string
+  min_date_modified?: string
+  min_id?: number
+  min_total?: number
+  page?: number
+  payment_method?: 'Manual' | 'Cash on Delivery' | 'Credit Card' | 'Test Payment Gateway' | 'Pay In Store'
+  sort?: OrderSortParams
+  status_id?: number
+}
+
+export type OrderSortParams = 'id:asc' |
+  'id:desc' | 
+  'customer_id:asc' |
+  'customer_id:desc' |
+  'date_created:asc' |
+  'date_created:desc' |
+  'date_modified:asc' |
+  'date_modified:desc' |
+  'status_id:asc' |
+  'status_id:desc' |
+  'channel_id:asc' |
+  'channel_id:desc' |
+  'external_id:asc' |
+  'external_id:desc'
+  
