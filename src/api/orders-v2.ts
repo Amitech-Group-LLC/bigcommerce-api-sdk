@@ -1,10 +1,10 @@
-import { OrderData, OrderUpdateData, GetCountOrderData, OrderParams, OrderCreateData } from '../models/order'
+import { OrderData, OrderUpdateData, GetCountOrderData, OrderParams, OrderCreateData } from '../models/order-v2'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class Orders {
+class OrdersV2 {
   public async get(
     order_id: string,
     requestOptions: RequestOptions = {}
@@ -48,7 +48,7 @@ class Orders {
       })
   }
 
-  public async getCount(
+  public async count(
     requestOptions: RequestOptions = {}
   ): Promise<Result<GetCountOrderData>> {
     return await http
@@ -88,6 +88,19 @@ class Orders {
         throw ex
       })
   }
+
+  public async deleteMany(
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete('/v2/orders', { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
-export default new Orders()
+export default new OrdersV2()

@@ -49,8 +49,9 @@ export type OrderData = {
   date_created?: string
   discount_amount?: string
   ebay_order_id?: string
-  external_id?: string ///////////////
-  external_merchant_id?: string ///////////////
+  external_id?: any
+  external_merchant_id?: any
+  external_source?: any
   geoip_country?: string
   geoip_country_iso2?: string
   handling_cost_ex_tax?: string
@@ -235,9 +236,9 @@ export type OrderDefaultData = {
   default_currency_code?: string
   discount_amount?: string
   ebay_order_id?: string
-  external_id?: string ///////////////
-  external_merchant_id?: string /////////
-  external_source?: string //////////
+  external_id?: any
+  external_merchant_id?: any
+  external_source?: any
   geoip_country?: string
   geoip_country_iso2?: string
   handling_cost_ex_tax?: string
