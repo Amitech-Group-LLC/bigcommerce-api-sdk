@@ -57,14 +57,21 @@ export type ShipmentsParams = {
   page?: number
 }
 
-export type ShipmentsCreateData = {
+export type ShipmentsCreateData = ShipmentsDefaultData & {
   order_address_id: number
+  items: Omit<ShipmentsItems, 'product_id'>[]
+}
+
+export type ShipmentsUpdateData = ShipmentsDefaultData & {
+  order_address_id?: number
+}
+
+export type ShipmentsDefaultData = {
   tracking_number?: string
   shipping_method?: string
   shipping_provider?: 'auspost' | 'canadapost' | 'endicia' | 'usps' | 'fedex' | 'ups' | 'upsready' | 'upsonline' | 'shipperhq'
   tracking_carrier?: string
   comments?: string
-  items: Omit<ShipmentsItems, 'product_id'>[]
 }
 
 export type ShipmentsCountData = {

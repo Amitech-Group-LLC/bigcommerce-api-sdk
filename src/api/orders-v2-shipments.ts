@@ -1,4 +1,10 @@
-import { OrdersV2ShipmentData, ShipmentsParams, ShipmentsCreateData, ShipmentsCountData } from '../models/orders-v2-shipment'
+import { 
+  OrdersV2ShipmentData, 
+  ShipmentsParams, 
+  ShipmentsCreateData, 
+  ShipmentsCountData, 
+  ShipmentsUpdateData 
+} from '../models/orders-v2-shipment'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -70,6 +76,28 @@ class OrdersV2Shipments {
   ): Promise<Result<OrdersV2ShipmentData>> {
     return await http
       .get(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })  
+  }
+
+  public async update<TData extends ShipmentsUpdateData>(
+    order_id: number,
+    shipment_id: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV2ShipmentData>> {
+    return await http
+      .put(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions, data })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })  
   }
 }
 
