@@ -62,6 +62,15 @@ class OrdersV2Shipments {
         throw ex
       })  
   }
+
+  public async get(
+    order_id: number,
+    shipment_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV2ShipmentData>> {
+    return await http
+      .get(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions })
+  }
 }
 
 export default new OrdersV2Shipments()
