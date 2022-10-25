@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import ordersV2ShippingAddressesQuotes from './orders-v2-shipping-addresses-quotes'
 
 export {
   cartItems,
@@ -94,4 +95,5 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  ordersV2ShippingAddressesQuotes,
 }
