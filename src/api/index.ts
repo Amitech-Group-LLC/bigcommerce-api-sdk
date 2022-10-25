@@ -45,6 +45,8 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import geographyStates from './geography-states'
+import geographyCountries from './geography-countries'
 
 export {
   cartItems,
@@ -94,4 +96,6 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  geographyStates,
+  geographyCountries,
 }
