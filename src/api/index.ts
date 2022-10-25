@@ -45,6 +45,14 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import channels from './channels'
+import channelSites from './channel-sites'
+import channelSiteCheckoutUrls from './channel-site-checkout-urls'
+import channelMetafields from './channel-metafields'
+import channelListings from './channel-listings'
+import channelMenus from './channel-menus'
+import channelCurrencyAssigments from './channel-currency-assigments'
+import channelActiveThemes from './channel-active-themes'
 
 export {
   cartItems,
@@ -94,4 +102,12 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  channels,
+  channelSites,
+  channelSiteCheckoutUrls,
+  channelMetafields,
+  channelListings,
+  channelMenus,
+  channelCurrencyAssigments,
+  channelActiveThemes,
 }
