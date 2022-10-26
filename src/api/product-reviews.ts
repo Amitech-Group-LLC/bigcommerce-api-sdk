@@ -13,7 +13,7 @@ class ProductReviews {
       exclude_fields?: Array<keyof ProductReview>
       limit?: number
       page?: number
-      status?: number
+      status?: 1 | 0
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductReview[]>> {

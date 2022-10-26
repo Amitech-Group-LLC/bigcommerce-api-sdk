@@ -29,12 +29,17 @@ export type BrandFilter = {
 }
 
 export type BrandMetafield = {
-  permission_set: string
+  permission_set:
+    | 'app_only'
+    | 'read'
+    | 'write'
+    | 'read_and_sf_access'
+    | 'write_and_sf_access'
   namespace: string
   key: string
   value: string
   description?: string
-  resource_type?: string
+  resource_type?: 'category' | 'brand' | 'product' | 'variant'
   resource_id?: number
   id?: number
   date_created?: string

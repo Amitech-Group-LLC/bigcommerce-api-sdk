@@ -1,3 +1,14 @@
+export type CategoruDefaultProductSortParam =
+  | 'use_store_settings'
+  | 'featured'
+  | 'newest'
+  | 'best_selling'
+  | 'alpha_asc'
+  | 'alpha_desc'
+  | 'avg_customer_review'
+  | 'price_asc'
+  | 'price_desc'
+
 export type Category = {
   id?: number
   parent_id: number
@@ -12,7 +23,7 @@ export type Category = {
   image_url?: string
   is_visible?: true
   search_keywords?: string
-  default_product_sort?: string
+  default_product_sort?: CategoruDefaultProductSortParam
   custom_url?: {
     url?: string
     is_customized?: boolean
@@ -84,7 +95,7 @@ export type CategoryBatchPost = {
     path?: string
     is_customized?: boolean
   }
-  default_product_sort?: string
+  default_product_sort?: CategoruDefaultProductSortParam
 }
 
 export type CategoryBatchUpdate = {
@@ -107,7 +118,7 @@ export type CategoryBatchUpdate = {
     path?: string
     is_customized?: boolean
   }
-  default_product_sort?: string
+  default_product_sort?: CategoruDefaultProductSortParam
 }
 
 export type CategoryBatchMeta = {
@@ -150,12 +161,17 @@ export type CategoryMetafieldFilter = {
 }
 
 export type CategoryMetafield = {
-  permission_set: string
+  permission_set:
+    | 'app_only'
+    | 'read'
+    | 'write'
+    | 'read_and_sf_access'
+    | 'write_and_sf_access'
   namespace: string
   key: string
   value: string
   description?: string
-  resource_type?: string
+  resource_type?: 'category' | 'brand' | 'product' | 'variant'
   resource_id?: number
   id?: number
   date_created?: string
