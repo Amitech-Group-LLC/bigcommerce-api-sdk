@@ -10,7 +10,7 @@ class ChannelMetafields {
     params: {
       namespace?: string
       page?: number
-      direction?: string
+      direction?: 'asd' | 'desk'
       key?: Array<keyof ChannelMetafield>
       limit?: number
     } = {},
