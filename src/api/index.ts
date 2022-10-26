@@ -45,6 +45,9 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import marketingBanners from './marketing-banners'
+import marketingCoupons from './marketing-coupons'
+import marketingGiftCertificates from './marketing-gift-certificates'
 
 export {
   cartItems,
@@ -94,4 +97,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  marketingBanners,
+  marketingCoupons,
+  marketingGiftCertificates,
 }
