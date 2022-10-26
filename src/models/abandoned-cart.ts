@@ -9,7 +9,7 @@ export type AbandonedCartSetting = {
   email_merchant_when_cart_is_converted?: boolean
   email_merchant_when_cart_is_abandoned?: boolean
   merchant_email_address?: string
-  merchant_abandoned_cart_email_frequency_type?: string
+  merchant_abandoned_cart_email_frequency_type?: 'digest' | 'individual'
   merchant_abandoned_cart_digest_email_frequency?: number
 }
 
@@ -20,7 +20,7 @@ export type AbandonedCartSettingPost = {
   email_merchant_when_cart_is_converted: boolean
   email_merchant_when_cart_is_abandoned: boolean
   merchant_email_address: string
-  merchant_abandoned_cart_email_frequency_type: string
+  merchant_abandoned_cart_email_frequency_type: 'digest' | 'individual'
   merchant_abandoned_cart_digest_email_frequency: number
 }
 
