@@ -1,4 +1,4 @@
-import { OrdersV3MetafieldParams, OrdersV3MetafieldData } from '../models/orders-v3-metafield'
+import { OrdersV3MetafieldParams, OrdersV3MetafieldData, OrdersV3MetafieldCreateData } from '../models/orders-v3-metafield'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -12,6 +12,21 @@ class OrdersV3Metafields {
   ): Promise<Result<OrdersV3MetafieldData[]>> {
     return await http
       .get(`/v3/orders/${order_id}/metafields`, { ...requestOptions, params })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      }) 
+  }
+
+  public async create<TData extends OrdersV3MetafieldCreateData>(
+    order_id: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV3MetafieldData>> {
+    return await http
+      .post(`/v3/orders/${order_id}/metafields`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

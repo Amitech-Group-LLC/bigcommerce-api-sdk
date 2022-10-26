@@ -6,6 +6,14 @@ export type OrdersV3MetafieldParams = {
   page?: number
 }
 
+export type OrdersV3MetafieldCreateData = {
+  permission_set: 'app_only' | 'read' | 'write' | 'read_and_sf_access' | 'write_and_sf_access'
+  namespace: string
+  key: string
+  value: string
+  description?: string
+}
+
 export type OrdersV3MetafieldData = {
   permission_set: 'app_only' | 'read' | 'write' | 'read_and_sf_access' | 'write_and_sf_access'
   namespace?: string
