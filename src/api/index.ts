@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import ordersV3Settings from './orders-v3-settings'
 
 export {
   cartItems,
@@ -94,4 +95,5 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  ordersV3Settings,
 }

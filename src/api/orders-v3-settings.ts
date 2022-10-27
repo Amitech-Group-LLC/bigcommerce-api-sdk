@@ -31,6 +31,35 @@ class OrdersV3Settings {
         throw ex
       })  
   }
+
+  public async getChannel(
+    channel_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<OrdersV3SettingData> {
+    return await http
+      .get(`/v3/orders/settings/channels/${channel_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      }) 
+  }
+
+  public async updateChannel<TData extends OrdersV3SettingParams>(
+    channel_id: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<OrdersV3SettingData> {
+    return await http
+      .put(`/v3/orders/settings/channels/${channel_id}`, { ...requestOptions, data })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      }) 
+  }
 }
 
 export default new OrdersV3Settings()
