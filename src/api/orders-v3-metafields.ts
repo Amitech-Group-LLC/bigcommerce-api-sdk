@@ -49,6 +49,22 @@ class OrdersV3Metafields {
         throw ex
       })
   }
+
+  public async update<TData extends OrdersV3MetafieldCreateData>(
+    metafield_id: number,
+    order_id: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<OrdersV3MetafieldData>> {
+    return await http
+      .put(`/v3/orders/${order_id}/metafields/${metafield_id}`, { ...requestOptions, data })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new OrdersV3Metafields()
