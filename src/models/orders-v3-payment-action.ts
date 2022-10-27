@@ -45,3 +45,60 @@ export type RefundOption = {
 }
 
 export type RefundOptions = RefundOption[]
+
+export type OrdersV3PaymentActionsRefund = {
+  items: (AmountBoundItem | QuantityBoundItem | TaxExemptItem)[]
+  reason?: string
+  payments: RefundPayments[]
+  merchant_calculated_override?: MerchantCalculatedOverride
+}
+
+export type RefundPayments = {
+  provider_id?: string
+  amount?: number
+  offline?: boolean
+}
+
+export type MerchantCalculatedOverride = {
+  total_amount: number
+  total_tax: number
+}
+
+export type OrdersV3PaymentActionsRefundData = {
+  id?: number
+  order_id?: number
+  user_id?: number
+  created?: string
+  reason?: string
+  total_amount?: number
+  total_tax?: number
+  uses_merchant_override_values?: boolean
+  items?: RefundItem[]
+  payments?: RefundPayment[]
+}
+
+export type RefundItem = {
+  item_type?: 'PRODUCT' | 'GIFT_WRAPPING' | 'SHIPPING' | 'HANDLING' | 'ORDER'
+  item_id?: number
+  reason?: string
+  quantity?: number
+  requested_amount?: number
+}
+
+export type RefundPayment = {
+  id?: number
+  provider_id?: string
+  amount?: number
+  offline?: boolean
+  is_declined?: boolean
+  declined_message?: string
+}
+
+export type OrdersV3PaymentActionsParams = {
+  'created:max'?: string
+  'created:min'?: string
+  'id:in'?: number[]
+  limit?: number
+  'order_id:in'?: number[]
+  page?: number
+}
