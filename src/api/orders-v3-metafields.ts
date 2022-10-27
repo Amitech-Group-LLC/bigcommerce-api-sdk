@@ -65,6 +65,21 @@ class OrdersV3Metafields {
         throw ex
       })
   }
+
+  public async delete(
+    metafield_id: number,
+    order_id: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete(`/v3/orders/${order_id}/metafields/${metafield_id}`, { ...requestOptions })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
 }
 
 export default new OrdersV3Metafields()
