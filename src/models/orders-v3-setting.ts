@@ -9,3 +9,5 @@ export type OrdersV3SettingData = {
   }
   meta?: {}
 }
+
+export type OrdersV3SettingParams = Omit<OrdersV3SettingData, 'meta'>
