@@ -45,6 +45,12 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import checkoutBillingAddress from './checkout-billing-address'
+import checkoutConsignments from './checkout-consignments'
+import checkoutCoupons from './checkout-coupons'
+import checkoutDiscounts from './checkout-discounts'
+import checkoutOrders from './checkout-orders'
+import checkoutSettings from './checkout-settings'
 
 export {
   cartItems,
@@ -94,4 +100,10 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  checkoutBillingAddress,
+  checkoutConsignments,
+  checkoutCoupons,
+  checkoutDiscounts,
+  checkoutOrders,
+  checkoutSettings,
 }
