@@ -1,16 +1,18 @@
-import { CheckoutOrderData } from '../models/checkout'
+import { CheckoutDiscountsData } from '../models/checkout'
+import { CheckoutData } from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CheckoutOrders {
-  public async create(
+class CheckoutsDiscounts {
+  public async add<TData extends CheckoutDiscountsData>(
     checkoutId: string,
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutOrderData>> {
+  ): Promise<Result<CheckoutData>> {
     return await http
-      .post(`/v3/checkouts/${checkoutId}/orders`, { ...requestOptions })
+      .post(`/v3/checkouts/${checkoutId}/discounts`, { ...requestOptions, data})
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -20,4 +22,4 @@ class CheckoutOrders {
   }
 }
 
-export default new CheckoutOrders()
+export default new CheckoutsDiscounts()

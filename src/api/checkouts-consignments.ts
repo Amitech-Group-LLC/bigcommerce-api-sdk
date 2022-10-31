@@ -5,7 +5,7 @@ import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CheckoutConsignments {
+class CheckoutsConsignments {
   public async add<TData extends CheckoutConsignmentData>(
     checkoutId: string,
     data: TData[],
@@ -59,4 +59,4 @@ class CheckoutConsignments {
   }
 }
 
-export default new CheckoutConsignments()
+export default new CheckoutsConsignments()

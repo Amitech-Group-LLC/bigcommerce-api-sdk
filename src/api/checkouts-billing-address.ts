@@ -1,17 +1,18 @@
-import { ChekoutIncludeParams, CheckoutData } from '../models/checkout'
+import { CheckoutBillingAddressData } from '../models/checkout'
+import { CheckoutData } from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class Checkout {
-  public async get(
+class CheckoutsBillingAddress {
+  public async add<TData extends CheckoutBillingAddressData>(
     checkoutId: string,
-    include?: ChekoutIncludeParams,
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CheckoutData>> {
     return await http
-      .get(`/v3/checkouts/${checkoutId}`, { ...requestOptions, params: { include } })
+      .post(`/v3/checkouts/${checkoutId}/billing-address`, {...requestOptions, data})
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -20,13 +21,14 @@ class Checkout {
       })
   }
 
-  public async update(
+  public async update<TData extends CheckoutBillingAddressData>(
+    addressId: number,
     checkoutId: string,
-    customer_message: string,
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CheckoutData>> {
     return await http
-      .put(`/v3/checkouts/${checkoutId}`, { ...requestOptions, data: { customer_message } })
+      .put(`/v3/checkouts/${checkoutId}/billing-address/${addressId}`, {...requestOptions, data})
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -36,4 +38,4 @@ class Checkout {
   }
 }
 
-export default new Checkout()
+export default new CheckoutsBillingAddress()

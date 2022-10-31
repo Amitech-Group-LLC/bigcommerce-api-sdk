@@ -10,7 +10,7 @@ export type CheckoutData = {
   billing_address?: CheckoutBillingAddress
   consignments?: CheckoutConsignment[]
   taxes?: CheckoutTax[]
-  coupons: CheckoutCoupon[]
+  coupons?: CheckoutCoupon[]
   order_id?: string
   shipping_cost_total_inc_tax?: number
   shipping_cost_total_ex_tax?: number
@@ -38,7 +38,7 @@ export type CheckoutCart = {
   discount_amount?: number
   cart_amount_inc_tax?: number
   cart_amount_ex_tax?: number
-  coupons: CheckoutCoupon[]
+  coupons?: CheckoutCoupon[]
   discounts?: CheckoutDiscount[]
   line_items: CheckoutLineItem
   created_time?: string
@@ -146,7 +146,7 @@ export type BillingAddressCustomField = {
 export type CheckoutConsignment = {
   id?: string
   shippingAddress?: object
-  address: CheckoutBillingAddress
+  address?: CheckoutBillingAddressData
   available_shipping_options?: AvailableShippingOption[]
   selected_shipping_option?: AvailableShippingOption
   coupon_discounts?: CouponDiscount[]
@@ -215,8 +215,8 @@ export type CheckoutConsignmentLineItems = {
 export type CheckoutConsignmentIncludeParam = 'consignments.available_shipping_options'
 
 export type CheckoutConsignmentUpdateData = {
-  address: CheckoutBillingAddressData
-  line_items: CheckoutConsignmentLineItems
+  address?: CheckoutBillingAddressData
+  line_items?: CheckoutConsignmentLineItems
   shipping_option_id?: string
 }
 
@@ -225,8 +225,8 @@ export type CheckoutCouponData = {
 }
 
 export type CheckoutDiscountsData = {
-  cart: {
-    discounts: DiscountsData[]
+  cart?: {
+    discounts?: DiscountsData[]
   }
 }
 
@@ -236,7 +236,7 @@ export type DiscountsData = {
 }
 
 export type CheckoutOrderData = {
-  id: number
+  id?: number
 }
 
 export type CheckoutSettingData = {
