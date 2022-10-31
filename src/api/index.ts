@@ -45,6 +45,10 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import ordersV3Metafields from './orders-v3-metafields'
+import ordersV3PaymentActions from './orders-v3-payment-actions'
+import ordersV3Settings from './orders-v3-settings'
+import ordersV3Transactions from './orders-v3-transactions'
 
 export {
   cartItems,
@@ -94,4 +98,8 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  ordersV3Metafields,
+  ordersV3PaymentActions,
+  ordersV3Settings,
+  ordersV3Transactions,
 }
