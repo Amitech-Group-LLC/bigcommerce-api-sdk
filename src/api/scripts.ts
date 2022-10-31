@@ -1,14 +1,14 @@
-import { ScriptsV3Data, ScriptsV3Result, ScriptsV3Params } from '../models/script-v3'
+import { ScriptData, ScriptResult, ScriptParams, ScriptDeleteData } from '../models/script'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ScriptsV3 {
-  public async create<TData extends ScriptsV3Data>(
+class Scripts {
+  public async create<TData extends ScriptData>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ScriptsV3Result>> {
+  ): Promise<Result<ScriptResult>> {
     return await http
       .post('/v3/content/scripts', { ...requestOptions, data })
       .catch(ex => {
@@ -19,10 +19,10 @@ class ScriptsV3 {
       })
   }
 
-  public async list<TParams extends ScriptsV3Params>(
+  public async list<TParams extends ScriptParams>(
     params: TParams,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ScriptsV3Result[]>> {
+  ): Promise<ListResult<ScriptResult[]>> {
     return await http
       .get('/v3/content/scripts', { ...requestOptions, params })
       .catch(ex => {
@@ -36,7 +36,7 @@ class ScriptsV3 {
   public async get(
     uuid: string,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ScriptsV3Result>> {
+  ): Promise<Result<ScriptResult>> {
     return await http
       .get(`/v3/content/scripts/${uuid}`, { ...requestOptions })
       .catch(ex => {
@@ -47,11 +47,11 @@ class ScriptsV3 {
       })
   }
 
-  public async update<TData extends ScriptsV3Data>(
+  public async update<TData extends ScriptData>(
     uuid: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ScriptsV3Result>> {
+  ): Promise<Result<ScriptResult>> {
     return await http
       .put(`/v3/content/scripts/${uuid}`, { ...requestOptions, data })
       .catch(ex => {
@@ -65,7 +65,7 @@ class ScriptsV3 {
   public async delete(
     uuid: string,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<ScriptDeleteData> {
     return await http
       .delete(`/v3/content/scripts/${uuid}`, { ...requestOptions })
       .catch(ex => {
@@ -77,4 +77,4 @@ class ScriptsV3 {
   }
 }
 
-export default new ScriptsV3()
+export default new Scripts()
