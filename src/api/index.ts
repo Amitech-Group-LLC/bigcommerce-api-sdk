@@ -45,6 +45,15 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import ordersV2 from './orders-v2'
+import ordersV2Coupons from './orders-v2-coupons'
+import ordersV2Messages from './orders-v2-messages'
+import ordersV2Products from './orders-v2-products'
+import ordersV2Shipments from './orders-v2-shipments'
+import ordersV2ShippingAddresses from './orders-v2-shipping-addresses'
+import ordersV2ShippingAddressesQuotes from './orders-v2-shipping-addresses-quotes'
+import ordersV2Status from './orders-v2-status'
+import ordersV2Taxes from './orders-v2-taxes'
 
 export {
   cartItems,
@@ -94,4 +103,13 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  ordersV2,
+  ordersV2Coupons,
+  ordersV2Messages,
+  ordersV2Products,
+  ordersV2Shipments,
+  ordersV2ShippingAddresses,
+  ordersV2ShippingAddressesQuotes,
+  ordersV2Status,
+  ordersV2Taxes,
 }
