@@ -19,8 +19,8 @@ class Scripts {
       })
   }
 
-  public async list<TParams extends ScriptParams>(
-    params: TParams,
+  public async list(
+    params: ScriptParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ScriptResult[]>> {
     return await http
