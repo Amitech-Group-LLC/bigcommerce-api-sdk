@@ -77,6 +77,27 @@ export type CategoryBatchFilter = {
   'tree_id:not_in'?: string
 }
 
+export type CategoryBatch = {
+  id?: number
+  parent_id?: number
+  name?: string
+  description?: string
+  views?: number
+  sort_order?: number
+  page_title?: string
+  search_keywords?: string
+  meta_keywords?: string[]
+  meta_description?: string
+  layout_file?: string
+  is_visible?: boolean
+  image_url?: string
+  default_product_sort?: CategoruDefaultProductSortParam
+  url?: {
+    path?: string
+    is_customized?: boolean
+  }
+}
+
 export type CategoryBatchPost = {
   tree_id: number
   parent_id: number
