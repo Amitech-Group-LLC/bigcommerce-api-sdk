@@ -45,13 +45,13 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
-import checkoutsBillingAddress from './checkouts-billing-address'
-import checkoutsConsignments from './checkouts-consignments'
-import checkoutsCoupons from './checkouts-coupons'
-import checkoutsDiscounts from './checkouts-discounts'
-import checkoutsOrders from './checkouts-orders'
-import checkoutsSettings from './checkouts-settings'
-import checkoutsToken from './checkouts-token'
+import checkoutBillingAddress from './checkout-billing-address'
+import checkoutConsignments from './checkout-consignments'
+import checkoutCoupons from './checkout-coupons'
+import checkoutDiscounts from './checkout-discounts'
+import checkoutOrders from './checkout-orders'
+import checkoutSettings from './checkout-settings'
+import checkoutToken from './checkout-token'
 
 export {
   cartItems,
@@ -101,11 +101,11 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
-  checkoutsBillingAddress,
-  checkoutsConsignments,
-  checkoutsCoupons,
-  checkoutsDiscounts,
-  checkoutsOrders,
-  checkoutsSettings,
-  checkoutsToken,
+  checkoutBillingAddress,
+  checkoutConsignments,
+  checkoutCoupons,
+  checkoutDiscounts,
+  checkoutOrders,
+  checkoutSettings,
+  checkoutToken,
 }

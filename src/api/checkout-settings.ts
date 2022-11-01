@@ -1,18 +1,15 @@
-import { CheckoutCouponData } from '../models/checkout'
-import { CheckoutData } from '../models/checkout'
+import { CheckoutSettingData } from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CheckoutsCoupons {
-  public async add<TData extends CheckoutCouponData>(
-    checkoutId: string,
-    data: TData,
+class CheckoutSettings {
+  public async get(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<Result<CheckoutSettingData>> {
     return await http
-      .post(`/v3/checkouts/${checkoutId}/coupons`, { ...requestOptions, data})
+      .get('/v3/checkouts/settings', { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -21,13 +18,12 @@ class CheckoutsCoupons {
       })
   }
 
-  public async delete(
-    checkoutId: string,
-    couponCode: string,
+  public async update<TData extends CheckoutSettingData>(
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<Result<CheckoutSettingData>> {
     return await http
-      .delete(`/v3/checkouts/${checkoutId}/coupons/${couponCode}`, { ...requestOptions })
+      .put('/v3/checkouts/settings', { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -37,4 +33,4 @@ class CheckoutsCoupons {
   }
 }
 
-export default new CheckoutsCoupons()
+export default new CheckoutSettings()

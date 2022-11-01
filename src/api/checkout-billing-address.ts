@@ -1,11 +1,10 @@
-import { CheckoutBillingAddressData } from '../models/checkout'
-import { CheckoutData } from '../models/checkout'
+import { CheckoutBillingAddressData, CheckoutData } from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CheckoutsBillingAddress {
+class CheckoutBillingAddress {
   public async add<TData extends CheckoutBillingAddressData>(
     checkoutId: string,
     data: TData,
@@ -38,4 +37,4 @@ class CheckoutsBillingAddress {
   }
 }
 
-export default new CheckoutsBillingAddress()
+export default new CheckoutBillingAddress()

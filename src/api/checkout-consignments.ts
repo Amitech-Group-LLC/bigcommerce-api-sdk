@@ -1,17 +1,21 @@
-import { CheckoutConsignmentData, CheckoutConsignmentIncludeParam, CheckoutConsignmentUpdateData } from '../models/checkout'
-import { CheckoutData } from '../models/checkout'
+import { 
+  CheckoutConsignmentData, 
+  CheckoutConsignmentIncludeParam, 
+  CheckoutConsignmentUpdateData, 
+  CheckoutData 
+} from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CheckoutsConsignments {
+class CheckoutConsignments {
   public async add<TData extends CheckoutConsignmentData>(
     checkoutId: string,
     data: TData[],
     params: {
       include?: CheckoutConsignmentIncludeParam,
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<CheckoutData>> {
     return await http
@@ -30,7 +34,7 @@ class CheckoutsConsignments {
     data: TData[],
     params: {
       include?: CheckoutConsignmentIncludeParam,
-    },
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<CheckoutData>> {
     return await http
@@ -59,4 +63,4 @@ class CheckoutsConsignments {
   }
 }
 
-export default new CheckoutsConsignments()
+export default new CheckoutConsignments()
