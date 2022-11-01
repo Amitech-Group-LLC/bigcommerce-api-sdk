@@ -62,7 +62,7 @@ export type OrderData = {
   items_shipped?: number
   items_total?: number
   order_is_digital?: boolean
-  payment_method?: string
+  payment_method?: OrderPaymentMethod
   payment_provider_id?: string | number
   refunded_amount?: string
   shipping_cost_ex_tax?: string
@@ -222,7 +222,14 @@ export type OrderSortParams = 'id:asc' |
   'channel_id:asc' |
   'channel_id:desc' |
   'external_id:asc' |
-  'external_id:desc'
+  'external_id:desc' |
+  'id' |
+  'customer_id' |
+  'date_created' |
+  'date_modified' |
+  'status' |
+  'channel_id' |
+  'external_id'
 
 export type OrderDefaultData = {
   shipping_addresses?: OrderShippingAddress
@@ -258,7 +265,7 @@ export type OrderDefaultData = {
   status_id?: number
   subtotal_ex_tax?: string
   subtotal_inc_tax?: string
-  tax_provider_id?: 'BasicTaxProvider' | 'AvaTaxProvider' | ''
+  tax_provider_id?: OrderPaymentMethod
   customer_locale?: string
   external_order_id?: string
   total_ex_tax?: string
@@ -267,17 +274,19 @@ export type OrderDefaultData = {
   wrapping_cost_inc_tax?: string
 }
 
+export type OrderPaymentMethod = 'Credit Card' | 'Cash' | 'Test Payment Gateway' | 'Manual'
+
 export type OrderV2CouponsData = {
   id?: number
   coupon_id?: number
   order_id?: number
   code?: string | null
   amount?: string | number
-  type?: number
+  type?: 0 | 1 | 2 | 3 | 4 | 5
   discount?: number
 }
 
-export type OrderV2CouponsParams = {
+export type OrderV2FilterParam = { // OrderV2FilterParam OrderV2CouponsParams
   limit?: number
   page?: number
 }
@@ -305,7 +314,7 @@ export type OrdersV2MessageParams = {
   min_date_created?: string
   min_id?: number
   page?: number
-  status?: string
+  status?: 'read' | 'unread'
 }
 
 export type OrdersV2ProductsData = {
@@ -315,7 +324,7 @@ export type OrdersV2ProductsData = {
   order_address_id?: number
   name?: string
   sku?: string
-  type?: string
+  type?: 'physical' | 'digital'
   base_price?: string
   price_ex_tax?: string
   price_inc_tax?: string
@@ -364,7 +373,7 @@ export type OrderV2ProductAppliedDiscounts = {
   amount?: string
   name?: string
   code?: string | null
-  target?: string
+  target?: 'order' | 'product'
 }
 
 export type OrderV2ProductOptions = {
@@ -384,11 +393,6 @@ export type OrderV2ProductOptions = {
   display_value_merchant?: string
 }
 
-export type OrderV2ProductParams = {
-  limit?: number
-  page?: number
-}
-
 export type OrdersV2ShipmentData = {
   id?: number
   order_id?: number
@@ -401,7 +405,7 @@ export type OrdersV2ShipmentData = {
   tracking_carrier?: string
   tracking_link?: string
   comments?: string
-  billing_address?: OrderBillingAddress
+  billing_address?: Omit<OrderBillingAddress, 'form_fields'>
   shipping_address?: OrderShippingAddress
   items?: ShipmentsItems[]
 }
@@ -506,6 +510,7 @@ export type OrdersV2StatusData = {
   system_label?: string
   custom_label?: string
   system_description?: string
+  order?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14
 }
 
 export type OrdersV2TaxData = {

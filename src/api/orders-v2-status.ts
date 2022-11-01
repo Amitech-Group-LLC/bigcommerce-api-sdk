@@ -18,11 +18,11 @@ class OrdersV2Status {
   }
 
   public async get(
-    status_id: number,
+    statusId: number,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2StatusData> {
     return await http
-      .get(`/v2/order_statuses/${status_id}`, { ...requestOptions })
+      .get(`/v2/order_statuses/${statusId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

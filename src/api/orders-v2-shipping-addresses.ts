@@ -8,13 +8,13 @@ import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV2ShippingAddresses {
-  public async list<TParams extends OrdersV2ShippingAddressParams>(
-    order_id: number,
-    params: TParams,
+  public async list(
+    orderId: number,
+    params: OrdersV2ShippingAddressParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShippingAddressData[]> {
     return await http
-      .get(`/v2/orders/${order_id}/shipping_addresses`, { ...requestOptions, params })
+      .get(`/v2/orders/${orderId}/shipping_addresses`, { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -25,11 +25,11 @@ class OrdersV2ShippingAddresses {
 
   public async get(
     id: string,
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShippingAddressData> {
     return await http
-      .get(`/v2/orders/${order_id}/shipping_addresses/${id}`, { ...requestOptions })
+      .get(`/v2/orders/${orderId}/shipping_addresses/${id}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -40,12 +40,12 @@ class OrdersV2ShippingAddresses {
 
   public async update<TData extends OrderShippingAddress>(
     id: string,
-    order_id: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShippingAddressData> {
     return await http
-      .put(`/v2/orders/${order_id}/shipping_addresses/${id}`, { ...requestOptions, data })
+      .put(`/v2/orders/${orderId}/shipping_addresses/${id}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

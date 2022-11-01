@@ -1,17 +1,16 @@
 import { OrdersV2ShippingQuotesData } from '../models/orders-v2'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV2ShippingAddressesQuotes {
   public async get(
-    order_id: number,
-    shipping_address_id: number,
+    orderId: number,
+    shippingAddressId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<OrdersV2ShippingQuotesData>> {
+  ): Promise<OrdersV2ShippingQuotesData> {
     return await http
-      .get(`/v2/orders/${order_id}/shipping_addresses/${shipping_address_id}/shipping_quotes`, { ...requestOptions })
+      .get(`/v2/orders/${orderId}/shipping_addresses/${shippingAddressId}/shipping_quotes`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

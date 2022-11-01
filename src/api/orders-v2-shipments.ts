@@ -10,13 +10,13 @@ import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV2Shipments {
-  public async list<TParams extends ShipmentsParams>(
-    order_id: number,
-    params: TParams,
+  public async list(
+    orderId: number,
+    params: ShipmentsParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShipmentData[]> {
     return await http
-      .get(`/v2/orders/${order_id}/shipments`, { ...requestOptions, params })
+      .get(`/v2/orders/${orderId}/shipments`, { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -26,12 +26,12 @@ class OrdersV2Shipments {
   }
 
   public async create<TData extends ShipmentsCreateData>(
-    order_id: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShipmentData> {
     return await http
-      .post(`/v2/orders/${order_id}/shipments`, { ...requestOptions, data })
+      .post(`/v2/orders/${orderId}/shipments`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -41,11 +41,11 @@ class OrdersV2Shipments {
   }
 
   public async deleteMany(
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v2/orders/${order_id}/shipments`, { ...requestOptions })
+      .delete(`/v2/orders/${orderId}/shipments`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -55,11 +55,11 @@ class OrdersV2Shipments {
   }
 
   public async count(
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
   ): Promise<ShipmentsCountData> {
     return await http
-      .get(`/v2/orders/${order_id}/shipments/count`, { ...requestOptions })
+      .get(`/v2/orders/${orderId}/shipments/count`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -69,12 +69,12 @@ class OrdersV2Shipments {
   }
 
   public async get(
-    order_id: number,
-    shipment_id: number,
+    orderId: number,
+    shipmentId: number,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShipmentData> {
     return await http
-      .get(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions })
+      .get(`/v2/orders/${orderId}/shipments/${shipmentId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -84,13 +84,13 @@ class OrdersV2Shipments {
   }
 
   public async update<TData extends ShipmentsUpdateData>(
-    order_id: number,
-    shipment_id: number,
+    orderId: number,
+    shipmentId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShipmentData> {
     return await http
-      .put(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions, data })
+      .put(`/v2/orders/${orderId}/shipments/${shipmentId}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -100,12 +100,12 @@ class OrdersV2Shipments {
   }
 
   public async delete(
-    order_id: number,
-    shipment_id: number,
+    orderId: number,
+    shipmentId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v2/orders/${order_id}/shipments/${shipment_id}`, { ...requestOptions })
+      .delete(`/v2/orders/${orderId}/shipments/${shipmentId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

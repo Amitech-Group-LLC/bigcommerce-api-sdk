@@ -5,13 +5,13 @@ import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV2Messages {
-  public async list<TParams extends OrdersV2MessageParams>(
-    order_id: number,
-    params: TParams,
+  public async list(
+    orderId: number,
+    params: OrdersV2MessageParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV2MessageData[]>> {
     return await http
-      .get(`/v2/orders/${order_id}/messages`, { ...requestOptions, params })
+      .get(`/v2/orders/${orderId}/messages`, { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

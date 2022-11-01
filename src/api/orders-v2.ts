@@ -5,11 +5,11 @@ import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV2 {
   public async get(
-    order_id: string,
+    orderId: string,
     requestOptions: RequestOptions = {}
   ): Promise<OrderData> {
     return await http
-      .get(`/v2/orders/${order_id}`, { ...requestOptions })
+      .get(`/v2/orders/${orderId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -19,12 +19,12 @@ class OrdersV2 {
   }
 
   public async update<TData extends OrderUpdateData>(
-    order_id: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<OrderData> {
     return await http
-      .put(`/v2/orders/${order_id}`, { ...requestOptions, data })
+      .put(`/v2/orders/${orderId}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -34,11 +34,11 @@ class OrdersV2 {
   }
 
   public async archive(
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v2/orders/${order_id}`, { ...requestOptions })
+      .delete(`/v2/orders/${orderId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -60,8 +60,8 @@ class OrdersV2 {
       })
   }
 
-  public async list<TParams extends OrderParams>(
-    params: TParams,
+  public async list(
+    params: OrderParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<OrderData[]> {
     return await http
