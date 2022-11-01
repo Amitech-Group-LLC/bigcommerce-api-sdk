@@ -5,13 +5,13 @@ import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV3Metafields {
-  public async list<TParams extends OrdersV3MetafieldParams>(
-    order_id: number,
-    params: TParams,
+  public async list(
+    orderId: number,
+    params: OrdersV3MetafieldParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<OrdersV3MetafieldData[]>> {
     return await http
-      .get(`/v3/orders/${order_id}/metafields`, { ...requestOptions, params })
+      .get(`/v3/orders/${orderId}/metafields`, { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -21,12 +21,12 @@ class OrdersV3Metafields {
   }
 
   public async create<TData extends OrdersV3MetafieldCreateData>(
-    order_id: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV3MetafieldData>> {
     return await http
-      .post(`/v3/orders/${order_id}/metafields`, { ...requestOptions, data })
+      .post(`/v3/orders/${orderId}/metafields`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -36,12 +36,12 @@ class OrdersV3Metafields {
   }
 
   public async get(
-    metafield_id: number,
-    order_id: number,
+    metafieldId: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV3MetafieldData>> {
     return await http
-      .get(`/v3/orders/${order_id}/metafields/${metafield_id}`, { ...requestOptions })
+      .get(`/v3/orders/${orderId}/metafields/${metafieldId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -51,13 +51,13 @@ class OrdersV3Metafields {
   }
 
   public async update<TData extends OrdersV3MetafieldCreateData>(
-    metafield_id: number,
-    order_id: number,
+    metafieldId: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV3MetafieldData>> {
     return await http
-      .put(`/v3/orders/${order_id}/metafields/${metafield_id}`, { ...requestOptions, data })
+      .put(`/v3/orders/${orderId}/metafields/${metafieldId}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -67,12 +67,12 @@ class OrdersV3Metafields {
   }
 
   public async delete(
-    metafield_id: number,
-    order_id: number,
+    metafieldId: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/orders/${order_id}/metafields/${metafield_id}`, { ...requestOptions })
+      .delete(`/v3/orders/${orderId}/metafields/${metafieldId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

@@ -1,16 +1,16 @@
 import { OrdersV3TransactionData } from '../models/orders-v3'
-import { Result } from '../models/result'
+import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV3Transactions {
   public async list(
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<OrdersV3TransactionData[]>> {
+  ): Promise<ListResult<OrdersV3TransactionData[]>> {
     return await http
-      .get(`/v3/orders/${order_id}/transactions`, { ...requestOptions })
+      .get(`/v3/orders/${orderId}/transactions`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

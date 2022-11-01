@@ -1,5 +1,4 @@
 import { OrdersV3SettingData, OrdersV3SettingParams } from '../models/orders-v3'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -33,11 +32,11 @@ class OrdersV3Settings {
   }
 
   public async getChannel(
-    channel_id: number,
+    channelId: number,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV3SettingData> {
     return await http
-      .get(`/v3/orders/settings/channels/${channel_id}`, { ...requestOptions })
+      .get(`/v3/orders/settings/channels/${channelId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -47,12 +46,12 @@ class OrdersV3Settings {
   }
 
   public async updateChannel<TData extends OrdersV3SettingParams>(
-    channel_id: number,
+    channelId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV3SettingData> {
     return await http
-      .put(`/v3/orders/settings/channels/${channel_id}`, { ...requestOptions, data })
+      .put(`/v3/orders/settings/channels/${channelId}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)

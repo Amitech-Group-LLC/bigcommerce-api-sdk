@@ -1,23 +1,23 @@
 import { 
   OrdersV3PaymentActionsCreateData, 
-  OrdersV3PaymentActionsCreateDefaultData, 
   OrdersV3PaymentActionsRefundQuote,
   OrdersV3PaymentActionsRefund,
   OrdersV3PaymentActionsRefundData,
-  OrdersV3PaymentActionsParams
+  OrdersV3PaymentActionsParams,
+  OrdersV3Error
 } from '../models/orders-v3'
-import { Result, ListResult } from '../models/result'
+import { Result, ListResult, ErrorResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV3PaymentActions {
   public async capture(
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<OrdersV3PaymentActionsCreateDefaultData> {
+  ): Promise<object> {
     return await http
-      .post(`/v3/orders/${order_id}/payment_actions/capture`, { ...requestOptions })
+      .post(`/v3/orders/${orderId}/payment_actions/capture`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -27,11 +27,11 @@ class OrdersV3PaymentActions {
   }
 
   public async void(
-    order_id: number,
+    orderId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<OrdersV3PaymentActionsCreateDefaultData> {
+  ): Promise<object> {
     return await http
-      .post(`/v3/orders/${order_id}/payment_actions/void`, { ...requestOptions })
+      .post(`/v3/orders/${orderId}/payment_actions/void`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -41,12 +41,12 @@ class OrdersV3PaymentActions {
   }
 
   public async createRefundQuote<TData extends OrdersV3PaymentActionsCreateData>(
-    order_id: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV3PaymentActionsRefundQuote>> {
     return await http
-      .post(`/v3/orders/${order_id}/payment_actions/refund_quotes`, { ...requestOptions, data })
+      .post(`/v3/orders/${orderId}/payment_actions/refund_quotes`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -56,12 +56,12 @@ class OrdersV3PaymentActions {
   }
 
   public async createRefund<TData extends OrdersV3PaymentActionsRefund>(
-    order_id: number,
+    orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV3PaymentActionsRefundData>> {
     return await http
-      .post(`/v3/orders/${order_id}/payment_actions/refunds`, { ...requestOptions, data })
+      .post(`/v3/orders/${orderId}/payment_actions/refunds`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -71,11 +71,11 @@ class OrdersV3PaymentActions {
   }
 
   public async getMany(
-    order_id: string,
+    orderId: string,
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<OrdersV3PaymentActionsRefundData[]>> {
     return await http
-      .get(`/v3/orders/${order_id}/payment_actions/refunds`, { ...requestOptions })
+      .get(`/v3/orders/${orderId}/payment_actions/refunds`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -85,11 +85,11 @@ class OrdersV3PaymentActions {
   }
 
   public async get(
-    refund_id: number,
+    refundId: number,
     requestOptions: RequestOptions = {}
   ): Promise<Result<OrdersV3PaymentActionsRefundData>> {
     return await http
-      .get(`/v3/orders/payment_actions/refunds/${refund_id}`, { ...requestOptions })
+      .get(`/v3/orders/payment_actions/refunds/${refundId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -101,7 +101,7 @@ class OrdersV3PaymentActions {
   public async createRefundQuotes<TData extends OrdersV3PaymentActionsCreateData>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<OrdersV3PaymentActionsRefundQuote[]>> {
+  ): Promise<ErrorResult<OrdersV3PaymentActionsRefundQuote[], OrdersV3Error[]>> {
     return await http
       .post(`/v3/orders/payment_actions/refund_quotes`, { ...requestOptions, data })
       .catch(ex => {
@@ -112,8 +112,8 @@ class OrdersV3PaymentActions {
       })
   }
 
-  public async list<TParams extends OrdersV3PaymentActionsParams>(
-    params: TParams,
+  public async list(
+    params: OrdersV3PaymentActionsParams = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<OrdersV3PaymentActionsRefundData[]>> {
     return await http
@@ -129,7 +129,7 @@ class OrdersV3PaymentActions {
   public async createMany<TData extends OrdersV3PaymentActionsRefund>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<OrdersV3PaymentActionsRefundData[]>> {
+  ): Promise<ErrorResult<OrdersV3PaymentActionsRefundData[], OrdersV3Error[]>> {
     return await http
       .post('/v3/orders/payment_actions/refunds', { ...requestOptions, data })
       .catch(ex => {

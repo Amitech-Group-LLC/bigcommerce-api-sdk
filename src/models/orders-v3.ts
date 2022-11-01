@@ -20,14 +20,12 @@ export type OrdersV3MetafieldData = {
   key?: string
   value?: string
   description?: string
-  resource_type?: string
+  resource_type?: 'order' | 'brand' | 'product' | 'variant' | 'category'
   resource_id?: number
   id?: number
   date_created?: string
   date_modified?: string
 }
-
-export type OrdersV3PaymentActionsCreateDefaultData = {}
 
 export type OrdersV3PaymentActionsCreateData = {
   order_id: number
@@ -141,7 +139,7 @@ export type OrdersV3SettingData = {
       email_addresses?: string[]
     }
   }
-  meta?: {}
+  meta?: object
 }
 
 export type OrdersV3SettingParams = Omit<OrdersV3SettingData, 'meta'>
@@ -263,4 +261,10 @@ export type OrdersV3TransactionGiftCertificate = {
   starting_balance?: number
   remaining_balance?: number
   status?: 'active' | 'pending' | 'disabled' | 'expired'
+}
+
+export type OrdersV3Error = {
+  order_id?: number
+  status?: number
+  error?: string
 }
