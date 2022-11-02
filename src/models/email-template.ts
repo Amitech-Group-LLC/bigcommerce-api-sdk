@@ -3,7 +3,6 @@ export type EmailTemplateTransaction = {
   keys?: {
     reset_password?: string
   }
-  subject?: string
 }
 
 export type EmailTemplate = {
@@ -22,4 +21,5 @@ export type EmailTemplate = {
     | 'account_reset_password_email'
   body?: string
   translations?: EmailTemplateTransaction[]
+  subject?: string
 }
