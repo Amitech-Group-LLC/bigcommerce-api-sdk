@@ -1,5 +1,4 @@
 import { State, StateFilter, Count } from '../models/geography'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +8,7 @@ class GeographyStates {
     countryId: number,
     params: StateFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<State[]>> {
+  ): Promise<State[]> {
     return await http
       .get(`/v2/countries/${countryId}/states`, {
         ...requestOptions,
@@ -27,7 +26,7 @@ class GeographyStates {
     countryId: number,
     stateId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<State>> {
+  ): Promise<State> {
     return await http
       .get(`/v2/countries/${countryId}/states/${stateId}`, {
         ...requestOptions,
@@ -42,7 +41,7 @@ class GeographyStates {
 
   public async getCountState(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Count>> {
+  ): Promise<Count> {
     return await http
       .get(`/v2/countries/states/count`, {
         ...requestOptions,
@@ -57,7 +56,7 @@ class GeographyStates {
 
   public async listState(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<State[]>> {
+  ): Promise<State[]> {
     return await http
       .get(`/v2/countries/states`, {
         ...requestOptions,
@@ -73,7 +72,7 @@ class GeographyStates {
   public async getCountCountryState(
     countryId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Count>> {
+  ): Promise<Count> {
     return await http
       .get(`/v2/countries/${countryId}/states/count`, {
         ...requestOptions,
