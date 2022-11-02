@@ -1,5 +1,4 @@
 import { Currency } from '../models/currency'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -7,7 +6,7 @@ import { BigcommerceApiError } from '../utils/error'
 class Currencies {
   public async list(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Currency[]>> {
+  ): Promise<Currency[]> {
     return await http
       .get(`/v2/currencies`, {
         ...requestOptions,
@@ -23,7 +22,7 @@ class Currencies {
   public async create<TData extends Currency>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Currency>> {
+  ): Promise<Currency> {
     return await http
       .post(`/v2/currencies`, {
         ...requestOptions,
@@ -39,7 +38,7 @@ class Currencies {
 
   public async deleteMany(
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<object> {
     return await http
       .delete(`/v2/currencies`, {
         ...requestOptions,
@@ -55,7 +54,7 @@ class Currencies {
   public async get(
     currencyId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Currency>> {
+  ): Promise<Currency> {
     return await http
       .get(`/v2/currencies/${currencyId}`, {
         ...requestOptions,
@@ -72,7 +71,7 @@ class Currencies {
     currencyId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Currency>> {
+  ): Promise<Currency> {
     return await http
       .put(`/v2/currencies/${currencyId}`, {
         ...requestOptions,
@@ -89,7 +88,7 @@ class Currencies {
   public async delete(
     currencyId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<object> {
     return await http
       .delete(`/v2/currencies/${currencyId}`, {
         ...requestOptions,

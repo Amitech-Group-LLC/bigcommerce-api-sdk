@@ -1,6 +1,6 @@
 export type Currency = {
   id?: number
-  is_transactional: boolean
+  is_transactional?: boolean
   is_default?: boolean
   last_updated?: string
   country_iso2?: string
