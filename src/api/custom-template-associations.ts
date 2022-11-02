@@ -27,9 +27,9 @@ class CustomTemplateAssociations {
   }
 
   public async upsertMany<TData extends CustomTemplateAssociationPut>(
-    data: TData,
+    data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<object> {
     return await http
       .put(`/v3/storefront/custom-template-associations`, {
         ...requestOptions,
