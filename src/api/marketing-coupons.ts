@@ -1,5 +1,4 @@
 import { MarketingCoupon, MarketingCouponPost, Count } from '../models/marketing'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -18,7 +17,7 @@ class MarketingCoupons {
       type?: 'per_item_discount' | 'percentage_discount' | 'per_total_discount' | 'shipping_discount' | 'free_shipping' | 'promotion'
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingCoupon[]>> {
+  ): Promise<MarketingCoupon[]> {
     return await http
       .get(`/v2/coupons`, {
         ...requestOptions,
@@ -35,7 +34,7 @@ class MarketingCoupons {
   public async create<TData extends MarketingCouponPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingCoupon>> {
+  ): Promise<MarketingCoupon> {
     return await http
       .post(`/v2/coupons`, {
         ...requestOptions,
@@ -72,7 +71,7 @@ class MarketingCoupons {
     couponId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingCoupon>> {
+  ): Promise<MarketingCoupon> {
     return await http
       .put(`/v2/coupons/${couponId}`, {
         ...requestOptions,
@@ -104,7 +103,7 @@ class MarketingCoupons {
 
   public async getCouponCount(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Count>> {
+  ): Promise<Count> {
     return await http
       .get(`/v2/coupons/count`, {
         ...requestOptions,

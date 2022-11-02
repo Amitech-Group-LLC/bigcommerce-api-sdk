@@ -1,5 +1,4 @@
 import { MarketingBanner, MarketingBannerPost, MarketingBannerPut, Count } from '../models/marketing'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -13,7 +12,7 @@ class MarketingBanners {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingBanner[]>> {
+  ): Promise<MarketingBanner[]> {
     return await http
       .get(`/v2/banners`, {
         ...requestOptions,
@@ -30,7 +29,7 @@ class MarketingBanners {
   public async create<TData extends MarketingBannerPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingBanner>> {
+  ): Promise<MarketingBanner> {
     return await http
       .post(`/v2/banners`, {
         ...requestOptions,
@@ -62,7 +61,7 @@ class MarketingBanners {
   public async get(
     bannerId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingBanner>> {
+  ): Promise<MarketingBanner> {
     return await http
       .get(`/v2/banners/${bannerId}`, {
         ...requestOptions,
@@ -79,7 +78,7 @@ class MarketingBanners {
     bannerId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingBanner>> {
+  ): Promise<MarketingBanner> {
     return await http
       .put(`/v2/banners/${bannerId}`, {
         ...requestOptions,
@@ -111,7 +110,7 @@ class MarketingBanners {
 
   public async getBannerCount(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Count>> {
+  ): Promise<Count> {
     return await http
       .get(`/v2/banners/count`, {
         ...requestOptions,

@@ -1,5 +1,4 @@
 import { MarketingGiftCertificate, MarketingGiftCertificatePost, MarketingGiftCertificatePut } from '../models/marketing'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -19,7 +18,7 @@ class MarketingGiftCertificates {
       to_name?: string
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingGiftCertificate[]>> {
+  ): Promise<MarketingGiftCertificate[]> {
     return await http
       .get(`/v2/gift_certificates`, {
         ...requestOptions,
@@ -36,7 +35,7 @@ class MarketingGiftCertificates {
   public async create<TData extends MarketingGiftCertificatePost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingGiftCertificate>> {
+  ): Promise<MarketingGiftCertificate> {
     return await http
       .post(`/v2/gift_certificates`, {
         ...requestOptions,
@@ -68,7 +67,7 @@ class MarketingGiftCertificates {
   public async get(
     certificateId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingGiftCertificate>> {
+  ): Promise<MarketingGiftCertificate> {
     return await http
       .get(`/v2/gift_certificates/${certificateId}`, {
         ...requestOptions,
@@ -85,7 +84,7 @@ class MarketingGiftCertificates {
     certificateId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<MarketingGiftCertificate>> {
+  ): Promise<MarketingGiftCertificate> {
     return await http
       .put(`/v2/gift_certificates/${certificateId}`, {
         ...requestOptions,
@@ -102,7 +101,7 @@ class MarketingGiftCertificates {
   public async delete(
     certificateId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<object> {
     return await http
       .delete(`/v2/gift_certificates/${certificateId}`, {
         ...requestOptions,

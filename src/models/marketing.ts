@@ -24,7 +24,7 @@ export type MarketingBannerPost = {
 }
 
 export type MarketingBannerPut = {
-  item_id: string
+  item_id?: string
   name: string
   content: string
   page: 'home_page' | 'category_page' | 'brand_page' | 'search_page'
