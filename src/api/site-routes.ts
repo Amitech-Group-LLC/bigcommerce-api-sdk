@@ -1,4 +1,4 @@
-import { SiteRouteParams, SiteRouteData, SiteRouteCreateData, SiteRouteUpdateData } from '../models/site'
+import { SiteRouteParam, SiteRouteData, SiteRouteCreateData, SiteRouteUpdateData } from '../models/site'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -7,7 +7,7 @@ import { BigcommerceApiError } from '../utils/error'
 class SiteRoutes {
   public async list(
     siteId: number,
-    params: SiteRouteParams = {},
+    params: SiteRouteParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<SiteRouteData[]>> {
     return await http

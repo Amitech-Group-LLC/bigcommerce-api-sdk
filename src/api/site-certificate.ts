@@ -1,10 +1,10 @@
 import { SiteCertificateData, SiteCertificateUpsertData, SiteCertificateCertificateInfo } from '../models/site'
-import { Result, ListResult } from '../models/result'
+import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class SiteCertificate {
+class SiteCertificates {
   public async get(
     siteId: number,
     requestOptions: RequestOptions = {}
@@ -39,7 +39,7 @@ class SiteCertificate {
       'urls:in'?: string
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<SiteCertificateCertificateInfo[]>> {
+  ): Promise<Result<SiteCertificateCertificateInfo[]>> {
     return await http
       .get('/v3/sites/certificates', { ...requestOptions })
       .catch(ex => {
@@ -51,4 +51,4 @@ class SiteCertificate {
   }
 }
 
-export default new SiteCertificate()
+export default new SiteCertificates()

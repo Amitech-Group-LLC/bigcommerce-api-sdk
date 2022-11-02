@@ -45,7 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
-import siteCertificate from './site-certificate'
+import siteCertificates from './site-certificate'
 import siteRoutes from './site-routes'
 import sites from './sites'
 
@@ -97,7 +97,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
-  siteCertificate,
+  siteCertificates,
   siteRoutes,
   sites,
 }

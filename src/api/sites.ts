@@ -1,5 +1,5 @@
-import { SiteData, SiteBodyData, SiteParams, SiteUpdateData } from '../models/site'
-import { Result, ListResult } from '../models/result'
+import { SiteData, SiteBodyData, SiteParam, SiteUpdateData } from '../models/site'
+import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -8,7 +8,7 @@ class Sites {
   public async create<TData extends SiteBodyData>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<SiteData>> {
+  ): Promise<ListResult<SiteData>> {
     return await http
       .post('/v3/sites', { ...requestOptions, data })
       .catch(ex => {
@@ -20,7 +20,7 @@ class Sites {
   }
 
   public async list(
-    params: SiteParams = {},
+    params: SiteParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<SiteData[]>> {
     return await http
@@ -36,7 +36,7 @@ class Sites {
   public async get(
     siteId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<SiteData>> {
+  ): Promise<ListResult<SiteData>> {
     return await http
       .get(`/v3/sites/${siteId}`, { ...requestOptions })
       .catch(ex => {
@@ -51,7 +51,7 @@ class Sites {
     siteId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<SiteData>> {
+  ): Promise<ListResult<SiteData>> {
     return await http
       .put(`/v3/sites/${siteId}`, { ...requestOptions, data })
       .catch(ex => {

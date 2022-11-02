@@ -5,11 +5,11 @@ export type SiteData = {
   created_at?: string
   updated_at?: string
   ssl_status?: 'dedicated' | 'shared'
-  urls?: SiteUrls[]
+  urls?: SiteUrl[]
   is_checkout_url_customized?: boolean
 }
 
-export type SiteUrls = {
+export type SiteUrl = {
   url?: string
   type?: 'primary' | 'canonical' | 'checkout'
   created_at?: string
@@ -20,14 +20,14 @@ export type SiteBodyData = Pick<SiteData, 'url' | 'channel_id'>
 export type SiteUpdateData = Pick<SiteData, 'url'>
 
 
-export type SiteParams = {
+export type SiteParam = {
   'channel_id:in'?: number
   limit?: number
   page?: number
   'url_type:in'?: string
 }
 
-export type SiteRouteParams = {
+export type SiteRouteParam = {
   limit?: number
   page?: number
   type?: string
