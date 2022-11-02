@@ -8,14 +8,14 @@ import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class StorefrontApiTokens {
-  public async create(
-    params: StorefrontApiTokenData,
+  public async create<TData extends StorefrontApiTokenData>(
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<StorefrontApiToken>> {
     return await http
       .post(`/v3/storefront/api-token`, {
         ...requestOptions,
-        params,
+        data,
       })
       .catch(ex => {
         if (ex.response) {
