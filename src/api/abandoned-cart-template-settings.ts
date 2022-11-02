@@ -1,5 +1,4 @@
 import { AbandonedCartTemplateSetting } from '../models/abandoned-cart'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -10,7 +9,7 @@ class AbandonedCartTemplateSettings {
       channel_id: number
     },
     requestOptions: RequestOptions = {}
-  ): Promise<Result<AbandonedCartTemplateSetting>> {
+  ): Promise<AbandonedCartTemplateSetting> {
     return await http
       .get(`/v3/marketing/abandoned-cart-emails/settings`, {
         ...requestOptions,
@@ -30,7 +29,7 @@ class AbandonedCartTemplateSettings {
     } = {},
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<AbandonedCartTemplateSetting>> {
+  ): Promise<AbandonedCartTemplateSetting> {
     return await http
       .put(`/v3/marketing/abandoned-cart-emails/settings`, {
         ...requestOptions,

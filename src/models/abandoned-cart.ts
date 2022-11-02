@@ -40,20 +40,47 @@ export type AbandonedCartEmailTemplate = {
 
 export type AbandonedCartEmail = {
   id?: number
-  notify_at_minutes?: number
+  notify_at_minutes?:
+    | 60
+    | 120
+    | 180
+    | 240
+    | 300
+    | 360
+    | 420
+    | 480
+    | 540
+    | 600
+    | 660
+    | 720
+    | 780
+    | 840
+    | 900
+    | 960
+    | 1020
+    | 1080
+    | 1140
+    | 1200
+    | 1260
+    | 1320
+    | 1380
+    | 1440
+    | 2880
+    | 4320
+    | 5760
+    | 7200
+    | 8640
+    | 10080
+    | 11520
+    | 12960
+    | 14400
   coupon_code?: string
-  template: AbandonedCartEmailTemplate
+  template?: AbandonedCartEmailTemplate
   is_active?: boolean
   sent_num?: number
 }
 
-export type AbandonedCartEmailPost = {
-  id?: number
-  notify_at_minutes?: number
-  coupon_code?: string
-  template: AbandonedCartEmailTemplate
-  is_active?: boolean
-}
+export type AbandonedCartEmailPost = Omit<AbandonedCartEmail, 'sent_num' | 'id'>
 
 export type AbandonedCartTemplateSetting = {
   use_global: boolean

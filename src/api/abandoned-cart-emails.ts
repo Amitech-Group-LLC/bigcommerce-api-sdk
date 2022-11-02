@@ -34,7 +34,7 @@ class AbandonedCartEmails {
     } = {},
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<AbandonedCartEmail[]>> {
+  ): Promise<Result<AbandonedCartEmail>> {
     return await http
       .post(`/v3/marketing/abandoned-cart-emails`, {
         ...requestOptions,
