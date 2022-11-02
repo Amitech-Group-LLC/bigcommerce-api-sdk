@@ -1,4 +1,4 @@
-import { ChannelFilter, Channel, ChannelPost } from '../models/channel'
+import { ChannelFilter, Channel, ChannelPost, ChannelPut } from '../models/channel'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -42,7 +42,7 @@ class Channels {
   public async get(
     channelId: number,
     params: {
-        include?: string
+        include?: 'currencies'
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Channel>> {
@@ -59,17 +59,15 @@ class Channels {
       })
   }
 
-  public async put(
+  public async update<TData extends ChannelPut>(
     channelId: number,
-    params: {
-        include?: string
-    } = {},
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<Channel>> {
     return await http
       .put(`/v3/channels/${channelId}`, {
         ...requestOptions,
-        params,
+        data,
       })
       .catch(ex => {
         if (ex.response) {

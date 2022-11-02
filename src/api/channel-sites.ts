@@ -23,7 +23,7 @@ class ChannelSites {
 
   public async create(
     channelId: number,
-    params: {
+    data: {
       url?: string
       channel_id?: number
     } = {},
@@ -32,7 +32,7 @@ class ChannelSites {
     return await http
       .post(`/v3/channels/${channelId}/site`, {
         ...requestOptions,
-        params,
+        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -44,7 +44,7 @@ class ChannelSites {
 
   public async update(
     channelId: number,
-    params: {
+    data: {
       url?: string,
     } = {},
     requestOptions: RequestOptions = {}
@@ -52,7 +52,7 @@ class ChannelSites {
     return await http
       .put(`/v3/channels/${channelId}/site`, {
         ...requestOptions,
-        params,
+        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -65,7 +65,7 @@ class ChannelSites {
   public async delete(
     channelId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<object> {
     return await http
       .delete(`/v3/channels/${channelId}/site`, {
         ...requestOptions,

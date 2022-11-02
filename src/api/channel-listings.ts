@@ -45,7 +45,7 @@ class ChannelListings {
     data: TData[],
     channelId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ChannelListing[]>> {
+  ): Promise<ListResult<ChannelListing[]>> {
     return await http
       .put(`/v3/channels/${channelId}/listings`, {
         ...requestOptions,

@@ -7,7 +7,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ChannelSiteCheckoutUrls {
   public async upsert(
     channelId: number,
-    params: {
+    data: {
       url?: string,
     } = {},
     requestOptions: RequestOptions = {}
@@ -15,7 +15,7 @@ class ChannelSiteCheckoutUrls {
     return await http
       .put(`/v3/channels/${channelId}/site/checkout-url`, {
         ...requestOptions,
-        params,
+        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -28,7 +28,7 @@ class ChannelSiteCheckoutUrls {
   public async delete(
     channelId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<Result<object>> {
     return await http
       .delete(`/v3/channels/${channelId}/site/checkout-url`, {
         ...requestOptions,

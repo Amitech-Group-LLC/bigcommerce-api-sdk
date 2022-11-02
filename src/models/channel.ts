@@ -1,16 +1,50 @@
-export type ChannelStatusParam = 'prelaunch' | 'active' | 'inactive' | 'connected' | 'disconnected' | 'archived' | 'deleted' | 'terminated'
+export type ChannelStatusParam =
+  | 'prelaunch'
+  | 'active'
+  | 'inactive'
+  | 'connected'
+  | 'disconnected'
+  | 'archived'
+  | 'deleted'
+  | 'terminated'
 
-export type ChannelTypeParam = 'marketplace' | 'marketing' | 'pos' | 'storefront'
+export type ChannelTypeParam =
+  | 'marketplace'
+  | 'marketing'
+  | 'pos'
+  | 'storefront'
 
 export type ChannelSiteSslStatusParam = 'dedicated' | 'shared'
 
 export type ChannelSiteUrlTypeParam = 'primary' | 'canonical' | 'checkout'
 
-export type ChannelListingStateParam = 'active' | 'disabled' | 'error' | 'pending' | 'pending_disable' | 'pending_delete' | 'partially_rejected' | 'queued' | 'rejected' | 'submitted' | 'deleted'
+export type ChannelListingStateParam =
+  | 'active'
+  | 'disabled'
+  | 'error'
+  | 'pending'
+  | 'pending_disable'
+  | 'pending_delete'
+  | 'partially_rejected'
+  | 'queued'
+  | 'rejected'
+  | 'submitted'
+  | 'deleted'
 
-export type ChannelMenuAppSectionParam = 'storefront_settings' | 'social' | 'carousel' | 'domains' | 'currencies' | 'notifications'
+export type ChannelMenuAppSectionParam =
+  | 'storefront_settings'
+  | 'social'
+  | 'carousel'
+  | 'domains'
+  | 'currencies'
+  | 'notifications'
 
-export type ChannelMetafieldPermissionParam = 'app_only' | 'read' | 'write' | 'read_and_sf_access' | 'write_and_sf_access'
+export type ChannelMetafieldPermissionParam =
+  | 'app_only'
+  | 'read'
+  | 'write'
+  | 'read_and_sf_access'
+  | 'write_and_sf_access'
 
 export type ChannelFilter = {
   available?: boolean
@@ -49,6 +83,11 @@ export type Channel = {
   date_modified?: string
   name?: string
   status?: ChannelStatusParam
+  currencies?: {
+    channel_id?: number
+    enabled_currencies?: string[]
+    default_currency?: string
+  }
 }
 
 export type ChannelPost = {
@@ -88,10 +127,10 @@ export type ChannelPut = {
 }
 
 export type ChannelActiveTheme = {
-  active_theme_uuid: string
-  active_theme_configuration_uuid: string
-  active_theme_version_uuid: string
-  saved_theme_configuration_uuid: string
+  active_theme_uuid?: string
+  active_theme_configuration_uuid?: string
+  active_theme_version_uuid?: string
+  saved_theme_configuration_uuid?: string
 }
 
 export type ChannelCurrencyAssigment = {
@@ -137,6 +176,7 @@ export type ChannelListing = {
   channel_id?: number
   listing_id?: number
   product_id?: number
+  external_id?: string
   state?: ChannelListingStateParam
   name?: string
   description?: string

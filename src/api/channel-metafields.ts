@@ -1,5 +1,4 @@
 import { ChannelMetafield, ChannelMetafieldPost, ChannelMetafieldPut } from '../models/channel'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -15,7 +14,7 @@ class ChannelMetafields {
       limit?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ChannelMetafield>> {
+  ): Promise<ChannelMetafield> {
     return await http
       .get(`/v3/channels/${channelId}/metafields`, {
         ...requestOptions,
@@ -33,7 +32,7 @@ class ChannelMetafields {
     channelId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ChannelMetafield>> {
+  ): Promise<ChannelMetafield> {
     return await http
       .post(`/v3/channels/${channelId}/metafields`, {
         ...requestOptions,
@@ -51,7 +50,7 @@ class ChannelMetafields {
     channelId: number,
     metafieldId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ChannelMetafield>> {
+  ): Promise<ChannelMetafield> {
     return await http
       .get(`/v3/channels/${channelId}/metafields/${metafieldId}`, {
         ...requestOptions,
@@ -69,7 +68,7 @@ class ChannelMetafields {
     metafieldId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ChannelMetafield>> {
+  ): Promise<ChannelMetafield> {
     return await http
       .put(`/v3/channels/${channelId}/metafields/${metafieldId}`, {
         ...requestOptions,
