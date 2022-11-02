@@ -1,5 +1,4 @@
 import { PaymentMethod } from '../models/payment-method'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -11,7 +10,7 @@ class PaymentMethods {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<PaymentMethod[]>> {
+  ): Promise<PaymentMethod[]> {
     return await http
       .get(`/v2/payments/methods`, {
         ...requestOptions,
