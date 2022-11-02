@@ -369,7 +369,7 @@ export type ProductFilter = {
   'date_modified:max'?: string
   'date_modified:min'?: string
   direction?: 'asc' | 'desc'
-  exclude_fields?: Array<keyof Product>
+  exclude_fields?: Array<keyof Omit<Product, 'id'>>
   id?: number
   'id:greater'?: number[]
   'id:in'?: number[]

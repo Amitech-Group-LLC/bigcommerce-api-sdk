@@ -10,7 +10,7 @@ class ProductMetafields {
     itemId: number,
     params: {
       include_fields?: Array<keyof ProductMetafield>
-      exclude_fields?: Array<keyof ProductMetafield>
+      exclude_fields?: Array<keyof Omit<ProductMetafield, 'id'>>
       limit?: number
       page?: number
       key?: string

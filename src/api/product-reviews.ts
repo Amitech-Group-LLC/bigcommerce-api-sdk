@@ -10,7 +10,7 @@ class ProductReviews {
     itemId: number,
     params: {
       include_fields?: Array<keyof ProductReview>
-      exclude_fields?: Array<keyof ProductReview>
+      exclude_fields?: Array<keyof Omit<ProductReview, 'id'>>
       limit?: number
       page?: number
       status?: 1 | 0

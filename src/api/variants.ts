@@ -7,7 +7,7 @@ import { BigcommerceApiError } from '../utils/error'
 class Variants {
   public async list(
     params: {
-      exclude_fields?: Array<keyof Variant>
+      exclude_fields?: Array<keyof Omit<Variant, 'id'>>
       id?: number
       include_fields?: Array<keyof Variant>
       limit?: number

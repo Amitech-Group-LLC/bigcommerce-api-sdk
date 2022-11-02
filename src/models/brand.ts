@@ -15,7 +15,7 @@ export type Brand = {
 export type BrandFilter = {
   id?: number
   include_fields?: Array<keyof BrandFilter>
-  exclude_fields?: Array<keyof BrandFilter>
+  exclude_fields?: Array<keyof Omit<BrandFilter, 'id'>>
   limit?: number
   name?: string
   page?: number

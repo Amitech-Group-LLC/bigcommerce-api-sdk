@@ -31,29 +31,29 @@ export type Category = {
 }
 
 export type CategoryFilter = {
-  exclude_fields?: Array<keyof Category>
+  exclude_fields?: Array<keyof Omit<Category, 'id'>>
   id?: number
-  'id?:greater'?: number[]
-  'id?:in'?: number[]
-  'id?:less'?: number[]
-  'id?:max'?: number[]
-  'id?:min'?: number[]
-  'id?:not_in'?: number[]
+  'id:greater'?: number[]
+  'id:in'?: number[]
+  'id:less'?: number[]
+  'id:max'?: number[]
+  'id:min'?: number[]
+  'id:not_in'?: number[]
   include_fields?: Array<keyof Category>
   is_visible?: boolean
   keyword?: string
   limit?: number
   name?: string
-  'name?:like'?: []
+  'name:like'?: []
   page?: number
   page_title?: string
-  'page_title?:like'?: string[]
+  'page_title:like'?: string[]
   parent_id?: number
-  'parent_id?:greater'?: number[]
-  'parent_id?:in'?: number[]
-  'parent_id?:less'?: number[]
-  'parent_id?:max'?: number[]
-  'parent_id?:min'?: number[]
+  'parent_id:greater'?: number[]
+  'parent_id:in'?: number[]
+  'parent_id:less'?: number[]
+  'parent_id:max'?: number[]
+  'parent_id:min'?: number[]
 }
 
 export type CategoryBatchFilter = {
@@ -61,7 +61,7 @@ export type CategoryBatchFilter = {
   'category_id:not_in'?: string
   'category_uuid:in'?: string
   'category_uuid:not_in'?: string
-  exclude_fields?: Array<keyof Category>
+  exclude_fields?: Array<keyof Omit<Category, 'id'>>
   include_fields?: Array<keyof Category>
   is_visible?: boolean
   keyword?: string
@@ -149,10 +149,10 @@ export type CategoryBatchMeta = {
 }
 
 export type CategoryBatchDelete = {
-  'category_id:in': string
-  'category_uuid:in': string
-  'parent_id:in': string
-  'tree_id:in': string
+  'category_id:in'?: string
+  'category_uuid:in'?: string
+  'parent_id:in'?: string
+  'tree_id:in'?: string
 }
 
 export type CategoryBatchError = {
@@ -166,7 +166,7 @@ export type CategoryBatchError = {
 }
 
 export type CategoryMetafieldFilter = {
-  exclude_fields?: Array<keyof CategoryMetafield>
+  exclude_fields?: Array<keyof Omit<CategoryMetafield, 'id'>>
   id?: number
   'id:greater'?: number[]
   'id:in'?: number[]

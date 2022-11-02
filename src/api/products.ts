@@ -85,7 +85,7 @@ class Products {
     params: {
       include?: string
       include_fields?: Array<keyof Product>
-      exclude_fields?: Array<keyof Product>
+      exclude_fields?: Array<keyof Omit<Product, 'id'>>
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
