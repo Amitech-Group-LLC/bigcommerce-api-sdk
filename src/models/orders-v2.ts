@@ -276,7 +276,7 @@ export type OrderDefaultData = {
 
 export type OrderPaymentMethod = 'Credit Card' | 'Cash' | 'Test Payment Gateway' | 'Manual'
 
-export type OrderV2CouponsData = {
+export type OrderV2CouponData = {
   id?: number
   coupon_id?: number
   order_id?: number
@@ -286,7 +286,7 @@ export type OrderV2CouponsData = {
   discount?: number
 }
 
-export type OrderV2FilterParam = { // OrderV2FilterParam OrderV2CouponsParams
+export type OrderV2FilterParam = {
   limit?: number
   page?: number
 }
@@ -305,7 +305,7 @@ export type OrdersV2MessageData = {
   customer?: object
 }
 
-export type OrdersV2MessageParams = {
+export type OrdersV2MessageParam = {
   customer_id?: number
   is_flagged?: boolean
   limit?: number
@@ -317,7 +317,7 @@ export type OrdersV2MessageParams = {
   status?: 'read' | 'unread'
 }
 
-export type OrdersV2ProductsData = {
+export type OrdersV2ProductData = {
   id?: number
   order_id?: number
   product_id?: number
@@ -416,11 +416,6 @@ export type ShipmentsItems = {
   quantity?: number
 }
 
-export type ShipmentsParams = {
-  limit?: number
-  page?: number
-}
-
 export type ShipmentsCreateData = ShipmentsDefaultData & {
   order_address_id: number
   items: Omit<ShipmentsItems, 'product_id'>[]
@@ -486,11 +481,6 @@ export type OrdersV2ShippingAddressShippingQuotes = {
   resource?: string
 }
 
-export type OrdersV2ShippingAddressParams = {
-  limit?: number
-  page?: number
-}
-
 export type OrdersV2ShippingQuotesData = {
   id?: string
   uuid?: string
@@ -529,7 +519,7 @@ export type OrdersV2TaxData = {
   line_item_type?: 'item' | 'shipping' | 'handling' | 'gift-wrapping'
 }
 
-export type OrdersV2TaxParams = {
+export type OrdersV2TaxParam = {
   details?: string
   limit?: number
   page?: number

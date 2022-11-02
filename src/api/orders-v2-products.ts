@@ -1,4 +1,4 @@
-import { OrdersV2ProductsData, OrderV2FilterParam } from '../models/orders-v2'
+import { OrdersV2ProductData, OrderV2FilterParam } from '../models/orders-v2'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -8,7 +8,7 @@ class OrdersV2Products {
     orderId: number,
     params: OrderV2FilterParam = {},
     requestOptions: RequestOptions = {}
-  ): Promise<OrdersV2ProductsData[]> {
+  ): Promise<OrdersV2ProductData[]> {
     return await http
       .get(`/v2/orders/${orderId}/products`, { ...requestOptions, params })
       .catch(ex => {
@@ -23,7 +23,7 @@ class OrdersV2Products {
     orderId: number,
     productId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<OrdersV2ProductsData> {
+  ): Promise<OrdersV2ProductData> {
     return await http
       .get(`/v2/orders/${orderId}/products/${productId}`, { ...requestOptions })
       .catch(ex => {

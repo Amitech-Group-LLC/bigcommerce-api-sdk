@@ -1,6 +1,6 @@
 import { 
   OrdersV2ShippingAddressData, 
-  OrdersV2ShippingAddressParams,
+  OrderV2FilterParam,
   OrderShippingAddress
 } from '../models/orders-v2'
 import { RequestOptions } from '../models/request-options'
@@ -10,7 +10,7 @@ import { BigcommerceApiError } from '../utils/error'
 class OrdersV2ShippingAddresses {
   public async list(
     orderId: number,
-    params: OrdersV2ShippingAddressParams = {},
+    params: OrderV2FilterParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShippingAddressData[]> {
     return await http

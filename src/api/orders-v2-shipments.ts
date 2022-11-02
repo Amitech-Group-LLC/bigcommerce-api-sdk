@@ -1,6 +1,6 @@
 import { 
   OrdersV2ShipmentData, 
-  ShipmentsParams, 
+  OrderV2FilterParam, 
   ShipmentsCreateData, 
   ShipmentsCountData, 
   ShipmentsUpdateData 
@@ -12,7 +12,7 @@ import { BigcommerceApiError } from '../utils/error'
 class OrdersV2Shipments {
   public async list(
     orderId: number,
-    params: ShipmentsParams = {},
+    params: OrderV2FilterParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2ShipmentData[]> {
     return await http
