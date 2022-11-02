@@ -224,7 +224,7 @@ export type CheckoutCouponData = {
   coupon_code?: string
 }
 
-export type CheckoutDiscountsData = {
+export type CheckoutDiscountData = {
   cart?: {
     discounts?: DiscountsData[]
   }
@@ -246,7 +246,7 @@ export type CheckoutSettingData = {
   custom_checkout_supports_uco_settings?: boolean
 }
 
-export type CheckoutTokenParams = {
+export type CheckoutTokenParam = {
   maxUses?: number
   ttl?: number
 }

@@ -1,11 +1,11 @@
-import { CheckoutTokenParams, CheckoutTokenData } from '../models/checkout'
+import { CheckoutTokenParam, CheckoutTokenData } from '../models/checkout'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CheckoutToken {
-  public async create<TData extends CheckoutTokenParams>(
+class CheckoutTokens {
+  public async create<TData extends CheckoutTokenParam>(
     checkoutId: string,
     data: TData,
     requestOptions: RequestOptions = {}
@@ -21,4 +21,4 @@ class CheckoutToken {
   }
 }
 
-export default new CheckoutToken()
+export default new CheckoutTokens()
