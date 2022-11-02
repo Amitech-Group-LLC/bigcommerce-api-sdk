@@ -54,10 +54,37 @@ export type SiteRouteType = 'product' |
   'returns' |
   'static'
 
-  export type SiteRouteCreateData = Omit<SiteRouteData, 'id'>
+export type SiteRouteCreateData = Omit<SiteRouteData, 'id'>
 
-  export type SiteRouteUpdateData = {
-    type: SiteRouteType
-    matching: string
-    route: string
-  }
+export type SiteRouteUpdateData = {
+  type: SiteRouteType
+  matching: string
+  route: string
+}
+
+export type SiteCertificateData = {
+  status?: 'shared' | 'dedicated'
+  installed_certificate?: SiteCertificateCertificateInfo
+}
+
+export type SiteCertificateCertificateInfo = {
+  common_name?: string
+  subject_alternative_names?: string[]
+  validity_not_before?: string
+  validity_not_after?: string
+  signing_algorithm?: string
+  issuer?: string
+  certificate?: string
+  intermediate_certificates?: string
+}
+
+export type SiteCertificateUpsertData = {
+  url?: string
+  certificate?: SiteCertificateCertificateWrite
+}
+
+export type SiteCertificateCertificateWrite = {
+  certificate?: string
+  private_key?: string
+  intermediate_certificates?: string
+}

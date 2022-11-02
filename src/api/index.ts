@@ -45,6 +45,9 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import siteCertificate from './site-certificate'
+import siteRoutes from './site-routes'
+import sites from './sites'
 
 export {
   cartItems,
@@ -94,4 +97,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  siteCertificate,
+  siteRoutes,
+  sites,
 }
