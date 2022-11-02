@@ -26,3 +26,38 @@ export type SiteParams = {
   page?: number
   'url_type:in'?: string
 }
+
+export type SiteRouteParams = {
+  limit?: number
+  page?: number
+  type?: string
+}
+
+export type SiteRouteData = {
+  id?: number
+  type?: SiteRouteType
+  matching?: string
+  route?: string
+}
+
+export type SiteRouteType = 'product' |
+  'brand' |
+  'category' |
+  'page' |
+  'blog' |
+  'home' |
+  'cart' |
+  'checkout' |
+  'search' |
+  'account' |
+  'login' |
+  'returns' |
+  'static'
+
+  export type SiteRouteCreateData = Omit<SiteRouteData, 'id'>
+
+  export type SiteRouteUpdateData = {
+    type: SiteRouteType
+    matching: string
+    route: string
+  }
