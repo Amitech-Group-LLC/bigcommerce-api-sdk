@@ -1,5 +1,5 @@
-import { OrdersV3MetafieldParams, OrdersV3MetafieldData, OrdersV3MetafieldCreateData } from '../models/orders-v3'
-import { Result, ListResult } from '../models/result'
+import { OrdersV3MetafieldParam, OrdersV3MetafieldData, OrdersV3MetafieldCreateData } from '../models/orders-v3'
+import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -7,7 +7,7 @@ import { BigcommerceApiError } from '../utils/error'
 class OrdersV3Metafields {
   public async list(
     orderId: number,
-    params: OrdersV3MetafieldParams = {},
+    params: OrdersV3MetafieldParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<OrdersV3MetafieldData[]>> {
     return await http
@@ -24,7 +24,7 @@ class OrdersV3Metafields {
     orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<OrdersV3MetafieldData>> {
+  ): Promise<ListResult<OrdersV3MetafieldData>> {
     return await http
       .post(`/v3/orders/${orderId}/metafields`, { ...requestOptions, data })
       .catch(ex => {
@@ -39,7 +39,7 @@ class OrdersV3Metafields {
     metafieldId: number,
     orderId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<OrdersV3MetafieldData>> {
+  ): Promise<ListResult<OrdersV3MetafieldData>> {
     return await http
       .get(`/v3/orders/${orderId}/metafields/${metafieldId}`, { ...requestOptions })
       .catch(ex => {
@@ -55,7 +55,7 @@ class OrdersV3Metafields {
     orderId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<OrdersV3MetafieldData>> {
+  ): Promise<ListResult<OrdersV3MetafieldData>> {
     return await http
       .put(`/v3/orders/${orderId}/metafields/${metafieldId}`, { ...requestOptions, data })
       .catch(ex => {

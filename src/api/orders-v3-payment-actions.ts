@@ -3,10 +3,10 @@ import {
   OrdersV3PaymentActionsRefundQuote,
   OrdersV3PaymentActionsRefund,
   OrdersV3PaymentActionsRefundData,
-  OrdersV3PaymentActionsParams,
+  OrdersV3PaymentActionsParam,
   OrdersV3Error
 } from '../models/orders-v3'
-import { Result, ListResult, ErrorResult } from '../models/result'
+import { Result, ErrorResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -73,7 +73,7 @@ class OrdersV3PaymentActions {
   public async getMany(
     orderId: string,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<OrdersV3PaymentActionsRefundData[]>> {
+  ): Promise<Result<OrdersV3PaymentActionsRefundData[]>> {
     return await http
       .get(`/v3/orders/${orderId}/payment_actions/refunds`, { ...requestOptions })
       .catch(ex => {
@@ -113,9 +113,9 @@ class OrdersV3PaymentActions {
   }
 
   public async list(
-    params: OrdersV3PaymentActionsParams = {},
+    params: OrdersV3PaymentActionsParam = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<OrdersV3PaymentActionsRefundData[]>> {
+  ): Promise<Result<OrdersV3PaymentActionsRefundData[]>> {
     return await http
       .get('/v3/orders/payment_actions/refunds', { ...requestOptions, params })
       .catch(ex => {

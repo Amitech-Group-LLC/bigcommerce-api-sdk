@@ -1,4 +1,4 @@
-export type OrdersV3MetafieldParams = {
+export type OrdersV3MetafieldParam = {
   direction?: 'asc' | 'desc'
   key?: string
   limit?: number
@@ -121,7 +121,7 @@ export type RefundPayment = {
   declined_message?: string
 }
 
-export type OrdersV3PaymentActionsParams = {
+export type OrdersV3PaymentActionsParam = {
   'created:max'?: string
   'created:min'?: string
   'id:in'?: number[]
@@ -142,7 +142,7 @@ export type OrdersV3SettingData = {
   meta?: object
 }
 
-export type OrdersV3SettingParams = Omit<OrdersV3SettingData, 'meta'>
+export type OrdersV3SettingParam = Omit<OrdersV3SettingData, 'meta'>
 
 export type OrdersV3TransactionData = {
   event: 'purchase' | 'authorization' | 'capture' | 'refund' | 'void' | 'pending' | 'settled'

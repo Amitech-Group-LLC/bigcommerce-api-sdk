@@ -1,4 +1,4 @@
-import { OrdersV3SettingData, OrdersV3SettingParams } from '../models/orders-v3'
+import { OrdersV3SettingData, OrdersV3SettingParam } from '../models/orders-v3'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -17,7 +17,7 @@ class OrdersV3Settings {
       })  
   }
 
-  public async updateGlobal<TData extends OrdersV3SettingParams>(
+  public async updateGlobal<TData extends OrdersV3SettingParam>(
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV3SettingData> {
@@ -45,7 +45,7 @@ class OrdersV3Settings {
       }) 
   }
 
-  public async updateChannel<TData extends OrdersV3SettingParams>(
+  public async updateChannel<TData extends OrdersV3SettingParam>(
     channelId: number,
     data: TData,
     requestOptions: RequestOptions = {}
