@@ -17,7 +17,7 @@ export type PaymentMethod = {
   name: string
   test_mode: boolean
   type: string
-  stored_instruments: {
+  stored_instruments?: {
     type: string
     brand: string
     expiry_month: number
