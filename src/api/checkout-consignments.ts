@@ -4,7 +4,7 @@ import {
   CheckoutConsignmentUpdateData, 
   CheckoutData 
 } from '../models/checkout'
-import { Result } from '../models/result'
+import { DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -17,7 +17,7 @@ class CheckoutConsignments {
       include?: CheckoutConsignmentIncludeParam,
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .post(`/v3/checkouts/${checkoutId}/consignments`, {...requestOptions, data, params })
       .catch(ex => {
@@ -36,7 +36,7 @@ class CheckoutConsignments {
       include?: CheckoutConsignmentIncludeParam,
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .put(`/v3/checkouts/${checkoutId}/consignments/${consignmentId}`, {...requestOptions, data, params })
       .catch(ex => {
@@ -51,7 +51,7 @@ class CheckoutConsignments {
     checkoutId: string,
     consignmentId: string,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .delete(`/v3/checkouts/${checkoutId}/consignments/${consignmentId}`, { ...requestOptions })
       .catch(ex => {

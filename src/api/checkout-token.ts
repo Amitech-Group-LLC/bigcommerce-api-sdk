@@ -1,5 +1,5 @@
 import { CheckoutTokenParam, CheckoutTokenData } from '../models/checkout'
-import { Result } from '../models/result'
+import { DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +9,7 @@ class CheckoutTokens {
     checkoutId: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutTokenData>> {
+  ): Promise<DataResult<CheckoutTokenData>> {
     return await http
       .post(`/v3/checkouts/${checkoutId}/token`, { ...requestOptions, data })
       .catch(ex => {

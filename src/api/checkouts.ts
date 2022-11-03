@@ -1,5 +1,5 @@
 import { ChekoutIncludeParams, CheckoutData } from '../models/checkout'
-import { Result } from '../models/result'
+import { DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +9,7 @@ class Checkouts {
     checkoutId: string,
     include?: ChekoutIncludeParams,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .get(`/v3/checkouts/${checkoutId}`, { ...requestOptions, params: { include } })
       .catch(ex => {
@@ -24,7 +24,7 @@ class Checkouts {
     checkoutId: string,
     customer_message: string,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .put(`/v3/checkouts/${checkoutId}`, { ...requestOptions, data: { customer_message } })
       .catch(ex => {

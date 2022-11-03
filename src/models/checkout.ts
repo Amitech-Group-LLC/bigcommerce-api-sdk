@@ -203,7 +203,7 @@ export type CheckoutBillingAddressData = {
   postal_code?: string
   phone?: string
   custom_fields?: BillingAddressCustomField[]
-}
+} 
 
 export type CheckoutConsignmentData = Omit<CheckoutConsignmentUpdateData, 'shipping_option_id'>
 

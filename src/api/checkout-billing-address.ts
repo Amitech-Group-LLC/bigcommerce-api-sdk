@@ -1,5 +1,5 @@
 import { CheckoutBillingAddressData, CheckoutData } from '../models/checkout'
-import { Result } from '../models/result'
+import { DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +9,7 @@ class CheckoutBillingAddress {
     checkoutId: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .post(`/v3/checkouts/${checkoutId}/billing-address`, {...requestOptions, data})
       .catch(ex => {
@@ -25,7 +25,7 @@ class CheckoutBillingAddress {
     checkoutId: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .put(`/v3/checkouts/${checkoutId}/billing-address/${addressId}`, {...requestOptions, data})
       .catch(ex => {

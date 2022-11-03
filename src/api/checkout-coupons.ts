@@ -1,5 +1,5 @@
 import { CheckoutCouponData, CheckoutData } from '../models/checkout'
-import { Result } from '../models/result'
+import { DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +9,7 @@ class CheckoutCoupons {
     checkoutId: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .post(`/v3/checkouts/${checkoutId}/coupons`, { ...requestOptions, data})
       .catch(ex => {
@@ -24,7 +24,7 @@ class CheckoutCoupons {
     checkoutId: string,
     couponCode: string,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CheckoutData>> {
+  ): Promise<DataResult<CheckoutData>> {
     return await http
       .delete(`/v3/checkouts/${checkoutId}/coupons/${couponCode}`, { ...requestOptions })
       .catch(ex => {
