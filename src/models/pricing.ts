@@ -34,11 +34,11 @@ export type PricingProduct = {
   product_id?: number
   variant_id?: number
   options?: PricingProductPostOption[]
-  retail_price?: PricingProductPrice[]
-  sale_price?: PricingProductPrice[]
-  minimum_advertised_price?: PricingProductPrice[]
-  price?: PricingProductPrice[]
-  calculated_price?: PricingProductPrice[]
+  retail_price?: PricingProductPrice
+  sale_price?: PricingProductPrice
+  minimum_advertised_price?: PricingProductPrice
+  price?: PricingProductPrice
+  calculated_price?: PricingProductPrice
   price_range?: {
     minimum?: PricingProductPrice
     maximum?: PricingProductPrice
