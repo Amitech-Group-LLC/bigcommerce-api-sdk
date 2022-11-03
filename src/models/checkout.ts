@@ -1,4 +1,4 @@
-export type ChekoutIncludeParams = 
+export type ChekoutIncludeParam = 
   'cart.line_items.physical_items.options' | 
   'cart.line_items.digital_items.options' |
   'consignments.available_shipping_options' |
