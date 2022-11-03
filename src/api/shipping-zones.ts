@@ -1,5 +1,4 @@
 import { ShippingZone, ShippingZonePost, ShippingZonePut } from '../models/shipping'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -7,7 +6,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ShippingZones {
   public async list(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingZone[]>> {
+  ): Promise<ShippingZone[]> {
     return await http
       .get(`/v2/shipping/zones`, {
         ...requestOptions,
@@ -23,7 +22,7 @@ class ShippingZones {
   public async create<TData extends ShippingZonePost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingZone>> {
+  ): Promise<ShippingZone> {
     return await http
       .post(`/v2/shipping/zones`, {
         ...requestOptions,
@@ -40,7 +39,7 @@ class ShippingZones {
   public async get(
     zoneId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingZone>> {
+  ): Promise<ShippingZone> {
     return await http
       .get(`/v2/shipping/zones/${zoneId}`, {
         ...requestOptions,
@@ -53,11 +52,11 @@ class ShippingZones {
       })
   }
 
-  public async put<TData extends ShippingZonePut>(
+  public async update<TData extends ShippingZonePut>(
     zoneId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingZonePut>> {
+  ): Promise<ShippingZonePut> {
     return await http
       .put(`/v2/shipping/zones/${zoneId}`, {
         ...requestOptions,

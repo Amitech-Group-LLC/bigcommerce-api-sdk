@@ -1,16 +1,25 @@
-import { ShippingCustomInformation, ShippingCustomInformationPut } from '../models/shipping'
-import { ListResult, Result } from '../models/result'
+import {
+  ShippingCustomInformation,
+  ShippingCustomInformationPut,
+} from '../models/shipping'
+import { ListResult, DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class ShippingCustomInformations {
   public async list(
+    params: {
+      limit?: number
+      page?: number
+      'product_id:in'?: number[]
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ShippingCustomInformation[]>> {
     return await http
       .get(`/v3/shipping/products/customs-information`, {
         ...requestOptions,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -40,9 +49,9 @@ class ShippingCustomInformations {
   }
 
   public async upsert<TData extends ShippingCustomInformationPut>(
-    data: TData,
+    data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingCustomInformation[]>> {
+  ): Promise<DataResult<ShippingCustomInformation[]>> {
     return await http
       .put(`/v3/shipping/products/customs-information`, {
         ...requestOptions,

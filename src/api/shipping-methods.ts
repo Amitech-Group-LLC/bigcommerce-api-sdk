@@ -1,5 +1,4 @@
 import { ShippingMethod, ShippingMethodPost } from '../models/shipping'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -8,7 +7,7 @@ class ShippingMethods {
   public async list(
     zoneId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingMethod[]>> {
+  ): Promise<ShippingMethod[]> {
     return await http
       .get(`/v2/shipping/zones/${zoneId}/methods`, {
         ...requestOptions,
@@ -25,7 +24,7 @@ class ShippingMethods {
     zoneId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingMethod>> {
+  ): Promise<ShippingMethod> {
     return await http
       .post(`/v2/shipping/zones/${zoneId}/methods`, {
         ...requestOptions,
@@ -43,7 +42,7 @@ class ShippingMethods {
     zoneId: number,
     methodId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingMethod>> {
+  ): Promise<ShippingMethod> {
     return await http
       .get(`/v2/shipping/zones/${zoneId}/methods/${methodId}`, {
         ...requestOptions,
@@ -61,7 +60,7 @@ class ShippingMethods {
     methodId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ShippingMethod>> {
+  ): Promise<ShippingMethod> {
     return await http
       .put(`/v2/shipping/zones/${zoneId}/methods/${methodId}`, {
         ...requestOptions,

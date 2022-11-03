@@ -153,6 +153,8 @@ export type ShippingMethod = {
   enabled?: boolean
   handling_fees?: {
     fixed_surcharge?: number
+  } | {
+    percentage_surcharge?: number
   }
   is_fallback?: boolean
 }
@@ -319,7 +321,22 @@ export type ShippingZone = {
   enabled?: boolean
 }
 
-export type ShippingZonePost = Omit<ShippingZone, 'id'>
+export type ShippingZonePost = {
+  name: string
+  type: 'zip' | 'country' | 'state' | 'global'
+  locations?: ShippingZoneLocation[]
+  free_shipping?: {
+    enabled?: boolean
+    minimum_sub_total?: string
+    exclude_fixed_shipping_products?: boolean
+  }
+  handling_fees?: {
+    display_separately?: boolean
+    fixed_surcharge?: string
+    percentage_surcharge?: string
+  }
+  enabled?: boolean
+}
 
 export type ShippingZonePut = {
   id?: number
