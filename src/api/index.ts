@@ -51,7 +51,7 @@ import checkoutCoupons from './checkout-coupons'
 import checkoutDiscounts from './checkout-discounts'
 import checkoutOrders from './checkout-orders'
 import checkoutSettings from './checkout-settings'
-import checkoutTokens from './checkout-token'
+import checkoutTokens from './checkout-tokens'
 
 export {
   cartItems,
