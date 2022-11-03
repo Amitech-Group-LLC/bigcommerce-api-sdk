@@ -45,7 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
-import checkoutBillingAddress from './checkout-billing-address'
+import checkoutBillingAddresses from './checkout-billing-addresses'
 import checkoutConsignments from './checkout-consignments'
 import checkoutCoupons from './checkout-coupons'
 import checkoutDiscounts from './checkout-discounts'
@@ -101,7 +101,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
-  checkoutBillingAddress,
+  checkoutBillingAddresses,
   checkoutConsignments,
   checkoutCoupons,
   checkoutDiscounts,
