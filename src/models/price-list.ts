@@ -30,7 +30,6 @@ export type PriceAssigmentDeleteFilter = {
   channel_id?: number
   'channel_id:in'?: number[]
   customer_group_id?: number
-  'customer_group_id:in'?: number[]
   id?: number
   price_list_id?: number
 }
@@ -139,8 +138,8 @@ export type PriceRecordCurrencyPut = {
 }
 
 export type PriceRecordResult = {
-  status: number
-  title: string
-  type: string
-  instance: string
+  status?: number
+  title?: string
+  type?: string
+  instance?: string
 }

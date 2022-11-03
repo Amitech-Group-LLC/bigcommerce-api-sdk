@@ -25,7 +25,7 @@ class PriceListRecords {
 
   public async upsertMany<TData extends PriceRecordPut>(
     priceListId: number,
-    data: TData,
+    data: TData[],
     requestOptions: RequestOptions = {}
   ): Promise<Result<PriceRecordPut[]>> {
     return await http
@@ -47,7 +47,7 @@ class PriceListRecords {
       'variant_id:in'?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<PriceRecordResult>> {
+  ): Promise<PriceRecordResult> {
     return await http
       .delete(`/v3/pricelists/${priceListId}/records`, {
         ...requestOptions,
@@ -106,7 +106,7 @@ class PriceListRecords {
     currencyCode: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<PriceRecord>> {
+  ): Promise<Result<PriceRecord>> {
     return await http
       .put(`/v3/pricelists/${priceListId}/records/${variantId}/${currencyCode}`, {
         ...requestOptions,
