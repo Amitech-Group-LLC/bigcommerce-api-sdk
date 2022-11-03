@@ -30,7 +30,7 @@ class SettingAnalitics {
         channel_id?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<SettingAnalitic>> {
+  ): Promise<SettingAnalitic> {
     return await http
       .get(`/v3/settings/analytics/${analyticId}`, {
         ...requestOptions,
@@ -51,7 +51,7 @@ class SettingAnalitics {
         channel_id?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<SettingAnalitic>> {
+  ): Promise<SettingAnalitic> {
     return await http
       .put(`/v3/settings/analytics/${analyticId}`, {
         ...requestOptions,

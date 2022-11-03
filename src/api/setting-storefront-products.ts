@@ -12,7 +12,7 @@ class SettingStorefrontProducts {
     requestOptions: RequestOptions = {}
   ): Promise<Result<SettingStorefrontProduct>> {
     return await http
-      .get(`/v3/settings/store/profile`, {
+      .get(`/v3/settings/storefront/product`, {
         ...requestOptions,
         params,
       })
@@ -32,7 +32,7 @@ class SettingStorefrontProducts {
     requestOptions: RequestOptions = {}
   ): Promise<Result<SettingStorefrontProduct>> {
     return await http
-    .put(`/v3/settings/store/profile`, {
+    .put(`/v3/settings/storefront/product`, {
         ...requestOptions,
         data,
         params,

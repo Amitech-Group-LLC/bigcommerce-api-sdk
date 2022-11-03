@@ -12,7 +12,7 @@ export type SettingEmailStatus = {
   return_statuschange_email?: boolean
 }
 
-export type SettingSearchFilter = {
+export type EnabledProductFilter = {
   collapsed_by_default?: boolean
   display_name?: string
   display_product_count?: boolean
@@ -20,15 +20,91 @@ export type SettingSearchFilter = {
   is_enabled?: boolean
   items_to_show?: 5 | 10 | 15
   sort_by?: 'alpha' | 'option_values' | 'item_count'
-  type?: 'product' | 'brand' | 'other'
+  type?: 'product'
 }
 
-export type SettingSearchFilterData = {
+export type EnabledPiceFilter = {
+  collapsed_by_default?: boolean
+  display_name?: string
+  id?: string
+  is_enabled?: boolean
+  type?: 'price'
+}
+
+export type EnabledCategoryFilter = {
+  collapsed_by_default?: boolean
+  display_name?: string
+  display_product_count?: boolean
+  id?: string
+  is_enabled?: boolean
+  items_to_show?: 5 | 10 | 15
+  type?: 'category'
+}
+
+export type EnabledBrandFilter = {
+  collapsed_by_default?: boolean
+  display_name?: string
+  display_product_count?: boolean
+  id?: string
+  is_enabled?: boolean
+  items_to_show?: 5 | 10 | 15
+  sort_by?: 'alpha' | 'item_count'
+  type?: 'brand'
+}
+
+export type EnabledRatingFilter = {
+  collapsed_by_default?: boolean
+  display_name?: string
+  id?: string
+  is_enabled?: boolean
+  type?: 'rating'
+}
+
+export type EnabledMiskFilter = {
+  collapsed_by_default?: boolean
+  display_name?: string
+  display_product_count?: boolean
+  id?: string
+  is_enabled?: boolean
+  show_free_shipping_filter?: boolean
+  show_in_stock_filter?: boolean
+  show_is_featured_filter?: boolean
+  show_product_count?: boolean
+  type?: 'other'
+}
+
+export type SettingSearchFilter =
+  | EnabledProductFilter
+  | EnabledPiceFilter
+  | EnabledCategoryFilter
+  | EnabledBrandFilter
+  | EnabledRatingFilter
+  | EnabledMiskFilter
+
+export type AvailableNormalFilter = {
   id?: string
   name?: string
   product_count?: number
   type?: 'category' | 'brand' | 'rating' | 'product'
 }
+
+export type AvailablePriceFilter = {
+  id?: string
+  name?: string
+  price_range_max?: number
+  price_range_min?: number
+  type?: 'price'
+}
+
+export type AvailableOtherFilter = {
+  id?: string
+  name?: string
+  type?: 'other'
+}
+export type SettingSearchFilterData =
+  | AvailableNormalFilter
+  | AvailablePriceFilter
+  | AvailableOtherFilter
 
 export type SettingSearchFilterContext = {
   context?: {
@@ -85,7 +161,7 @@ export type SettingStorefrontSecurity = {
     enabled?: boolean
     header_value?: string
   }
-  hsts: {
+  hsts?: {
     enabled?: boolean
     include_preload?: boolean
     include_subdomains?: boolean
