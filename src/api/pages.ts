@@ -1,4 +1,4 @@
-import { Page, PageFilter, PagePost, PageManyPut, PagePut } from '../models/page'
+import { Page, PageFilter, PagePost, PageManyPut, PagePut, PageSingleData } from '../models/page'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -24,12 +24,16 @@ class Pages {
 
   public async create<TData extends PagePost>(
     data: TData,
+    params: {
+      include?: 'body'
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Page>> {
     return await http
       .post(`/v3/content/pages`, {
         ...requestOptions,
         data,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -41,12 +45,16 @@ class Pages {
 
   public async updateMany<TData extends PageManyPut>(
     data: TData,
+    params: {
+      include?: 'body'
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Page[]>> {
     return await http
       .put(`/v3/content/pages`, {
         ...requestOptions,
         data,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -77,13 +85,15 @@ class Pages {
 
   public async get(
     pageId: number,
-    filterParams: PageFilter = {},
+    params: {
+      include?: 'body'
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<Page[]>> {
+  ): Promise<ListResult<PageSingleData[]>> {
     return await http
       .get(`/v3/content/pages/${pageId}`, {
         ...requestOptions,
-        params: filterParams,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -96,12 +106,16 @@ class Pages {
   public async update<TData extends PagePut>(
     pageId: number,
     data: TData,
+    params: {
+      include?: 'body'
+    } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Page[]>> {
     return await http
       .put(`/v3/content/pages/${pageId}`, {
         ...requestOptions,
         data,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -114,7 +128,7 @@ class Pages {
   public async delete(
     pageId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<Page[]>> {
+  ): Promise<undefined> {
     return await http
       .delete(`/v3/content/pages/${pageId}`, {
         ...requestOptions,
