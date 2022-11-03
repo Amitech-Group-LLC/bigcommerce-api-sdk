@@ -1,4 +1,4 @@
-import { OrdersV3TransactionData } from '../models/orders-v3'
+import { OrdersV3TransactionData } from '../models/order-v3'
 import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'

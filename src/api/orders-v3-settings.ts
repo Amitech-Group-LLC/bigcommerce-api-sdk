@@ -1,4 +1,4 @@
-import { OrdersV3SettingData, OrdersV3SettingParam } from '../models/orders-v3'
+import { OrdersV3SettingData, OrdersV3SettingParam } from '../models/order-v3'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
