@@ -3,7 +3,7 @@ import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class OrdersV2Status {
+class OrdersV2Statuses {
   public async list(
     requestOptions: RequestOptions = {}
   ): Promise<OrdersV2StatusData[]> {
@@ -32,4 +32,4 @@ class OrdersV2Status {
   }
 }
 
-export default new OrdersV2Status()
+export default new OrdersV2Statuses()

@@ -52,7 +52,7 @@ import ordersV2Products from './orders-v2-products'
 import ordersV2Shipments from './orders-v2-shipments'
 import ordersV2ShippingAddresses from './orders-v2-shipping-addresses'
 import ordersV2ShippingAddressesQuotes from './orders-v2-shipping-addresses-quotes'
-import ordersV2Status from './orders-v2-status'
+import ordersV2Statuses from './orders-v2-statuses'
 import ordersV2Taxes from './orders-v2-taxes'
 
 export {
@@ -110,6 +110,6 @@ export {
   ordersV2Shipments,
   ordersV2ShippingAddresses,
   ordersV2ShippingAddressesQuotes,
-  ordersV2Status,
+  ordersV2Statuses,
   ordersV2Taxes,
 }

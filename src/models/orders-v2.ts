@@ -188,7 +188,7 @@ export type CountOrderStatus = {
   sort_order?: number
 }
 
-export type OrderParams = {
+export type OrderParam = {
   cart_id?: string
   channel_id?: number
   customer_id?: number

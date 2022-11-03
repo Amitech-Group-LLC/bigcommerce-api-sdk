@@ -1,4 +1,4 @@
-import { OrderData, OrderUpdateData, GetCountOrderData, OrderParams, OrderCreateData } from '../models/orders-v2'
+import { OrderData, OrderUpdateData, GetCountOrderData, OrderParam, OrderCreateData } from '../models/orders-v2'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -61,7 +61,7 @@ class OrdersV2 {
   }
 
   public async list(
-    params: OrderParams = {},
+    params: OrderParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<OrderData[]> {
     return await http
