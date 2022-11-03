@@ -11,7 +11,7 @@ class ChannelSiteCheckoutUrls {
       url?: string,
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ChannelSite>> {
+  ): Promise<ChannelSite> {
     return await http
       .put(`/v3/channels/${channelId}/site/checkout-url`, {
         ...requestOptions,
