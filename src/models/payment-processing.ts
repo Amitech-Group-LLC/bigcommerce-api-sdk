@@ -52,9 +52,9 @@ export type PaymentProcessPost = {
       issue_year?: number
       issue_number?: number
     }
+    payment_method_id: string
+    save_instrument?: boolean
   }
-  payment_method_id: string
-  save_instrument?: boolean
 }
 
 export type PaymentProcess = {

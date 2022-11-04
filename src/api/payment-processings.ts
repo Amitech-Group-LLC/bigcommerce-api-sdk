@@ -45,7 +45,7 @@ class PaymentProcessings {
   public async process<TData extends PaymentProcessPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<PaymentProcess>> {
+  ): Promise<PaymentProcess> {
     return await http
       .post(`/payments`, {
         ...requestOptions,
