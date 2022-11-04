@@ -45,6 +45,22 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import settingAnalytics from './setting-analytics'
+import settingCatalogs from './setting-catalogs'
+import settingEmailStatuses from './setting-email-statuses'
+import settingFavicons from './setting-favicons'
+import settingInventories from './setting-inventories'
+import settingLogos from './setting-logos'
+import settingSearchFilters from './setting-search-filters'
+import settingStoreLocales from './setting-store-locales'
+import settingStoreProfiles from './setting-store-profiles'
+import settingStorefrontCategories from './setting-storefront-categories'
+import settingStorefrontProducts from './setting-storefront-products'
+import settingStorefrontRobots from './setting-storefront-robots'
+import settingStorefrontSearches from './setting-storefront-searches'
+import settingStorefrontSecurities from './setting-storefront-securities'
+import settingStorefrontSeos from './setting-storefront-seos'
+import settingStorefrontStatuses from './setting-storefront-statuses'
 import ordersV3Metafields from './orders-v3-metafields'
 import ordersV3PaymentActions from './orders-v3-payment-actions'
 import ordersV3Settings from './orders-v3-settings'
@@ -142,6 +158,22 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  settingAnalytics,
+  settingCatalogs,
+  settingEmailStatuses,
+  settingFavicons,
+  settingInventories,
+  settingLogos,
+  settingSearchFilters,
+  settingStoreLocales,
+  settingStoreProfiles,
+  settingStorefrontCategories,
+  settingStorefrontProducts,
+  settingStorefrontRobots,
+  settingStorefrontSearches,
+  settingStorefrontSecurities,
+  settingStorefrontSeos,
+  settingStorefrontStatuses,
   ordersV3Metafields,
   ordersV3PaymentActions,
   ordersV3Settings,
