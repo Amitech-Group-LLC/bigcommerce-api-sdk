@@ -22,7 +22,7 @@ export type ProductBulkPricing = {
   id?: number
   quantity_min: number
   quantity_max: number
-  type: string
+  type: 'price' | 'percent' | 'fixed'
   amount: number
 }
 
@@ -36,7 +36,7 @@ export type ProductVideo = {
   title?: string
   description?: string
   sort_order?: number
-  type?: string
+  type?: 'youtube'
   video_id?: string
   id?: number
   product_id?: number
@@ -75,10 +75,10 @@ export type ProductConfig = {
   checked_by_default?: boolean
   checkbox_label?: string
   date_limited?: boolean
-  date_limit_mode?: string
+  date_limit_mode?: 'earliest' | 'range' | 'latest'
   date_earliest_value?: string
   date_latest_value?: string
-  file_types_mode?: string
+  file_types_mode?: 'specific' | 'all'
   file_types_supported?: string[]
   file_types_other?: string[]
   file_max_size?: number
@@ -88,17 +88,29 @@ export type ProductConfig = {
   text_lines_limited?: boolean
   text_max_lines?: number
   number_limited?: boolean
-  number_limit_mode?: string
+  number_limit_mode?: 'lowest' | 'highest' | 'range'
   number_lowest_value?: number
   number_highest_value?: number
   number_integers_only?: boolean
   product_list_adjusts_inventory?: boolean
   product_list_adjusts_pricing?: boolean
-  product_list_shipping_calc?: string
+  product_list_shipping_calc?: 'none' | 'weight' | 'package'
 }
 
 export type ProductModifier = {
-  type: string
+  type:
+    | 'date'
+    | 'checkbox'
+    | 'file'
+    | 'text'
+    | 'multi_line_text'
+    | 'numbers_only_text'
+    | 'radio_buttons'
+    | 'rectangles'
+    | 'dropdown'
+    | 'product_list'
+    | 'product_list_with_images'
+    | 'swatch'
   required: boolean
   sort_order?: number
   config?: ProductConfig
@@ -124,7 +136,13 @@ export type ProductOption = {
   id?: number
   product_id?: number
   display_name?: string
-  type?: string
+  type?:
+    | 'radio_buttons'
+    | 'rectangles'
+    | 'dropdown'
+    | 'product_list'
+    | 'product_list_with_images'
+    | 'swatch'
   config?: ProductConfig
   sort_order?: number
   option_values: ProductOptionValue | ProductOptionValue[]
@@ -175,7 +193,7 @@ export type ProductCustomUrl = {
 export type Product = {
   id?: number
   name: string
-  type: string
+  type: 'digital' | 'physical'
   sku?: string
   description?: string
   weight: number
@@ -193,7 +211,7 @@ export type Product = {
   brand_id?: number
   inventory_level?: number
   inventory_warning_level?: number
-  inventory_tracking?: string
+  inventory_tracking?: 'none' | 'product' | 'variant'
   fixed_cost_shipping_price?: number
   is_free_shipping?: boolean
   is_visible?: boolean
@@ -205,11 +223,11 @@ export type Product = {
   upc?: string
   search_keywords?: string
   availability_description?: string
-  availability?: string
-  gift_wrapping_options_type?: string
+  availability?: 'available' | 'disabled' | 'preorder'
+  gift_wrapping_options_type?: 'any' | 'none' | 'list'
   gift_wrapping_options_list?: number[]
   sort_order?: number
-  condition?: string
+  condition?: 'New' | 'Used' | 'Refurbished'
   is_condition_shown?: boolean
   order_quantity_minimum?: number
   order_quantity_maximum?: number
@@ -223,7 +241,16 @@ export type Product = {
   is_price_hidden?: boolean
   price_hidden_label?: string
   custom_url?: ProductCustomUrl
-  open_graph_type?: string
+  open_graph_type?:
+    | 'product'
+    | 'album'
+    | 'book'
+    | 'drink'
+    | 'food'
+    | 'game'
+    | 'movie'
+    | 'song'
+    | 'tv_show'
   open_graph_title?: string
   open_graph_description?: string
   open_graph_use_meta_description?: boolean
@@ -253,7 +280,7 @@ export type Product = {
 export type ProductUpdate = {
   id?: number
   name: string
-  type: string
+  type: 'digital' | 'physical'
   sku?: string
   description?: string
   weight: number
@@ -271,7 +298,7 @@ export type ProductUpdate = {
   brand_id?: number
   inventory_level?: number
   inventory_warning_level?: number
-  inventory_tracking?: string
+  inventory_tracking?: 'none' | 'product' | 'variant'
   fixed_cost_shipping_price?: number
   is_free_shipping?: boolean
   is_visible?: boolean
@@ -283,11 +310,11 @@ export type ProductUpdate = {
   upc?: string
   search_keywords?: string
   availability_description?: string
-  availability?: string
-  gift_wrapping_options_type?: string
+  availability?: 'available' | 'disabled' | 'preorder'
+  gift_wrapping_options_type?: 'any' | 'none' | 'list'
   gift_wrapping_options_list?: number[]
   sort_order?: number
-  condition?: string
+  condition?: 'New' | 'Used' | 'Refurbished'
   is_condition_shown?: boolean
   order_quantity_minimum?: number
   order_quantity_maximum?: number
@@ -301,7 +328,16 @@ export type ProductUpdate = {
   is_price_hidden?: boolean
   price_hidden_label?: string
   custom_url?: ProductCustomUrl
-  open_graph_type?: string
+  open_graph_type?:
+    | 'product'
+    | 'album'
+    | 'book'
+    | 'drink'
+    | 'food'
+    | 'game'
+    | 'movie'
+    | 'song'
+    | 'tv_show'
   open_graph_title?: string
   open_graph_description?: string
   open_graph_use_meta_description?: boolean
@@ -321,19 +357,19 @@ export type ProductUpdate = {
 }
 
 export type ProductFilter = {
-  availability?: string
+  availability?: 'available' | 'disabled' | 'preorder'
   brand_id?: number
   categories?: number
   'categories:in'?: number
-  condition?: string
+  condition?: 'new' | 'used' | 'refurbished'
   date_last_imported?: string
   'date_last_imported:max'?: string
   'date_last_imported:min'?: string
   date_modified?: string
   'date_modified:max'?: string
   'date_modified:min'?: string
-  direction?: string
-  exclude_fields?: string | string[]
+  direction?: 'asc' | 'desc'
+  exclude_fields?: Array<keyof Omit<Product, 'id'>>
   id?: number
   'id:greater'?: number[]
   'id:in'?: number[]
@@ -341,8 +377,16 @@ export type ProductFilter = {
   'id:max'?: number[]
   'id:min'?: number[]
   'id:not_in'?: number[]
-  include?: string
-  include_fields?: string | string[]
+  include?:
+    | 'variants'
+    | 'images'
+    | 'custom_fields'
+    | 'bulk_pricing_rules'
+    | 'primary_image'
+    | 'modifiers'
+    | 'options'
+    | 'videos'
+  include_fields?: Array<keyof Product>
   inventory_level?: number
   'inventory_level:greater'?: number
   'inventory_level:in'?: number
@@ -351,11 +395,11 @@ export type ProductFilter = {
   'inventory_level:min'?: number
   'inventory_level:not_in'?: number
   inventory_low?: number
-  is_featured?: number
+  is_featured?: 1 | 0
   is_free_shipping?: number
   is_visible?: boolean
   keyword?: string
-  keyword_context?: string
+  keyword_context?: 'shopper' | 'merchant'
   limit?: number
   name?: string
   out_of_stock?: number
@@ -363,10 +407,19 @@ export type ProductFilter = {
   price?: number
   sku?: string
   'sku:in'?: string[]
-  sort?: string
+  sort?:
+    | 'id'
+    | 'name'
+    | 'sku'
+    | 'price'
+    | 'date_modified'
+    | 'date_last_imported'
+    | 'inventory_level'
+    | 'is_visible'
+    | 'total_sold'
   status?: number
   total_sold?: number
-  type?: string
+  type?: 'digital' | 'physical'
   upc?: string
   weight?: number
 }
@@ -374,7 +427,7 @@ export type ProductFilter = {
 export type ProductPost = {
   id?: number
   name: string
-  type: string
+  type: 'digital' | 'physical'
   sku?: string
   description?: string
   weight: number
@@ -392,7 +445,7 @@ export type ProductPost = {
   brand_id?: number
   inventory_level?: number
   inventory_warning_level?: number
-  inventory_tracking?: string
+  inventory_tracking?: 'none' | 'product' | 'variant'
   fixed_cost_shipping_price?: number
   is_free_shipping?: boolean
   is_visible?: boolean
@@ -403,12 +456,12 @@ export type ProductPost = {
   layout_file?: string
   upc?: string
   search_keywords?: string
-  availability?: string
+  availability?: 'available' | 'disabled' | 'preorder'
   availability_description?: string
-  gift_wrapping_options_type?: string
+  gift_wrapping_options_type?: 'any' | 'none' | 'list'
   gift_wrapping_options_list?: number[]
   sort_order?: number
-  condition?: string
+  condition?: 'New' | 'Used' | 'Refurbished'
   is_condition_shown?: boolean
   order_quantity_minimum?: number
   order_quantity_maximum?: number
@@ -422,7 +475,16 @@ export type ProductPost = {
   is_price_hidden?: boolean
   price_hidden_label?: string
   custom_url?: ProductCustomUrl
-  open_graph_type?: string
+  open_graph_type?:
+    | 'product'
+    | 'album'
+    | 'book'
+    | 'drink'
+    | 'food'
+    | 'game'
+    | 'movie'
+    | 'song'
+    | 'tv_show'
   open_graph_title?: string
   open_graph_description?: string
   open_graph_use_meta_description?: boolean
@@ -443,11 +505,11 @@ export type ProductPost = {
 export type ProductDelete = {
   brand_id?: number
   categories?: number
-  condition?: string
+  condition?: 'New' | 'Used' | 'Refurbished'
   date_last_imported?: string
   date_modified?: string
   inventory_level?: number
-  is_featured?: number
+  is_featured?: 1 | 0
   is_visible?: boolean
   keyword?: string
   name?: string
@@ -458,7 +520,16 @@ export type ProductDelete = {
   weight?: number
 }
 
-export type ProductComplexRuleConditions = {
+export type ProductComplexRuleConditionPost = {
+  id?: number | null
+  rule_id?: number | null
+  modifier_id: number | null
+  modifier_value_id: number | null
+  variant_id: number | null
+  combination_id?: number
+}
+
+export type ProductComplexRuleCondition = {
   id?: number
   rule_id?: number
   modifier_id: number
@@ -474,35 +545,57 @@ export type ProductComplexRule = {
   enabled?: boolean
   stop?: boolean
   price_adjuster?: {
-    adjuster?: string
+    adjuster?: 'relative' | 'percentage'
     adjuster_value?: number
   }
   weight_adjuster?: {
-    adjuster?: string
+    adjuster?: 'relative' | 'percentage'
     adjuster_value?: number
   }
   purchasing_disabled?: boolean
   purchasing_disabled_message?: string
   purchasing_hidden?: boolean
   image_url?: string
-  conditions: ProductComplexRuleConditions[]
+  conditions: ProductComplexRuleCondition[]
+}
+
+export type ProductComplexRulePost = {
+  id?: number
+  product_id?: number
+  sort_order?: number
+  enabled?: boolean
+  stop?: boolean
+  price_adjuster?: {
+    adjuster?: 'relative' | 'percentage' | null
+    adjuster_value?: number
+  }
+  weight_adjuster?: {
+    adjuster?: 'relative' | 'percentage' | null
+    adjuster_value?: number
+  }
+  purchasing_disabled?: boolean
+  purchasing_disabled_message?: string
+  purchasing_hidden?: boolean
+  image_url?: string
+  conditions: ProductComplexRuleConditionPost[]
 }
 
 export type ProductMetafield = {
-  permission_set: string
+  permission_set:
+    | 'app_only'
+    | 'read'
+    | 'write'
+    | 'read_and_sf_access'
+    | 'write_and_sf_access'
   namespace: string
   key: string
   value: string
   description?: string
-  resource_type?: string
+  resource_type?: 'category' | 'brand' | 'product' | 'variant'
   resource_id?: number
   id?: number
   date_created?: string
   date_modified?: string
-}
-
-export type ProductImageUrl = {
-  image_url: string
 }
 
 export type ProductReview = {
