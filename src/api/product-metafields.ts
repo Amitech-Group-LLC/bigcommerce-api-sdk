@@ -1,4 +1,5 @@
 import { ProductMetafield } from '../models/product'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -8,8 +9,8 @@ class ProductMetafields {
   public async list(
     itemId: number,
     params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
+      include_fields?: Array<keyof ProductMetafield>
+      exclude_fields?: Array<keyof Omit<ProductMetafield, 'id'>>
       limit?: number
       page?: number
       key?: string
@@ -51,10 +52,7 @@ class ProductMetafields {
   public async get(
     itemId: number,
     metafieldId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductMetafield> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductMetafield>> {
     return await http

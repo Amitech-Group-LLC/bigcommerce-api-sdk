@@ -1,18 +1,16 @@
-import { ProductVideo } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
-import { Result, ListResult } from '../models/result'
+import { State, StateFilter, Count } from '../models/geography'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVideos {
-  public async list(
-    itemId: number,
-    params: ProductFilterParam<ProductVideo> = {},
+class GeographyStates {
+  public async listCountryStates(
+    countryId: number,
+    params: StateFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ProductVideo[]>> {
+  ): Promise<State[]> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v2/countries/${countryId}/states`, {
         ...requestOptions,
         params,
       })
@@ -24,15 +22,14 @@ class ProductVideos {
       })
   }
 
-  public async create<TData extends ProductVideo>(
-    itemId: number,
-    data: TData,
+  public async getState(
+    countryId: number,
+    stateId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<State> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v2/countries/${countryId}/states/${stateId}`, {
         ...requestOptions,
-        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -42,16 +39,12 @@ class ProductVideos {
       })
   }
 
-  public async get(
-    itemId: number,
-    videoId: number,
-    params: FilterParam<ProductVideo> = {},
+  public async getCountState(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<Count> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .get(`/v2/countries/states/count`, {
         ...requestOptions,
-        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -61,16 +54,12 @@ class ProductVideos {
       })
   }
 
-  public async update<TData extends ProductVideo>(
-    itemId: number,
-    videoId: number,
-    data: TData,
+  public async listState(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<State[]> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .get(`/v2/countries/states`, {
         ...requestOptions,
-        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -80,13 +69,12 @@ class ProductVideos {
       })
   }
 
-  public async delete(
-    itemId: number,
-    videoId: number,
+  public async getCountCountryState(
+    countryId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<Count> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .get(`/v2/countries/${countryId}/states/count`, {
         ...requestOptions,
       })
       .catch(ex => {
@@ -98,4 +86,4 @@ class ProductVideos {
   }
 }
 
-export default new ProductVideos()
+export default new GeographyStates()
