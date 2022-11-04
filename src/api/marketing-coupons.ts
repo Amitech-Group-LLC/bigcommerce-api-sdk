@@ -1,4 +1,4 @@
-import { MarketingCoupon, MarketingCouponPost, Count } from '../models/marketing'
+import { MarketingCoupon, MarketingCouponPost, MarketingCount } from '../models/marketing'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -103,7 +103,7 @@ class MarketingCoupons {
 
   public async getCouponCount(
     requestOptions: RequestOptions = {}
-  ): Promise<Count> {
+  ): Promise<MarketingCount> {
     return await http
       .get(`/v2/coupons/count`, {
         ...requestOptions,
