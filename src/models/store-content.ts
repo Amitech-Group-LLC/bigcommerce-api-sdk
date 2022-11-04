@@ -63,3 +63,8 @@ export type StoreContentBlogPostDeleteParam = {
 export type StoreContentCountData = {
   count?: number
 }
+
+export type StoreContentBlogTagData = {
+  tag?: string
+  post_ids?: number[]
+}
