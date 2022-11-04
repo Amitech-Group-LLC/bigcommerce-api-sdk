@@ -1,20 +1,17 @@
-import { ImageUrl } from '../models/image'
+import { AbandonedCart } from '../models/abandoned-cart'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVariantImages {
-  public async create(
-    itemId: number,
-    variantId: number,
-    imageFile: File,
+class AbandonedCarts {
+  public async get(
+    token: string,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ImageUrl>> {
+  ): Promise<Result<AbandonedCart>> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/variants/${variantId}/image`, {
+      .get(`/v3/abandoned-carts/${token}`, {
         ...requestOptions,
-        params: { image_file: imageFile },
       })
       .catch(ex => {
         if (ex.response) {
@@ -25,4 +22,4 @@ class ProductVariantImages {
   }
 }
 
-export default new ProductVariantImages()
+export default new AbandonedCarts()

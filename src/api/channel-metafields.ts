@@ -1,18 +1,22 @@
-import { ProductVideo } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
-import { Result, ListResult } from '../models/result'
+import { ChannelMetafield, ChannelMetafieldPost, ChannelMetafieldPut } from '../models/channel'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVideos {
+class ChannelMetafields {
   public async list(
-    itemId: number,
-    params: ProductFilterParam<ProductVideo> = {},
+    channelId: number,
+    params: {
+      namespace?: string
+      page?: number
+      direction?: 'asd' | 'desk'
+      key?: Array<keyof ChannelMetafield>
+      limit?: number
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ProductVideo[]>> {
+  ): Promise<ChannelMetafield> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v3/channels/${channelId}/metafields`, {
         ...requestOptions,
         params,
       })
@@ -24,13 +28,13 @@ class ProductVideos {
       })
   }
 
-  public async create<TData extends ProductVideo>(
-    itemId: number,
+  public async create<TData extends ChannelMetafieldPost>(
+    channelId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<ChannelMetafield> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/videos`, {
+      .post(`/v3/channels/${channelId}/metafields`, {
         ...requestOptions,
         data,
       })
@@ -43,15 +47,13 @@ class ProductVideos {
   }
 
   public async get(
-    itemId: number,
-    videoId: number,
-    params: FilterParam<ProductVideo> = {},
+    channelId: number,
+    metafieldId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<ChannelMetafield> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .get(`/v3/channels/${channelId}/metafields/${metafieldId}`, {
         ...requestOptions,
-        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -61,14 +63,14 @@ class ProductVideos {
       })
   }
 
-  public async update<TData extends ProductVideo>(
-    itemId: number,
-    videoId: number,
+  public async update<TData extends ChannelMetafieldPut>(
+    channelId: number,
+    metafieldId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<ChannelMetafield> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .put(`/v3/channels/${channelId}/metafields/${metafieldId}`, {
         ...requestOptions,
         data,
       })
@@ -81,12 +83,12 @@ class ProductVideos {
   }
 
   public async delete(
-    itemId: number,
-    videoId: number,
+    channelId: number,
+    metafieldId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v3/channels/${channelId}/metafields/${metafieldId}`, {
         ...requestOptions,
       })
       .catch(ex => {
@@ -98,4 +100,4 @@ class ProductVideos {
   }
 }
 
-export default new ProductVideos()
+export default new ChannelMetafields()
