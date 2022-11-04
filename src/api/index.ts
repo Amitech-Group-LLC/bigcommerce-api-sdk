@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import currencies from './currencies'
 import channels from './channels'
 import channelSites from './channel-sites'
 import channelSiteCheckoutUrls from './channel-site-checkout-urls'
@@ -110,6 +111,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  currencies,
   channels,
   channelSites,
   channelSiteCheckoutUrls,
