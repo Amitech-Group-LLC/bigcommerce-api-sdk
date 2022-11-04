@@ -1,4 +1,5 @@
 import { Category, CategoryFilter } from '../models/category'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -24,10 +25,7 @@ class Categories {
 
   public async get(
     itemId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<Category> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Category>> {
     return await http

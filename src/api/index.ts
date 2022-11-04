@@ -47,6 +47,12 @@ import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
 import storefrontApiTokens from './storefront-api-tokens'
 import storefrontCustomerApiTokens from './storefront-customer-api-tokens'
+import paymentMethods from './payment-methods'
+import abandonedCarts from './abandoned-carts'
+import abandonedCartsSettings from './abandoned-carts-settings'
+import abandonedCartTemplateSettings from './abandoned-cart-template-settings'
+import abandonedCartSettings from './abandoned-cart-settings'
+import abandonedCartEmails from './abandoned-cart-emails'
 
 export {
   cartItems,
@@ -98,4 +104,10 @@ export {
   webhookEvents,
   storefrontApiTokens,
   storefrontCustomerApiTokens,
+  paymentMethods,
+  abandonedCarts,
+  abandonedCartsSettings,
+  abandonedCartTemplateSettings,
+  abandonedCartSettings,
+  abandonedCartEmails,
 }
