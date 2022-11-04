@@ -1,5 +1,5 @@
 import { CustomerFormFieldParams, CustomerFormFieldData } from '../models/customer'
-import { ListResult } from '../models/result'
+import { ListResult, Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -22,7 +22,7 @@ class CustomerFormFieldValues {
   public async upsertMany<TData extends CustomerFormFieldData>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<CustomerFormFieldData[]>> {
+  ): Promise<Result<CustomerFormFieldData[]>> {
     return await http
       .put('/v3/customers/form-field-values', { ...requestOptions, data})
       .catch(ex => {

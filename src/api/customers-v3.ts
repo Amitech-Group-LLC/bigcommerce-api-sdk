@@ -1,5 +1,5 @@
 import { Customer, CreateData, UpdateData, CustomerFilter } from '../models/customer'
-import { Result, ListResult } from '../models/result'
+import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -25,7 +25,7 @@ class CustomersV3 {
   public async createMany<TData extends CreateData>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Customer[]>> {
+  ): Promise<ListResult<Customer[]>> {
     return await http 
       .post('/v3/customers', { ...requestOptions, data })
       .catch(ex => {
@@ -39,7 +39,7 @@ class CustomersV3 {
   public async updateMany<TData extends UpdateData>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Customer[]>> {
+  ): Promise<ListResult<Customer[]>> {
     return await http 
       .put('/v3/customers', { ...requestOptions, data })
       .catch(ex => {
