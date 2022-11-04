@@ -45,6 +45,9 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import priceLists from './price-lists'
+import priceListAssigments from './price-list-assigments'
+import priceListRecords from './price-list-records'
 import paymentProcessings from './payment-processings'
 import shippingCarriers from './shipping-carriers'
 import shippingCustomInformations from './shipping-custom-informations'
@@ -163,6 +166,9 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  priceLists,
+  priceListAssigments,
+  priceListRecords,
   paymentProcessings,
   shippingCarriers,
   shippingCustomInformations,
