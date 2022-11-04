@@ -1,4 +1,5 @@
-import { ProductComplexRule } from '../models/product'
+import { ProductComplexRule, ProductComplexRulePost } from '../models/product'
+import { FilterParam, ProductFilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -7,12 +8,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductComplexRules {
   public async list(
     itemId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-      limit?: number
-      page?: number
-    } = {},
+    params: ProductFilterParam<ProductComplexRule> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductComplexRule[]>> {
     return await http
@@ -28,7 +24,7 @@ class ProductComplexRules {
       })
   }
 
-  public async create<TData extends ProductComplexRule>(
+  public async create<TData extends ProductComplexRulePost>(
     itemId: number,
     data: TData[],
     params: {
@@ -36,7 +32,7 @@ class ProductComplexRules {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductComplexRule>> {
+  ): Promise<Result<ProductComplexRulePost>> {
     return await http
       .post(`v3/catalog/products/${itemId}/complex-rules`, {
         ...requestOptions,
@@ -54,10 +50,7 @@ class ProductComplexRules {
   public async get(
     itemId: number,
     complexRuleId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductComplexRule> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductComplexRule>> {
     return await http
@@ -73,12 +66,12 @@ class ProductComplexRules {
       })
   }
 
-  public async update<TData extends ProductComplexRule>(
+  public async update<TData extends ProductComplexRulePost>(
     itemId: number,
     complexRuleId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductComplexRule>> {
+  ): Promise<Result<ProductComplexRulePost>> {
     return await http
       .put(`/v3/catalog/products/${itemId}/complex-rules/${complexRuleId}`, {
         ...requestOptions,

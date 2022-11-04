@@ -1,4 +1,5 @@
 import { ProductVideo } from '../models/product'
+import { FilterParam, ProductFilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -7,12 +8,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductVideos {
   public async list(
     itemId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-      limit?: number
-      page?: number
-    } = {},
+    params: ProductFilterParam<ProductVideo> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductVideo[]>> {
     return await http
@@ -49,10 +45,7 @@ class ProductVideos {
   public async get(
     itemId: number,
     videoId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductVideo> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductVideo>> {
     return await http

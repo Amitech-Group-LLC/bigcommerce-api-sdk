@@ -1,4 +1,4 @@
-import { CategoryImage } from '../models/category'
+import { ImageUrl } from '../models/image'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -9,7 +9,7 @@ class CategoryImages {
     itemId: number,
     imageFile: File,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CategoryImage>> {
+  ): Promise<Result<ImageUrl>> {
     return await http
       .post(`/v3/catalog/categories/${itemId}/image`, {
         ...requestOptions,
