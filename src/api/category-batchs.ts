@@ -1,5 +1,5 @@
 import {
-  Category,
+  CategoryBatch,
   CategoryBatchFilter,
   CategoryBatchPost,
   CategoryBatchMeta,
@@ -16,7 +16,7 @@ class CategoryBatchs {
   public async list(
     filterParams: CategoryBatchFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<Category[]>> {
+  ): Promise<ListResult<CategoryBatch[]>> {
     return await http
       .get(`/v3/catalog/trees/categories`, {
         ...requestOptions,
@@ -33,7 +33,7 @@ class CategoryBatchs {
   public async create<TData extends CategoryBatchPost>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<ErrorResult<Category[], CategoryBatchError, CategoryBatchMeta>> {
+  ): Promise<ErrorResult<CategoryBatch[], CategoryBatchError, CategoryBatchMeta>> {
     return await http
       .post(`/v3/catalog/trees/categories`, { ...requestOptions, data })
       .catch(ex => {
@@ -47,7 +47,7 @@ class CategoryBatchs {
   public async update<TData extends CategoryBatchUpdate>(
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Category>> {
+  ): Promise<undefined> {
     return await http
       .put(`/v3/catalog/trees/categories`, { ...requestOptions, data })
       .catch(ex => {
