@@ -35,7 +35,7 @@ export type MarketingBannerPut = {
   visible?: '1' | '0'
 }
 
-export type Count = {
+export type MarketingCount = {
   count?: number
 }
 

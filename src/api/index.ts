@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import scripts from './scripts'
 import redirects from './redirects'
 import pricings from './pricings'
 import pages from './pages'
@@ -121,6 +122,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  scripts,
   redirects,
   pricings,
   pages,

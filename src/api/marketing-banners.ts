@@ -1,4 +1,4 @@
-import { MarketingBanner, MarketingBannerPost, MarketingBannerPut, Count } from '../models/marketing'
+import { MarketingBanner, MarketingBannerPost, MarketingBannerPut, MarketingCount } from '../models/marketing'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -110,7 +110,7 @@ class MarketingBanners {
 
   public async getBannerCount(
     requestOptions: RequestOptions = {}
-  ): Promise<Count> {
+  ): Promise<MarketingCount> {
     return await http
       .get(`/v2/banners/count`, {
         ...requestOptions,
