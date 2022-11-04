@@ -12,14 +12,10 @@ export type Brand = {
   }
 }
 
-export type BrandImage = {
-  image_url?: string
-}
-
 export type BrandFilter = {
   id?: number
-  include_fields?: string | string[]
-  exclude_fields?: string | string[]
+  include_fields?: Array<keyof BrandFilter>
+  exclude_fields?: Array<keyof Omit<BrandFilter, 'id'>>
   limit?: number
   name?: string
   page?: number
@@ -33,12 +29,17 @@ export type BrandFilter = {
 }
 
 export type BrandMetafield = {
-  permission_set: string
+  permission_set:
+    | 'app_only'
+    | 'read'
+    | 'write'
+    | 'read_and_sf_access'
+    | 'write_and_sf_access'
   namespace: string
   key: string
   value: string
   description?: string
-  resource_type?: string
+  resource_type?: 'category' | 'brand' | 'product' | 'variant'
   resource_id?: number
   id?: number
   date_created?: string

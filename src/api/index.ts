@@ -19,7 +19,7 @@ import timeZones from './time-zones'
 import categorytrees from './category-trees'
 import variants from './variants'
 import summaries from './summaries'
-import checkout from './checkout'
+import checkout from './checkouts'
 import customerSettingsChannels from './customer-settings-channel'
 import customerSettings from './customer-settings'
 import customerStoredInstruments from './customer-stored-instruments'
@@ -49,6 +49,78 @@ import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
 import customerGroups from './customer-groups'
 import customerPasswords from './customer-passwords'
+import priceLists from './price-lists'
+import priceListAssigments from './price-list-assigments'
+import priceListRecords from './price-list-records'
+import paymentProcessings from './payment-processings'
+import shippingCarriers from './shipping-carriers'
+import shippingCustomInformations from './shipping-custom-informations'
+import shippingMethods from './shipping-methods'
+import shippingZones from './shipping-zones'
+import settingAnalytics from './setting-analytics'
+import settingCatalogs from './setting-catalogs'
+import settingEmailStatuses from './setting-email-statuses'
+import settingFavicons from './setting-favicons'
+import settingInventories from './setting-inventories'
+import settingLogos from './setting-logos'
+import settingSearchFilters from './setting-search-filters'
+import settingStoreLocales from './setting-store-locales'
+import settingStoreProfiles from './setting-store-profiles'
+import settingStorefrontCategories from './setting-storefront-categories'
+import settingStorefrontProducts from './setting-storefront-products'
+import settingStorefrontRobots from './setting-storefront-robots'
+import settingStorefrontSearches from './setting-storefront-searches'
+import settingStorefrontSecurities from './setting-storefront-securities'
+import settingStorefrontSeos from './setting-storefront-seos'
+import settingStorefrontStatuses from './setting-storefront-statuses'
+import ordersV3Metafields from './orders-v3-metafields'
+import ordersV3PaymentActions from './orders-v3-payment-actions'
+import ordersV3Settings from './orders-v3-settings'
+import ordersV3Transactions from './orders-v3-transactions'
+import ordersV2 from './orders-v2'
+import ordersV2Coupons from './orders-v2-coupons'
+import ordersV2Messages from './orders-v2-messages'
+import ordersV2Products from './orders-v2-products'
+import ordersV2Shipments from './orders-v2-shipments'
+import ordersV2ShippingAddresses from './orders-v2-shipping-addresses'
+import ordersV2ShippingAddressesQuotes from './orders-v2-shipping-addresses-quotes'
+import ordersV2Statuses from './orders-v2-statuses'
+import ordersV2Taxes from './orders-v2-taxes'
+import checkoutBillingAddresses from './checkout-billing-addresses'
+import checkoutConsignments from './checkout-consignments'
+import checkoutCoupons from './checkout-coupons'
+import checkoutDiscounts from './checkout-discounts'
+import checkoutOrders from './checkout-orders'
+import checkoutSettings from './checkout-settings'
+import checkoutTokens from './checkout-tokens'
+import scripts from './scripts'
+import redirects from './redirects'
+import pricings from './pricings'
+import pages from './pages'
+import marketingBanners from './marketing-banners'
+import marketingCoupons from './marketing-coupons'
+import marketingGiftCertificates from './marketing-gift-certificates'
+import emailTemplates from './email-templates'
+import customTemplateAssociations from './custom-template-associations'
+import geographyStates from './geography-states'
+import geographyCountries from './geography-countries'
+import currencies from './currencies'
+import channels from './channels'
+import channelSites from './channel-sites'
+import channelSiteCheckoutUrls from './channel-site-checkout-urls'
+import channelMetafields from './channel-metafields'
+import channelListings from './channel-listings'
+import channelMenus from './channel-menus'
+import channelCurrencyAssigments from './channel-currency-assigments'
+import channelActiveThemes from './channel-active-themes'
+import storefrontApiTokens from './storefront-api-tokens'
+import storefrontCustomerApiTokens from './storefront-customer-api-tokens'
+import paymentMethods from './payment-methods'
+import abandonedCarts from './abandoned-carts'
+import abandonedCartsSettings from './abandoned-carts-settings'
+import abandonedCartTemplateSettings from './abandoned-cart-template-settings'
+import abandonedCartSettings from './abandoned-cart-settings'
+import abandonedCartEmails from './abandoned-cart-emails'
 
 export {
   cartItems,
@@ -102,4 +174,76 @@ export {
   webhookEvents,
   customerGroups,
   customerPasswords,
+  priceLists,
+  priceListAssigments,
+  priceListRecords,
+  paymentProcessings,
+  shippingCarriers,
+  shippingCustomInformations,
+  shippingMethods,
+  shippingZones,
+  settingAnalytics,
+  settingCatalogs,
+  settingEmailStatuses,
+  settingFavicons,
+  settingInventories,
+  settingLogos,
+  settingSearchFilters,
+  settingStoreLocales,
+  settingStoreProfiles,
+  settingStorefrontCategories,
+  settingStorefrontProducts,
+  settingStorefrontRobots,
+  settingStorefrontSearches,
+  settingStorefrontSecurities,
+  settingStorefrontSeos,
+  settingStorefrontStatuses,
+  ordersV3Metafields,
+  ordersV3PaymentActions,
+  ordersV3Settings,
+  ordersV3Transactions,
+  ordersV2,
+  ordersV2Coupons,
+  ordersV2Messages,
+  ordersV2Products,
+  ordersV2Shipments,
+  ordersV2ShippingAddresses,
+  ordersV2ShippingAddressesQuotes,
+  ordersV2Statuses,
+  ordersV2Taxes,
+  checkoutBillingAddresses,
+  checkoutConsignments,
+  checkoutCoupons,
+  checkoutDiscounts,
+  checkoutOrders,
+  checkoutSettings,
+  checkoutTokens,
+  scripts,
+  redirects,
+  pricings,
+  pages,
+  marketingBanners,
+  marketingCoupons,
+  marketingGiftCertificates,
+  emailTemplates,
+  customTemplateAssociations,
+  geographyStates,
+  geographyCountries,
+  currencies,
+  channels,
+  channelSites,
+  channelSiteCheckoutUrls,
+  channelMetafields,
+  channelListings,
+  channelMenus,
+  channelCurrencyAssigments,
+  channelActiveThemes,
+  storefrontApiTokens,
+  storefrontCustomerApiTokens,
+  paymentMethods,
+  abandonedCarts,
+  abandonedCartsSettings,
+  abandonedCartTemplateSettings,
+  abandonedCartSettings,
+  abandonedCartEmails,
 }

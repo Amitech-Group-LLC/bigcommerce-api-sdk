@@ -31,7 +31,7 @@ class Products {
   public async updateMany<TData extends ProductPost>(
     data: TData[],
     params: {
-      include_fields?: string | string[]
+      include_fields?: Array<keyof Product>
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<Product[]>> {
@@ -48,7 +48,7 @@ class Products {
   public async create<TData extends ProductPost>(
     data: TData[],
     params: {
-      include_fields?: string | string[]
+      include_fields?: Array<keyof Product>
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
@@ -84,8 +84,8 @@ class Products {
     itemId: number,
     params: {
       include?: string
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
+      include_fields?: Array<keyof Product>
+      exclude_fields?: Array<keyof Omit<Product, 'id'>>
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {
@@ -106,7 +106,7 @@ class Products {
     itemId: number,
     data: TData,
     params: {
-      include_fields?: string | string[]
+      include_fields?: Array<keyof Product>
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<Product>> {

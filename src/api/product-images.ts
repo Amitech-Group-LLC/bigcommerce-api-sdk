@@ -1,4 +1,5 @@
 import { ProductImage } from '../models/product'
+import { FilterParam, ProductFilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -7,12 +8,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductImages {
   public async list(
     itemId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-      limit?: number
-      page?: number
-    } = {},
+    params: ProductFilterParam<ProductImage> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductImage[]>> {
     return await http
@@ -37,7 +33,7 @@ class ProductImages {
       .post(`/v3/catalog/products/${itemId}/images`, {
         ...requestOptions,
         data,
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: { 'Content-Type': 'multipart/form-data' },
       })
       .catch(ex => {
         if (ex.response) {
@@ -50,10 +46,7 @@ class ProductImages {
   public async get(
     itemId: number,
     imageId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductImage> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductImage>> {
     return await http
