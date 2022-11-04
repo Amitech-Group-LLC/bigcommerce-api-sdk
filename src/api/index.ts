@@ -45,6 +45,10 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import shippingCarriers from './shipping-carriers'
+import shippingCustomInformations from './shipping-custom-informations'
+import shippingMethods from './shipping-methods'
+import shippingZones from './shipping-zones'
 import settingAnalytics from './setting-analytics'
 import settingCatalogs from './setting-catalogs'
 import settingEmailStatuses from './setting-email-statuses'
@@ -158,6 +162,10 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  shippingCarriers,
+  shippingCustomInformations,
+  shippingMethods,
+  shippingZones,
   settingAnalytics,
   settingCatalogs,
   settingEmailStatuses,
