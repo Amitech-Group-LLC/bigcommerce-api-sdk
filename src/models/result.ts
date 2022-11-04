@@ -25,3 +25,7 @@ export type Meta = {
 }
 
 export type ListResult<TData, TMeta = Meta> = Result<TData, TMeta>
+
+export type DataResult<TResult> = {
+  data: TResult
+}
