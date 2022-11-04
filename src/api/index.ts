@@ -46,6 +46,11 @@ import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
 import paymentMethods from './payment-methods'
+import abandonedCarts from './abandoned-carts'
+import abandonedCartsSettings from './abandoned-carts-settings'
+import abandonedCartTemplateSettings from './abandoned-cart-template-settings'
+import abandonedCartSettings from './abandoned-cart-settings'
+import abandonedCartEmails from './abandoned-cart-emails'
 
 export {
   cartItems,
@@ -96,4 +101,9 @@ export {
   webhookAdmins,
   webhookEvents,
   paymentMethods,
+  abandonedCarts,
+  abandonedCartsSettings,
+  abandonedCartTemplateSettings,
+  abandonedCartSettings,
+  abandonedCartEmails,
 }

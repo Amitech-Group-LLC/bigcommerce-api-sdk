@@ -1,4 +1,5 @@
 import { ProductReview } from '../models/product'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -8,11 +9,11 @@ class ProductReviews {
   public async list(
     itemId: number,
     params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
+      include_fields?: Array<keyof ProductReview>
+      exclude_fields?: Array<keyof Omit<ProductReview, 'id'>>
       limit?: number
       page?: number
-      status?: number
+      status?: 1 | 0
     } = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductReview[]>> {
@@ -50,10 +51,7 @@ class ProductReviews {
   public async get(
     itemId: number,
     reviewId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductReview> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductReview>> {
     return await http
