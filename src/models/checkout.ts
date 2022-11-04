@@ -1,4 +1,4 @@
-export type ChekoutIncludeParams = 
+export type ChekoutIncludeParam = 
   'cart.line_items.physical_items.options' | 
   'cart.line_items.digital_items.options' |
   'consignments.available_shipping_options' |
@@ -8,9 +8,9 @@ export type CheckoutData = {
   id?: string
   cart?: CheckoutCart
   billing_address?: CheckoutBillingAddress
-  consignments?: CheckoutConsignments[]
+  consignments?: CheckoutConsignment[]
   taxes?: CheckoutTax[]
-  coupons?: CheckoutCoupons[]
+  coupons?: CheckoutCoupon[]
   order_id?: string
   shipping_cost_total_inc_tax?: number
   shipping_cost_total_ex_tax?: number
@@ -38,33 +38,33 @@ export type CheckoutCart = {
   discount_amount?: number
   cart_amount_inc_tax?: number
   cart_amount_ex_tax?: number
-  coupons?: CheckoutCoupons[]
-  discounts?: CheckoutDiscounts[]
-  line_items?: CheckoutLineItems
+  coupons?: CheckoutCoupon[]
+  discounts?: CheckoutDiscount[]
+  line_items: CheckoutLineItem
   created_time?: string
   updated_time?: string
 }
 
-export type CheckoutCoupons = {
+export type CheckoutCoupon = {
   code: string
   id?: string
   coupon_type?: string
   discounted_amount?: number
 }
 
-export type CheckoutDiscounts = {
+export type CheckoutDiscount = {
   id?: string
   discounted_amount?: number
 }
 
-export type CheckoutLineItems = {
-  physical_items: LineItemsPhysicalItems[]
-  digital_items: Omit<LineItemsPhysicalItems, 'gift_wrapping'>[]
-  gift_certificates: LineItemsGiftCertificates[]
-  custom_items?: CustomItems[]
+export type CheckoutLineItem = {
+  physical_items: LineItemsPhysicalItem[]
+  digital_items: Omit<LineItemsPhysicalItem, 'gift_wrapping'>[]
+  gift_certificates: LineItemsGiftCertificate[]
+  custom_items?: CheckoutCustomItem[]
 }
 
-export type LineItemsPhysicalItems = {
+export type LineItemsPhysicalItem = {
   quantity: number
   id?: string
   variant_id?: number
@@ -74,7 +74,7 @@ export type LineItemsPhysicalItems = {
   url?: string
   is_taxable?: boolean
   image_url?: string
-  discounts?: CheckoutDiscounts[]
+  discounts?: CheckoutDiscount[]
   discount_amount?: number
   coupon_amount?: number
   original_price?: number
@@ -95,7 +95,7 @@ export type GiftWrapping = {
   amount_as_integer?: number
 }
 
-export type LineItemsGiftCertificates = {
+export type LineItemsGiftCertificate = {
   theme: 'Birthday' | 'Boy' | 'Celebration' | 'Christmas' | 'General' | 'Girl'
   amount: number
   sender: ContactEntity
@@ -111,7 +111,7 @@ export type ContactEntity = {
   email?: string
 }
 
-export type CustomItems = {
+export type CheckoutCustomItem = {
   quantity: number
   id?: string
   extended_list_price?: number
@@ -134,23 +134,23 @@ export type CheckoutBillingAddress = {
   country_code?: string
   postal_code?: string
   phone?: string
-  custom_fields?: BillingAddressCustomFields[]
+  custom_fields?: BillingAddressCustomField[]
   id?: string
 }
 
-export type BillingAddressCustomFields = {
+export type BillingAddressCustomField = {
   field_id?: string
   field_value?: string
 }
 
-export type CheckoutConsignments = {
+export type CheckoutConsignment = {
   id?: string
   shippingAddress?: object
-  address?: CheckoutBillingAddress
+  address?: CheckoutBillingAddressData
   available_shipping_options?: AvailableShippingOption[]
   selected_shipping_option?: AvailableShippingOption
-  coupon_discounts?: CouponDiscounts[]
-  discounts?: Omit<CheckoutDiscounts, 'discounted_amount'>[]
+  coupon_discounts?: CouponDiscount[]
+  discounts?: Omit<CheckoutDiscount, 'discounted_amount'>[]
   shipping_cost_inc_tax?: number
   shipping_cost_ex_tax?: number
   handling_cost_inc_tax?: number
@@ -168,7 +168,7 @@ export type AvailableShippingOption = {
   additional_description?: string
 }
 
-export type CouponDiscounts = {
+export type CouponDiscount = {
   code?: string
   amount?: number
 }
@@ -187,4 +187,71 @@ export type PromotionBanner = {
   type?: string
   page?: string[]
   text?: string
+}
+
+export type CheckoutBillingAddressData = {
+  first_name?: string
+  last_name?: string
+  email: string
+  company?: string
+  address1?: string
+  address2?: string
+  city?: string
+  state_or_province?: string
+  state_or_province_code?: string
+  country_code: string
+  postal_code?: string
+  phone?: string
+  custom_fields?: BillingAddressCustomField[]
+} 
+
+export type CheckoutConsignmentData = Omit<CheckoutConsignmentUpdateData, 'shipping_option_id'>
+
+export type CheckoutConsignmentLineItems = {
+  item_id: string
+  quantity: number
+}
+
+export type CheckoutConsignmentIncludeParam = 'consignments.available_shipping_options'
+
+export type CheckoutConsignmentUpdateData = {
+  address?: CheckoutBillingAddressData
+  line_items?: CheckoutConsignmentLineItems
+  shipping_option_id?: string
+}
+
+export type CheckoutCouponData = {
+  coupon_code?: string
+}
+
+export type CheckoutDiscountData = {
+  cart?: {
+    discounts?: DiscountsData[]
+  }
+}
+
+export type DiscountsData = {
+  discounted_amount: number
+  name?: string
+}
+
+export type CheckoutOrderData = {
+  id?: number
+}
+
+export type CheckoutSettingData = {
+  custom_checkout_script_url?: string
+  order_confirmation_use_custom_checkout_script?: boolean
+  custom_order_confirmation_script_url?: string
+  custom_checkout_supports_uco_settings?: boolean
+}
+
+export type CheckoutTokenParam = {
+  maxUses?: number
+  ttl?: number
+}
+
+export type CheckoutTokenData = {
+  checkoutToken?: string
+  meta?: object
 }

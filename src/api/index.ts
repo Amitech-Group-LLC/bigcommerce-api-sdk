@@ -17,7 +17,7 @@ import timeZones from './time-zones'
 import categorytrees from './category-trees'
 import variants from './variants'
 import summaries from './summaries'
-import checkout from './checkout'
+import checkout from './checkouts'
 import customerSettingsChannels from './customer-settings-channel'
 import customerSettings from './customer-settings'
 import customerStoredInstruments from './customer-stored-instruments'
@@ -45,6 +45,13 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import checkoutBillingAddresses from './checkout-billing-addresses'
+import checkoutConsignments from './checkout-consignments'
+import checkoutCoupons from './checkout-coupons'
+import checkoutDiscounts from './checkout-discounts'
+import checkoutOrders from './checkout-orders'
+import checkoutSettings from './checkout-settings'
+import checkoutTokens from './checkout-tokens'
 import scripts from './scripts'
 import redirects from './redirects'
 import pricings from './pricings'
@@ -122,6 +129,13 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  checkoutBillingAddresses,
+  checkoutConsignments,
+  checkoutCoupons,
+  checkoutDiscounts,
+  checkoutOrders,
+  checkoutSettings,
+  checkoutTokens,
   scripts,
   redirects,
   pricings,
