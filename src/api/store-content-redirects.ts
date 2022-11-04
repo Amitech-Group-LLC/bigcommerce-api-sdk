@@ -1,22 +1,15 @@
-import { 
-  StoreContentBlogPostParam, 
-  StoreContentBlogPostData, 
-  StoreContentBlogPostCreateParam, 
-  StoreContentBlogPostCreateData, 
-  StoreContentQueryParam, 
-  StoreContentCountData 
-} from '../models/store-content'
+import { StoreContentQueryParam, StoreContentRedirect, StoreContentRedirectCount } from '../models/store-content'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class StoreContentBlogPosts {
+class StoreContentRedirects {
   public async list(
-    params: StoreContentBlogPostParam = {},
+    params: StoreContentQueryParam = {},
     requestOptions: RequestOptions = {}
-  ): Promise<StoreContentBlogPostData[]>  {
+  ): Promise<StoreContentRedirect[]> {
     return await http
-      .get('/v2/blog/posts', { ...requestOptions, params })
+      .get('/v2/redirects', { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -25,12 +18,12 @@ class StoreContentBlogPosts {
       })
   }
 
-  public async create<TData extends StoreContentBlogPostCreateParam>(
+  public async create<TData extends StoreContentRedirect>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<StoreContentBlogPostCreateData> {
+  ): Promise<StoreContentRedirect> {
     return await http
-      .post('/v2/blog/posts', { ...requestOptions, data })
+      .post('/v2/redirects', { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -40,11 +33,10 @@ class StoreContentBlogPosts {
   }
 
   public async deleteMany(
-    params: StoreContentQueryParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete('/v2/blog/posts', { ...requestOptions, params })
+      .delete('/v2/redirects', { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -56,9 +48,9 @@ class StoreContentBlogPosts {
   public async get(
     id: number,
     requestOptions: RequestOptions = {}
-  ): Promise<StoreContentBlogPostData> {
+  ): Promise<StoreContentRedirect> {
     return await http
-      .get(`/v2/blog/posts/${id}`, { ...requestOptions })
+      .get(`/v2/redirects/${id}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -67,13 +59,13 @@ class StoreContentBlogPosts {
       })
   }
 
-  public async update<TData extends StoreContentBlogPostCreateParam>(
+  public async update<TData extends StoreContentRedirect>(
     id: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<StoreContentBlogPostCreateData> {
+  ): Promise<StoreContentRedirect> {
     return await http
-      .put(`/v2/blog/posts/${id}`, { ...requestOptions, data })
+      .put(`/v2/redirects/${id}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -87,7 +79,7 @@ class StoreContentBlogPosts {
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v2/blog/posts/${id}`, { ...requestOptions })
+      .delete(`/v2/redirects/${id}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -98,9 +90,9 @@ class StoreContentBlogPosts {
 
   public async getCount(
     requestOptions: RequestOptions = {}
-  ): Promise<StoreContentCountData> {
+  ): Promise<StoreContentRedirectCount> {
     return await http
-      .get('/v2/blog/posts/count', { ...requestOptions })
+      .get('/v2/redirects/count', { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -110,4 +102,4 @@ class StoreContentBlogPosts {
   }
 }
 
-export default new StoreContentBlogPosts()
+export default new StoreContentRedirects()

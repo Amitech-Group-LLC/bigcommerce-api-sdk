@@ -93,6 +93,10 @@ import abandonedCartsSettings from './abandoned-carts-settings'
 import abandonedCartTemplateSettings from './abandoned-cart-template-settings'
 import abandonedCartSettings from './abandoned-cart-settings'
 import abandonedCartEmails from './abandoned-cart-emails'
+import storeContentBlogPosts from './store-content-blog-posts'
+import storeContentBlogTags from './store-content-blog-tags'
+import storeContentPages from './store-content-pages'
+import storeContentRedirects from './store-content-redirects'
 
 export {
   cartItems,
@@ -190,4 +194,8 @@ export {
   abandonedCartTemplateSettings,
   abandonedCartSettings,
   abandonedCartEmails,
+  storeContentBlogPosts,
+  storeContentBlogTags,
+  storeContentPages,
+  storeContentRedirects,
 }

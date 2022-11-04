@@ -1,5 +1,5 @@
 import { 
-  StoreContentBlogPostQueryParam, 
+  StoreContentQueryParam, 
   StoreContentPage, 
   StoreContentPageData, 
   StoreContentUpdateData 
@@ -10,7 +10,7 @@ import { BigcommerceApiError } from '../utils/error'
 
 class StoreContentPages {
   public async list(
-    params: StoreContentBlogPostQueryParam = {},
+    params: StoreContentQueryParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<StoreContentPage[]> {
     return await http

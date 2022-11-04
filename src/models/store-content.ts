@@ -55,7 +55,7 @@ export type StoreContentBlogPostCreateData = {
   thumbnail_path?: string | null
 }
 
-export type StoreContentBlogPostQueryParam = {
+export type StoreContentQueryParam = {
   limit?: number
   page?: number
 }
@@ -106,4 +106,18 @@ export type StoreContentPageData = StoreContentPageDefaultData & {
 
 export type StoreContentUpdateData = StoreContentPageData & {
   id?: number
+}
+
+export type StoreContentRedirect = {
+  id?: number
+  path: string
+  forward: {
+    type?: string
+    ref?: number
+  }
+  url?: string
+}
+
+export type StoreContentRedirectCount = {
+  count?: number
 }
