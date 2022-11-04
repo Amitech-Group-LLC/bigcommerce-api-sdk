@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import pages from './pages'
 import marketingBanners from './marketing-banners'
 import marketingCoupons from './marketing-coupons'
 import marketingGiftCertificates from './marketing-gift-certificates'
@@ -118,6 +119,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  pages,
   marketingBanners,
   marketingCoupons,
   marketingGiftCertificates,
