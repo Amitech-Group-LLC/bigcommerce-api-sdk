@@ -1,20 +1,21 @@
-import { ImageUrl } from '../models/image'
+import {
+  StorefrontApiToken,
+  StorefrontCustomerApiTokenData,
+} from '../models/storefront-api-token'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVariantImages {
-  public async create(
-    itemId: number,
-    variantId: number,
-    imageFile: File,
+class StorefrontCustomerApiTokens {
+  public async create<TData extends StorefrontCustomerApiTokenData>(
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ImageUrl>> {
+  ): Promise<Result<StorefrontApiToken>> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/variants/${variantId}/image`, {
+      .post(`/v3/storefront/api-token-customer-impersonation`, {
         ...requestOptions,
-        params: { image_file: imageFile },
+        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -25,4 +26,4 @@ class ProductVariantImages {
   }
 }
 
-export default new ProductVariantImages()
+export default new StorefrontCustomerApiTokens()

@@ -1,24 +1,16 @@
-import {
-  CategoryBatch,
-  CategoryBatchFilter,
-  CategoryBatchPost,
-  CategoryBatchMeta,
-  CategoryBatchError,
-  CategoryBatchDelete,
-  CategoryBatchUpdate
-} from '../models/category'
-import { Result, ListResult, ErrorResult } from '../models/result'
+import { ChannelFilter, Channel, ChannelPost, ChannelPut } from '../models/channel'
+import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CategoryBatchs {
+class Channels {
   public async list(
-    filterParams: CategoryBatchFilter = {},
+    filterParams: ChannelFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<CategoryBatch[]>> {
+  ): Promise<ListResult<Channel[]>> {
     return await http
-      .get(`/v3/catalog/trees/categories`, {
+      .get(`/v3/channels`, {
         ...requestOptions,
         params: filterParams,
       })
@@ -30,40 +22,50 @@ class CategoryBatchs {
       })
   }
 
-  public async create<TData extends CategoryBatchPost>(
-    data: TData[],
-    requestOptions: RequestOptions = {}
-  ): Promise<ErrorResult<CategoryBatch[], CategoryBatchError, CategoryBatchMeta>> {
-    return await http
-      .post(`/v3/catalog/trees/categories`, { ...requestOptions, data })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async update<TData extends CategoryBatchUpdate>(
-    data: TData[],
-    requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
-    return await http
-      .put(`/v3/catalog/trees/categories`, { ...requestOptions, data })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async delete<TData extends CategoryBatchDelete>(
+  public async create<TData extends ChannelPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<undefined, CategoryBatchMeta>> {
+  ): Promise<Result<Channel>> {
     return await http
-      .delete(`/v3/catalog/trees/categories`, {
+      .post(`/v3/channels`, {
+        ...requestOptions,
+        data,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async get(
+    channelId: number,
+    params: {
+        include?: 'currencies'
+    } = {},
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<Channel>> {
+    return await http
+      .get(`/v3/channels/${channelId}`, {
+        ...requestOptions,
+        params,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async update<TData extends ChannelPut>(
+    channelId: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<Channel>> {
+    return await http
+      .put(`/v3/channels/${channelId}`, {
         ...requestOptions,
         data,
       })
@@ -76,4 +78,4 @@ class CategoryBatchs {
   }
 }
 
-export default new CategoryBatchs()
+export default new Channels()

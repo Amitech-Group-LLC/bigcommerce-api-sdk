@@ -1,4 +1,5 @@
 import { CategoryMetafield, CategoryMetafieldFilter } from '../models/category'
+import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -29,7 +30,10 @@ class CategoryMetafields {
     requestOptions: RequestOptions = {}
   ): Promise<Result<CategoryMetafield>> {
     return await http
-      .post(`/v3/catalog/categories/${itemId}/metafields`, { ...requestOptions, data })
+      .post(`/v3/catalog/categories/${itemId}/metafields`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -41,10 +45,7 @@ class CategoryMetafields {
   public async get(
     itemId: number,
     metafieldId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<CategoryMetafield> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<CategoryMetafield>> {
     return await http
@@ -67,7 +68,10 @@ class CategoryMetafields {
     requestOptions: RequestOptions = {}
   ): Promise<Result<CategoryMetafield>> {
     return await http
-      .put(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, { ...requestOptions, data })
+      .put(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -82,7 +86,9 @@ class CategoryMetafields {
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, { ...requestOptions })
+      .delete(`/v3/catalog/categories/${itemId}/metafields/${metafieldId}`, {
+        ...requestOptions,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
