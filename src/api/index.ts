@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import emailTemplates from './email-templates'
 import customTemplateAssociations from './custom-template-associations'
 import geographyStates from './geography-states'
 import geographyCountries from './geography-countries'
@@ -114,6 +115,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  emailTemplates,
   customTemplateAssociations,
   geographyStates,
   geographyCountries,
