@@ -46,6 +46,22 @@ import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
 import currencies from './currencies'
+import channels from './channels'
+import channelSites from './channel-sites'
+import channelSiteCheckoutUrls from './channel-site-checkout-urls'
+import channelMetafields from './channel-metafields'
+import channelListings from './channel-listings'
+import channelMenus from './channel-menus'
+import channelCurrencyAssigments from './channel-currency-assigments'
+import channelActiveThemes from './channel-active-themes'
+import storefrontApiTokens from './storefront-api-tokens'
+import storefrontCustomerApiTokens from './storefront-customer-api-tokens'
+import paymentMethods from './payment-methods'
+import abandonedCarts from './abandoned-carts'
+import abandonedCartsSettings from './abandoned-carts-settings'
+import abandonedCartTemplateSettings from './abandoned-cart-template-settings'
+import abandonedCartSettings from './abandoned-cart-settings'
+import abandonedCartEmails from './abandoned-cart-emails'
 
 export {
   cartItems,
@@ -96,4 +112,20 @@ export {
   webhookAdmins,
   webhookEvents,
   currencies,
+  channels,
+  channelSites,
+  channelSiteCheckoutUrls,
+  channelMetafields,
+  channelListings,
+  channelMenus,
+  channelCurrencyAssigments,
+  channelActiveThemes,
+  storefrontApiTokens,
+  storefrontCustomerApiTokens,
+  paymentMethods,
+  abandonedCarts,
+  abandonedCartsSettings,
+  abandonedCartTemplateSettings,
+  abandonedCartSettings,
+  abandonedCartEmails,
 }

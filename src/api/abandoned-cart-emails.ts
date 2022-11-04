@@ -1,18 +1,22 @@
-import { ProductVideo } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
-import { Result, ListResult } from '../models/result'
+import {
+  AbandonedCartEmail,
+  AbandonedCartEmailPost,
+  AbandonedCartEmailTemplate,
+} from '../models/abandoned-cart'
+import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVideos {
+class AbandonedCartEmails {
   public async list(
-    itemId: number,
-    params: ProductFilterParam<ProductVideo> = {},
+    params: {
+      channel_id?: number
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ProductVideo[]>> {
+  ): Promise<Result<AbandonedCartEmail[]>> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v3/marketing/abandoned-cart-emails`, {
         ...requestOptions,
         params,
       })
@@ -24,15 +28,18 @@ class ProductVideos {
       })
   }
 
-  public async create<TData extends ProductVideo>(
-    itemId: number,
+  public async create<TData extends AbandonedCartEmailPost>(
+    params: {
+      channel_id?: number
+    } = {},
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<Result<AbandonedCartEmail>> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/videos`, {
+      .post(`/v3/marketing/abandoned-cart-emails`, {
         ...requestOptions,
         data,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -43,15 +50,12 @@ class ProductVideos {
   }
 
   public async get(
-    itemId: number,
-    videoId: number,
-    params: FilterParam<ProductVideo> = {},
+    emailId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<Result<AbandonedCartEmail>> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .get(`/v3/marketing/abandoned-cart-emails/${emailId}`, {
         ...requestOptions,
-        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -61,14 +65,13 @@ class ProductVideos {
       })
   }
 
-  public async update<TData extends ProductVideo>(
-    itemId: number,
-    videoId: number,
+  public async update<TData extends AbandonedCartEmailPost>(
+    emailId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<Result<AbandonedCartEmail>> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .put(`/v3/marketing/abandoned-cart-emails/${emailId}`, {
         ...requestOptions,
         data,
       })
@@ -81,12 +84,26 @@ class ProductVideos {
   }
 
   public async delete(
-    itemId: number,
-    videoId: number,
+    emailId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v3/marketing/abandoned-cart-emails/${emailId}`, {
+        ...requestOptions,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async getDefault(
+    requestOptions: RequestOptions = {}
+  ): Promise<Result<AbandonedCartEmailTemplate>> {
+    return await http
+      .get(`/v3/marketing/abandoned-cart-emails/default`, {
         ...requestOptions,
       })
       .catch(ex => {
@@ -98,4 +115,4 @@ class ProductVideos {
   }
 }
 
-export default new ProductVideos()
+export default new AbandonedCartEmails()
