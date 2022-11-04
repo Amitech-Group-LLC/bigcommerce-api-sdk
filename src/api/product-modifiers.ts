@@ -1,4 +1,5 @@
 import { ProductModifier } from '../models/product'
+import { FilterParam, ProductFilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -7,12 +8,7 @@ import { BigcommerceApiError } from '../utils/error'
 class ProductModifiers {
   public async list(
     itemId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-      limit?: number
-      page?: number
-    } = {},
+    params: ProductFilterParam<ProductModifier> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductModifier[]>> {
     return await http
@@ -49,10 +45,7 @@ class ProductModifiers {
   public async get(
     itemId: number,
     modifierId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductModifier> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductModifier>> {
     return await http

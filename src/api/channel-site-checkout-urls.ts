@@ -1,20 +1,21 @@
-import { ImageUrl } from '../models/image'
+import { ChannelSite } from '../models/channel'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CategoryImages {
-  public async create(
-    itemId: number,
-    imageFile: File,
+class ChannelSiteCheckoutUrls {
+  public async upsert(
+    channelId: number,
+    data: {
+      url?: string,
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ImageUrl>> {
+  ): Promise<ChannelSite> {
     return await http
-      .post(`/v3/catalog/categories/${itemId}/image`, {
+      .put(`/v3/channels/${channelId}/site/checkout-url`, {
         ...requestOptions,
-        params: { image_file: imageFile },
-        headers: { 'Content-Type': 'multipart/form-data' }
+        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -25,11 +26,13 @@ class CategoryImages {
   }
 
   public async delete(
-    itemId: number,
+    channelId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<Result<object>> {
     return await http
-      .delete(`/v3/catalog/categories/${itemId}/image`, { ...requestOptions })
+      .delete(`/v3/channels/${channelId}/site/checkout-url`, {
+        ...requestOptions,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -39,4 +42,4 @@ class CategoryImages {
   }
 }
 
-export default new CategoryImages()
+export default new ChannelSiteCheckoutUrls()
