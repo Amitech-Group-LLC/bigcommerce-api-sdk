@@ -27,7 +27,7 @@ class PriceListRecords {
     priceListId: number,
     data: TData[],
     requestOptions: RequestOptions = {}
-  ): Promise<Result<PriceRecordPut[]>> {
+  ): Promise<PriceRecordPut[]> {
     return await http
       .put(`/v3/pricelists/${priceListId}/records`, {
         ...requestOptions,
