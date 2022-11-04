@@ -3,7 +3,7 @@ import {
   StoreContentBlogPostData, 
   StoreContentBlogPostCreateParam, 
   StoreContentBlogPostCreateData, 
-  StoreContentBlogPostDeleteParam, 
+  StoreContentBlogPostQueryParam, 
   StoreContentCountData 
 } from '../models/store-content'
 import { RequestOptions } from '../models/request-options'
@@ -40,7 +40,7 @@ class StoreContentBlogPosts {
   }
 
   public async deleteMany(
-    params: StoreContentBlogPostDeleteParam = {},
+    params: StoreContentBlogPostQueryParam = {},
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http

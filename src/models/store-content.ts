@@ -55,7 +55,7 @@ export type StoreContentBlogPostCreateData = {
   thumbnail_path?: string | null
 }
 
-export type StoreContentBlogPostDeleteParam = {
+export type StoreContentBlogPostQueryParam = {
   limit?: number
   page?: number
 }
@@ -67,4 +67,43 @@ export type StoreContentCountData = {
 export type StoreContentBlogTagData = {
   tag?: string
   post_ids?: number[]
+}
+
+export type StoreContentPage = StoreContentPageDefaultData & {
+  id?: number
+  type?: StoreContentType
+  name?: string
+  body?: string
+}
+
+export type StoreContentPageDefaultData = {
+  parent_id?: number
+  contact_fields?: string
+  email?: string
+  url?: string
+  meta_description?: string
+  mobile_body?: string
+  has_mobile_version?: boolean
+  is_visible?: boolean
+  is_homepage?: boolean
+  meta_title?: string
+  layout_file?: string
+  sort_order?: number
+  search_keywords?: string
+  meta_keywords?: string
+  feed?: string
+  link?: string
+  content_type?: 'application/json' | 'text/javascript' | 'text/html'
+}
+
+export type StoreContentType = 'page' | 'rss_feed' | 'contact_form' | 'raw' | 'link'
+
+export type StoreContentPageData = StoreContentPageDefaultData & {
+  type: StoreContentType
+  name: string
+  body: string
+}
+
+export type StoreContentUpdateData = StoreContentPageData & {
+  id?: number
 }
