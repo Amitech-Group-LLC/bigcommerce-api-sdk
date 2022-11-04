@@ -45,6 +45,7 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import customTemplateAssociations from './custom-template-associations'
 import geographyStates from './geography-states'
 import geographyCountries from './geography-countries'
 import currencies from './currencies'
@@ -113,6 +114,7 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  customTemplateAssociations,
   geographyStates,
   geographyCountries,
   currencies,
