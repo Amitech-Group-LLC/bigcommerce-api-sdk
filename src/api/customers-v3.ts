@@ -1,5 +1,5 @@
 import { Customer, CreateData, UpdateData, CustomerFilter } from '../models/customer'
-import { Result } from '../models/result'
+import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -8,7 +8,7 @@ class CustomersV3 {
   public async list(
     filterParams: CustomerFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Customer[]>> {
+  ): Promise<ListResult<Customer[]>> {
     return await http
       .get('/v3/customers', {
         ...requestOptions,

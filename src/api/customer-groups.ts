@@ -1,5 +1,4 @@
-import { CustomerV2Group, CustomerCount } from '../models/customer'
-import { Result } from '../models/result'
+import { CustomerV2Group, CustomerCount, CustomerV2GroupPost } from '../models/customer'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -14,7 +13,7 @@ class CustomersV2Groups {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Group[]>> {
+  ): Promise<CustomerV2Group[]> {
     return await http
       .get(`/v2/customer_groups`, {
         ...requestOptions,
@@ -28,10 +27,10 @@ class CustomersV2Groups {
       })
   }
 
-  public async create<TData extends CustomerV2Group>(
+  public async create<TData extends CustomerV2GroupPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Group>> {
+  ): Promise<CustomerV2Group> {
     return await http
       .post(`/v2/customer_groups`, {
         ...requestOptions,
@@ -69,7 +68,7 @@ class CustomersV2Groups {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Group>> {
+  ): Promise<CustomerV2Group> {
     return await http
       .get(`/v2/customer_groups/${customerGroupId}`, {
         ...requestOptions,
@@ -87,7 +86,7 @@ class CustomersV2Groups {
     customerGroupId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Group>> {
+  ): Promise<CustomerV2Group> {
     return await http
       .put(`/v2/customer_groups/${customerGroupId}`, {
         ...requestOptions,
@@ -119,7 +118,7 @@ class CustomersV2Groups {
 
   public async getCount(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerCount>> {
+  ): Promise<CustomerCount> {
     return await http
       .get(`/v2/customer_groups/count`, {
         ...requestOptions,

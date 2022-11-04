@@ -58,6 +58,8 @@ export type CustomerV2 = {
   reset_pass_on_login?: boolean
 }
 
+export type CustomerV2Response = Omit<CustomerV2, 'id' | 'date_created' | 'date_modified'>
+
 export type CustomerV2UpdatePassword = {
   password?: string
 }
@@ -141,6 +143,13 @@ export type CustomerCount = {
   count?: number
 }
 
+export type CustomerV2GroupDiscountRule = {
+  type?: 'price_list' | 'all' | 'category' | 'product'
+  method?: 'percent' | 'fixed' | 'price'
+  amount?: string
+  price_list_id?: number
+}
+
 export type CustomerV2Group = {
   id?: number
   name?: string
@@ -149,14 +158,11 @@ export type CustomerV2Group = {
     type?: 'all' | 'specific' | 'none'
     categories?: number[]
   }
-  discount_rules?: {
-    type?: 'price_list' | 'all' | 'category' | 'product'
-    method?: 'percent' | 'fixed' | 'price'
-    amount?: string
-    price_list_id?: number
-  }
+  discount_rules?: CustomerV2GroupDiscountRule[]
   is_group_for_quests?: boolean
 }
+
+export type CustomerV2GroupPost = Omit<CustomerV2Group, 'id'>
 
 export type CustomerV2Address = {
   id?: number

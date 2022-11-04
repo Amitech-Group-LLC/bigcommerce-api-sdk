@@ -1,5 +1,4 @@
 import { CustomerV2Password, CustomerV2Result } from '../models/customer'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +8,7 @@ class CustomerV2Passwords {
     customerId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Result>> {
+  ): Promise<CustomerV2Result> {
     return await http
       .post(`/v2/customers/${customerId}/validate`, {
         ...requestOptions,

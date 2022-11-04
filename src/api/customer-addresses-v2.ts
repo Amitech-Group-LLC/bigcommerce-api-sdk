@@ -1,5 +1,4 @@
 import { CustomerV2Address, CustomerCount } from '../models/customer'
-import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -12,7 +11,7 @@ class CustomerV2Addresses {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Address[]>> {
+  ): Promise<CustomerV2Address[]> {
     return await http
       .get(`/v2/customers/${customerId}/addresses`, {
         ...requestOptions,
@@ -30,7 +29,7 @@ class CustomerV2Addresses {
     customerId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Address[]>> {
+  ): Promise<CustomerV2Address> {
     return await http
       .post(`/v2/customers/${customerId}/addresses`, {
         ...requestOptions,
@@ -73,7 +72,7 @@ class CustomerV2Addresses {
       page?: number
     } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Address>> {
+  ): Promise<CustomerV2Address> {
     return await http
       .get(`/v2/customers/${customerId}/addresses/${customerAddressId}`, {
         ...requestOptions,
@@ -92,7 +91,7 @@ class CustomerV2Addresses {
     customerAddressId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerV2Address[]>> {
+  ): Promise<CustomerV2Address> {
     return await http
       .put(`/v2/customers/${customerId}/addresses/${customerAddressId}`, {
         ...requestOptions,
@@ -125,11 +124,16 @@ class CustomerV2Addresses {
 
   public async getCount(
     customerId: number,
+    params: {
+      limit?: number
+      page?: number
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerCount>> {
+  ): Promise<CustomerCount> {
     return await http
       .get(`/v2/customers/${customerId}/addresses/count`, {
         ...requestOptions,
+        params,
       })
       .catch(ex => {
         if (ex.response) {
