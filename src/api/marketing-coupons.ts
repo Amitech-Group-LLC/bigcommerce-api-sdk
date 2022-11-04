@@ -1,18 +1,25 @@
-import { ProductVideo } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
-import { Result, ListResult } from '../models/result'
+import { MarketingCoupon, MarketingCouponPost, Count } from '../models/marketing'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVideos {
+class MarketingCoupons {
   public async list(
-    itemId: number,
-    params: ProductFilterParam<ProductVideo> = {},
+    params: {
+      code?: string
+      exclude_type?: 'per_item_discount' | 'percentage_discount' | 'per_total_discount' | 'shipping_discount' | 'free_shipping' | 'promotion'
+      id?: string
+      limit?: number
+      max_id?: number
+      min_id?: number
+      name?: string
+      page?: number
+      type?: 'per_item_discount' | 'percentage_discount' | 'per_total_discount' | 'shipping_discount' | 'free_shipping' | 'promotion'
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ProductVideo[]>> {
+  ): Promise<MarketingCoupon[]> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v2/coupons`, {
         ...requestOptions,
         params,
       })
@@ -24,13 +31,12 @@ class ProductVideos {
       })
   }
 
-  public async create<TData extends ProductVideo>(
-    itemId: number,
+  public async create<TData extends MarketingCouponPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<MarketingCoupon> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/videos`, {
+      .post(`/v2/coupons`, {
         ...requestOptions,
         data,
       })
@@ -42,14 +48,14 @@ class ProductVideos {
       })
   }
 
-  public async get(
-    itemId: number,
-    videoId: number,
-    params: FilterParam<ProductVideo> = {},
+  public async deleteMany(
+    params: {
+      'id:in'?: string
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<undefined> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v2/coupons`, {
         ...requestOptions,
         params,
       })
@@ -61,14 +67,13 @@ class ProductVideos {
       })
   }
 
-  public async update<TData extends ProductVideo>(
-    itemId: number,
-    videoId: number,
+  public async update<TData extends MarketingCouponPost>(
+    couponId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<MarketingCoupon> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .put(`/v2/coupons/${couponId}`, {
         ...requestOptions,
         data,
       })
@@ -81,12 +86,26 @@ class ProductVideos {
   }
 
   public async delete(
-    itemId: number,
-    videoId: number,
+    couponId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v2/coupons/${couponId}`, {
+        ...requestOptions,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async getCouponCount(
+    requestOptions: RequestOptions = {}
+  ): Promise<Count> {
+    return await http
+      .get(`/v2/coupons/count`, {
         ...requestOptions,
       })
       .catch(ex => {
@@ -98,4 +117,4 @@ class ProductVideos {
   }
 }
 
-export default new ProductVideos()
+export default new MarketingCoupons()

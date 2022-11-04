@@ -1,18 +1,20 @@
-import { ProductVideo } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
-import { Result, ListResult } from '../models/result'
+import { MarketingBanner, MarketingBannerPost, MarketingBannerPut, Count } from '../models/marketing'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVideos {
+class MarketingBanners {
   public async list(
-    itemId: number,
-    params: ProductFilterParam<ProductVideo> = {},
+    params: {
+      limit?: number
+      max_id?: number
+      min_id?: number
+      page?: number
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ProductVideo[]>> {
+  ): Promise<MarketingBanner[]> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v2/banners`, {
         ...requestOptions,
         params,
       })
@@ -24,13 +26,12 @@ class ProductVideos {
       })
   }
 
-  public async create<TData extends ProductVideo>(
-    itemId: number,
+  public async create<TData extends MarketingBannerPost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<MarketingBanner> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/videos`, {
+      .post(`/v2/banners`, {
         ...requestOptions,
         data,
       })
@@ -42,16 +43,12 @@ class ProductVideos {
       })
   }
 
-  public async get(
-    itemId: number,
-    videoId: number,
-    params: FilterParam<ProductVideo> = {},
+  public async deleteMany(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<undefined> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v2/banners`, {
         ...requestOptions,
-        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -61,14 +58,29 @@ class ProductVideos {
       })
   }
 
-  public async update<TData extends ProductVideo>(
-    itemId: number,
-    videoId: number,
+  public async get(
+    bannerId: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<MarketingBanner> {
+    return await http
+      .get(`/v2/banners/${bannerId}`, {
+        ...requestOptions,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async update<TData extends MarketingBannerPut>(
+    bannerId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<MarketingBanner> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .put(`/v2/banners/${bannerId}`, {
         ...requestOptions,
         data,
       })
@@ -81,12 +93,26 @@ class ProductVideos {
   }
 
   public async delete(
-    itemId: number,
-    videoId: number,
+    bannerId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v2/banners/${bannerId}`, {
+        ...requestOptions,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async getBannerCount(
+    requestOptions: RequestOptions = {}
+  ): Promise<Count> {
+    return await http
+      .get(`/v2/banners/count`, {
         ...requestOptions,
       })
       .catch(ex => {
@@ -98,4 +124,4 @@ class ProductVideos {
   }
 }
 
-export default new ProductVideos()
+export default new MarketingBanners()

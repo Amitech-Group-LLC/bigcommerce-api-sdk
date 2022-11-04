@@ -1,20 +1,21 @@
-import { ImageUrl } from '../models/image'
+import {
+  StorefrontApiToken,
+  StorefrontApiTokenData,
+} from '../models/storefront-api-token'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CategoryImages {
-  public async create(
-    itemId: number,
-    imageFile: File,
+class StorefrontApiTokens {
+  public async create<TData extends StorefrontApiTokenData>(
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ImageUrl>> {
+  ): Promise<Result<StorefrontApiToken>> {
     return await http
-      .post(`/v3/catalog/categories/${itemId}/image`, {
+      .post(`/v3/storefront/api-token`, {
         ...requestOptions,
-        params: { image_file: imageFile },
-        headers: { 'Content-Type': 'multipart/form-data' }
+        data,
       })
       .catch(ex => {
         if (ex.response) {
@@ -24,12 +25,17 @@ class CategoryImages {
       })
   }
 
-  public async delete(
-    itemId: number,
+  public async revoke(
+    apiToken: string,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/categories/${itemId}/image`, { ...requestOptions })
+      .delete(`/v3/storefront/api-token`, {
+        ...requestOptions,
+        headers: {
+          'Sf-Api-Token': apiToken,
+        },
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -39,4 +45,4 @@ class CategoryImages {
   }
 }
 
-export default new CategoryImages()
+export default new StorefrontApiTokens()

@@ -1,18 +1,26 @@
-import { ProductVideo } from '../models/product'
-import { FilterParam, ProductFilterParam } from '../models/filter-param'
-import { Result, ListResult } from '../models/result'
+import { MarketingGiftCertificate, MarketingGiftCertificatePost, MarketingGiftCertificatePut } from '../models/marketing'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class ProductVideos {
+class MarketingGiftCertificates {
   public async list(
-    itemId: number,
-    params: ProductFilterParam<ProductVideo> = {},
+    params: {
+      code?: string
+      from_email?: string
+      from_name?: string
+      limit?: number
+      max_id?: number
+      min_id?: number
+      order_id?: number
+      page?: number
+      to_email?: string
+      to_name?: string
+    } = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<ProductVideo[]>> {
+  ): Promise<MarketingGiftCertificate[]> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos`, {
+      .get(`/v2/gift_certificates`, {
         ...requestOptions,
         params,
       })
@@ -24,13 +32,12 @@ class ProductVideos {
       })
   }
 
-  public async create<TData extends ProductVideo>(
-    itemId: number,
+  public async create<TData extends MarketingGiftCertificatePost>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<MarketingGiftCertificate> {
     return await http
-      .post(`/v3/catalog/products/${itemId}/videos`, {
+      .post(`/v2/gift_certificates`, {
         ...requestOptions,
         data,
       })
@@ -42,16 +49,12 @@ class ProductVideos {
       })
   }
 
-  public async get(
-    itemId: number,
-    videoId: number,
-    params: FilterParam<ProductVideo> = {},
+  public async deleteMany(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<undefined> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v2/gift_certificates`, {
         ...requestOptions,
-        params,
       })
       .catch(ex => {
         if (ex.response) {
@@ -61,14 +64,29 @@ class ProductVideos {
       })
   }
 
-  public async update<TData extends ProductVideo>(
-    itemId: number,
-    videoId: number,
+  public async get(
+    certificateId: number,
+    requestOptions: RequestOptions = {}
+  ): Promise<MarketingGiftCertificate> {
+    return await http
+      .get(`/v2/gift_certificates/${certificateId}`, {
+        ...requestOptions,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async update<TData extends MarketingGiftCertificatePut>(
+    certificateId: number,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductVideo>> {
+  ): Promise<MarketingGiftCertificate> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .put(`/v2/gift_certificates/${certificateId}`, {
         ...requestOptions,
         data,
       })
@@ -81,12 +99,11 @@ class ProductVideos {
   }
 
   public async delete(
-    itemId: number,
-    videoId: number,
+    certificateId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<object> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/videos/${videoId}`, {
+      .delete(`/v2/gift_certificates/${certificateId}`, {
         ...requestOptions,
       })
       .catch(ex => {
@@ -98,4 +115,4 @@ class ProductVideos {
   }
 }
 
-export default new ProductVideos()
+export default new MarketingGiftCertificates()
