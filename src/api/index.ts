@@ -128,6 +128,7 @@ import storeContentBlogPosts from './store-content-blog-posts'
 import storeContentBlogTags from './store-content-blog-tags'
 import storeContentPages from './store-content-pages'
 import storeContentRedirects from './store-content-redirects'
+import subscribers from './subscribers'
 
 export {
   cartItems,
@@ -260,4 +261,5 @@ export {
   storeContentBlogTags,
   storeContentPages,
   storeContentRedirects,
+  subscribers,
 }
