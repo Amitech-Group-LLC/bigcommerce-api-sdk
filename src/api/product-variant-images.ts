@@ -1,4 +1,4 @@
-import { ProductImageUrl } from '../models/product'
+import { ImageUrl } from '../models/image'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -10,7 +10,7 @@ class ProductVariantImages {
     variantId: number,
     imageFile: File,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ProductImageUrl>> {
+  ): Promise<Result<ImageUrl>> {
     return await http
       .post(`/v3/catalog/products/${itemId}/variants/${variantId}/image`, {
         ...requestOptions,

@@ -1,5 +1,4 @@
-import { CustomerSettingData } from '../models/customer-setting'
-import { Result } from '../models/result'
+import { CustomerSettingData } from '../models/customer'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -7,7 +6,7 @@ import { BigcommerceApiError } from '../utils/error'
 class CustomerSettings {
   public async get(
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerSettingData>> {
+  ): Promise<CustomerSettingData> {
     return await http
       .get('/v3/customers/settings', { ...requestOptions })
       .catch(ex => {
@@ -21,7 +20,7 @@ class CustomerSettings {
   public async update<TData extends CustomerSettingData>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerSettingData>> {
+  ): Promise<CustomerSettingData> {
     return await http
       .put('/v3/customers/settings', { ...requestOptions, data })
       .catch(ex => {

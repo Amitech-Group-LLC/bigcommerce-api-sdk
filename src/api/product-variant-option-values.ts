@@ -1,4 +1,5 @@
 import { ProductOptionValue } from '../models/product'
+import { FilterParam, ProductFilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -8,12 +9,7 @@ class ProductVariantOptionValues {
   public async list(
     itemId: number,
     optionId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-      limit?: number
-      page?: number
-    } = {},
+    params: ProductFilterParam<ProductOptionValue> = {},
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<ProductOptionValue[]>> {
     return await http
@@ -52,17 +48,17 @@ class ProductVariantOptionValues {
     itemId: number,
     optionId: number,
     valueId: number,
-    params: {
-      exclude_fields?: string | string[]
-      include_fields?: string | string[]
-    } = {},
+    params: FilterParam<ProductOptionValue> = {},
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductOptionValue>> {
     return await http
-      .get(`/v3/catalog/products/${itemId}/options/${optionId}/values/${valueId}`, {
-        ...requestOptions,
-        params,
-      })
+      .get(
+        `/v3/catalog/products/${itemId}/options/${optionId}/values/${valueId}`,
+        {
+          ...requestOptions,
+          params,
+        }
+      )
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -79,10 +75,13 @@ class ProductVariantOptionValues {
     requestOptions: RequestOptions = {}
   ): Promise<Result<ProductOptionValue>> {
     return await http
-      .put(`/v3/catalog/products/${itemId}/options/${optionId}/values/${valueId}`, {
-        ...requestOptions,
-        data,
-      })
+      .put(
+        `/v3/catalog/products/${itemId}/options/${optionId}/values/${valueId}`,
+        {
+          ...requestOptions,
+          data,
+        }
+      )
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -98,9 +97,12 @@ class ProductVariantOptionValues {
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/catalog/products/${itemId}/options/${optionId}/values/${valueId}`, {
-        ...requestOptions,
-      })
+      .delete(
+        `/v3/catalog/products/${itemId}/options/${optionId}/values/${valueId}`,
+        {
+          ...requestOptions,
+        }
+      )
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
