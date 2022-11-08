@@ -131,6 +131,7 @@ import storeContentRedirects from './store-content-redirects'
 import taxClasses from './tax-classes'
 import subscribers from './subscribers'
 import systemLogs from './system-logs'
+import taxProviderConnections from './tax-provider-connections'
 
 export {
   cartItems,
@@ -266,4 +267,5 @@ export {
   taxClasses,
   subscribers,
   systemLogs,
+  taxProviderConnections,
 }
