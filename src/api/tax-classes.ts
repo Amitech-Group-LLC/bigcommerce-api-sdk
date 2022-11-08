@@ -1,6 +1,5 @@
 import { TaxClassData } from '../models/tax-class'
 import { StoreContentQueryParam } from '../models/store-content'
-import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
