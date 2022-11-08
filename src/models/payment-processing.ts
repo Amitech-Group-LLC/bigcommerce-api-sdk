@@ -12,7 +12,7 @@ export type PaymentMethodSupportedInstrument = {
   verification_value_required?: boolean
 }
 
-export type PaymentMethod = {
+export type PaymentProcessMethod = {
   id: string
   name: string
   test_mode: boolean

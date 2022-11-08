@@ -47,6 +47,9 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import siteCertificates from './site-certificate'
+import siteRoutes from './site-routes'
+import sites from './sites'
 import customerGroups from './customer-groups'
 import customerPasswords from './customer-passwords'
 import priceLists from './price-lists'
@@ -176,6 +179,9 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  siteCertificates,
+  siteRoutes,
+  sites,
   customerGroups,
   customerPasswords,
   priceLists,
