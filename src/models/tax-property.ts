@@ -24,3 +24,12 @@ export type TaxPropertyCreateData = {
 export type TaxPropertyDeleteParam = {
   'id:in': string
 }
+
+export type ProductTaxPropertyData = {
+  product_id: number
+  tax_properties: object
+}
+
+export type ProductTaxPropertyParam = {
+  'product_id:in': string
+}
