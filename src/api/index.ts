@@ -129,6 +129,8 @@ import storeContentBlogTags from './store-content-blog-tags'
 import storeContentPages from './store-content-pages'
 import storeContentRedirects from './store-content-redirects'
 import taxClasses from './tax-classes'
+import subscribers from './subscribers'
+import systemLogs from './system-logs'
 
 export {
   cartItems,
@@ -262,4 +264,6 @@ export {
   storeContentPages,
   storeContentRedirects,
   taxClasses,
+  subscribers,
+  systemLogs,
 }
