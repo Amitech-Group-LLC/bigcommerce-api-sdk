@@ -1,13 +1,15 @@
 import carts from './carts'
 import cartSettings from './cart-settings'
 import cartItems from './cart-items'
-import customers from './customers'
+import customersV3 from './customers-v3'
+import customersV2 from './customers-v2'
 import brands from './brands'
 import brandImages from './brand-images'
 import brandMetafields from './brand-metafields'
 import customerAttributeValues from './customer-attribute-values'
 import customerAttributes from './customer-attributes'
-import customerAddresses from './customer-addresses'
+import customerV3Addresses from './customer-addresses-v3'
+import customerV2Addresses from './customer-addresses-v2'
 import categoryImages from './category-images'
 import categories from './categories'
 import categoryBatchs from './category-batchs'
@@ -45,6 +47,32 @@ import products from './products'
 import webhooks from './webhooks'
 import webhookAdmins from './webhook-admins'
 import webhookEvents from './webhook-events'
+import customerGroups from './customer-groups'
+import customerPasswords from './customer-passwords'
+import priceLists from './price-lists'
+import priceListAssigments from './price-list-assigments'
+import priceListRecords from './price-list-records'
+import paymentProcessings from './payment-processings'
+import shippingCarriers from './shipping-carriers'
+import shippingCustomInformations from './shipping-custom-informations'
+import shippingMethods from './shipping-methods'
+import shippingZones from './shipping-zones'
+import settingAnalytics from './setting-analytics'
+import settingCatalogs from './setting-catalogs'
+import settingEmailStatuses from './setting-email-statuses'
+import settingFavicons from './setting-favicons'
+import settingInventories from './setting-inventories'
+import settingLogos from './setting-logos'
+import settingSearchFilters from './setting-search-filters'
+import settingStoreLocales from './setting-store-locales'
+import settingStoreProfiles from './setting-store-profiles'
+import settingStorefrontCategories from './setting-storefront-categories'
+import settingStorefrontProducts from './setting-storefront-products'
+import settingStorefrontRobots from './setting-storefront-robots'
+import settingStorefrontSearches from './setting-storefront-searches'
+import settingStorefrontSecurities from './setting-storefront-securities'
+import settingStorefrontSeos from './setting-storefront-seos'
+import settingStorefrontStatuses from './setting-storefront-statuses'
 import ordersV3Metafields from './orders-v3-metafields'
 import ordersV3PaymentActions from './orders-v3-payment-actions'
 import ordersV3Settings from './orders-v3-settings'
@@ -102,13 +130,15 @@ export {
   cartItems,
   carts,
   cartSettings,
-  customers,
+  customersV3,
+  customersV2,
   brands,
   brandImages,
   brandMetafields,
   customerAttributeValues,
   customerAttributes,
-  customerAddresses,
+  customerV3Addresses,
+  customerV2Addresses,
   categoryImages,
   categories,
   categoryBatchs,
@@ -146,6 +176,32 @@ export {
   webhooks,
   webhookAdmins,
   webhookEvents,
+  customerGroups,
+  customerPasswords,
+  priceLists,
+  priceListAssigments,
+  priceListRecords,
+  paymentProcessings,
+  shippingCarriers,
+  shippingCustomInformations,
+  shippingMethods,
+  shippingZones,
+  settingAnalytics,
+  settingCatalogs,
+  settingEmailStatuses,
+  settingFavicons,
+  settingInventories,
+  settingLogos,
+  settingSearchFilters,
+  settingStoreLocales,
+  settingStoreProfiles,
+  settingStorefrontCategories,
+  settingStorefrontProducts,
+  settingStorefrontRobots,
+  settingStorefrontSearches,
+  settingStorefrontSecurities,
+  settingStorefrontSeos,
+  settingStorefrontStatuses,
   ordersV3Metafields,
   ordersV3PaymentActions,
   ordersV3Settings,

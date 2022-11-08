@@ -1,46 +1,52 @@
-import { CustonerAttributeValuesParams, CustonerAttributeValuesData, UpsertData } from '../models/customer'
-import { ListResult } from '../models/result'
+import { ShippingCarier, ShippingCarierDelete } from '../models/shipping'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerAttributeValues {
-  public async list(
-    params: CustonerAttributeValuesParams = {},
-    requestOptions: RequestOptions = {}
-  ): Promise<ListResult<CustonerAttributeValuesData[]>> {
-    return await http
-      .get('/v3/customers/attribute-values', {...requestOptions, params})
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async upsertMany<TData extends UpsertData>(
+class ShippingCarriers {
+  public async update<TData extends ShippingCarier>(
     data: TData,
-    requestOptions: RequestOptions = {}
-  ): Promise<ListResult<CustonerAttributeValuesData[]>> {
-    return await http
-      .put('/v3/customers/attribute-values', { ...requestOptions, data })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async deleteMany(
-    params: {
-      'id:in': number[]
-    },
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete('/v3/customers/attribute-values', { ...requestOptions, params })
+      .put(`/v2/shipping/carrier/connection`, {
+        ...requestOptions,
+        data,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async create<TData extends ShippingCarier>(
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .post(`/v2/shipping/carrier/connection`, {
+        ...requestOptions,
+        data,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async delete<TData extends ShippingCarierDelete>(
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<undefined> {
+    return await http
+      .delete(`/v2/shipping/carrier/connection`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -50,4 +56,4 @@ class CustomerAttributeValues {
   }
 }
 
-export default new CustomerAttributeValues()
+export default new ShippingCarriers()

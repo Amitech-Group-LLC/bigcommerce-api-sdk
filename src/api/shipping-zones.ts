@@ -1,18 +1,15 @@
-import { CustomerAddressData, CustomerAddressParams, CreateAddressData, UpdateAddressData } from '../models/customer-address'
-import { Result } from '../models/result'
+import { ShippingZone, ShippingZonePost, ShippingZonePut } from '../models/shipping'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerAddresses {
+class ShippingZones {
   public async list(
-    filterParams: CustomerAddressParams = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAddressData[]>> {
+  ): Promise<ShippingZone[]> {
     return await http
-      .get('/v3/customers/addresses', {
+      .get(`/v2/shipping/zones`, {
         ...requestOptions,
-        params: filterParams,
       })
       .catch(ex => {
         if (ex.response) {
@@ -22,15 +19,15 @@ class CustomerAddresses {
       })
   }
 
-  public async create<TData extends CreateAddressData>(
-    data: TData[],
+  public async create<TData extends ShippingZonePost>(
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAddressData[]>> {
+  ): Promise<ShippingZone> {
     return await http
-      .post('/v3/customers/addresses', { 
-        ...requestOptions, 
+      .post(`/v2/shipping/zones`, {
+        ...requestOptions,
         data,
-       })
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -39,13 +36,30 @@ class CustomerAddresses {
       })
   }
 
-  public async update<TData extends UpdateAddressData>(
-    data: TData[],
+  public async get(
+    zoneId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<CustomerAddressData[]>>  {
+  ): Promise<ShippingZone> {
     return await http
-      .put('/v3/customers/addresses', {
-        ...requestOptions, 
+      .get(`/v2/shipping/zones/${zoneId}`, {
+        ...requestOptions,
+      })
+      .catch(ex => {
+        if (ex.response) {
+          throw new BigcommerceApiError(ex)
+        }
+        throw ex
+      })
+  }
+
+  public async update<TData extends ShippingZonePut>(
+    zoneId: number,
+    data: TData,
+    requestOptions: RequestOptions = {}
+  ): Promise<ShippingZonePut> {
+    return await http
+      .put(`/v2/shipping/zones/${zoneId}`, {
+        ...requestOptions,
         data,
       })
       .catch(ex => {
@@ -57,15 +71,12 @@ class CustomerAddresses {
   }
 
   public async delete(
-    params: {
-      'id:in': number[]
-    },
+    zoneId: number,
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
-    return await http 
-      .delete('/v3/customers/addresses', { 
-        ...requestOptions, 
-        params,
+    return await http
+      .delete(`/v2/shipping/zones/${zoneId}`, {
+        ...requestOptions,
       })
       .catch(ex => {
         if (ex.response) {
@@ -74,6 +85,6 @@ class CustomerAddresses {
         throw ex
       })
   }
- }
+}
 
-export default new CustomerAddresses()
+export default new ShippingZones()

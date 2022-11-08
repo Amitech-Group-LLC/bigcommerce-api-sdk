@@ -1,15 +1,17 @@
-import { CustomerSettingsPerChannelData, UpdateCustomerSettingsPerChannelData } from '../models/customer'
+import { SettingLocale } from '../models/setting'
+import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class CustomerSettingsChannels {
+class SettingStoreLocales {
   public async get(
-    channel_id: number,
     requestOptions: RequestOptions = {}
-  ): Promise<CustomerSettingsPerChannelData> {
+  ): Promise<Result<SettingLocale>> {
     return await http
-      .get(`/v3/customers/settings/channels/${channel_id}`, { ...requestOptions })
+      .get(`/v3/settings/store/locale`, {
+        ...requestOptions,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -18,13 +20,15 @@ class CustomerSettingsChannels {
       })
   }
 
-  public async update<TData extends CustomerSettingsPerChannelData>(
-    channel_id: number,
+  public async update<TData extends SettingLocale>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<UpdateCustomerSettingsPerChannelData> {
+  ): Promise<Result<SettingLocale>> {
     return await http
-      .put(`/v3/customers/settings/channels/${channel_id}`, { ...requestOptions, data })
+      .put(`/v3/settings/store/locale`, {
+        ...requestOptions,
+        data,
+      })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -34,4 +38,4 @@ class CustomerSettingsChannels {
   }
 }
 
-export default new CustomerSettingsChannels()
+export default new SettingStoreLocales()
