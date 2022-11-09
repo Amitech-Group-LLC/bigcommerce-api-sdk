@@ -64,3 +64,5 @@ class Themes {
       })
   }
 }
+
+export default new Themes()
