@@ -19,3 +19,12 @@ export type ThemeUploadData = {
 export type ThemeUpload = {
   job_id?: string
 }
+
+export type ThemeActionData = {
+  which?: 'original' | 'last_activated' | 'last_created'
+}
+
+export type ThemeActionActivateData = {
+  variation_id: string
+  which: 'original' | 'last_activated' | 'last_created'
+}
