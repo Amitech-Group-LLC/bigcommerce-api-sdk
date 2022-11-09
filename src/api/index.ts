@@ -128,10 +128,13 @@ import storeContentBlogPosts from './store-content-blog-posts'
 import storeContentBlogTags from './store-content-blog-tags'
 import storeContentPages from './store-content-pages'
 import storeContentRedirects from './store-content-redirects'
+import taxProperties from './tax-properties'
+import productTaxProperties from './product-tax-properties'
 import taxClasses from './tax-classes'
 import subscribers from './subscribers'
 import systemLogs from './system-logs'
 import taxSettings from './tax-settings'
+import taxProviderConnections from './tax-provider-connections'
 
 export {
   cartItems,
@@ -264,8 +267,11 @@ export {
   storeContentBlogTags,
   storeContentPages,
   storeContentRedirects,
+  taxProperties,
+  productTaxProperties,
   taxClasses,
   subscribers,
   systemLogs,
   taxSettings,
+  taxProviderConnections,
 }
