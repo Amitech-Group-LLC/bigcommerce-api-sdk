@@ -133,6 +133,7 @@ import productTaxProperties from './product-tax-properties'
 import taxClasses from './tax-classes'
 import subscribers from './subscribers'
 import systemLogs from './system-logs'
+import taxSettings from './tax-settings'
 import taxProviderConnections from './tax-provider-connections'
 
 export {
@@ -271,5 +272,6 @@ export {
   taxClasses,
   subscribers,
   systemLogs,
+  taxSettings,
   taxProviderConnections,
 }
