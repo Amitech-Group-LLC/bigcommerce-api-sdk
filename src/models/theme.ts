@@ -51,3 +51,10 @@ export type ThemeConfigurationValidateData = {
   variation_id?: string
   settings?: object
 }
+
+export type ThemeCustomTemplateData = {
+  product?: string[]
+  category?: string[]
+  brand?: string[]
+  page?: string[]
+}
