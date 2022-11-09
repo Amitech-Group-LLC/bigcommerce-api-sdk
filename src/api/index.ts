@@ -130,6 +130,9 @@ import storeContentPages from './store-content-pages'
 import storeContentRedirects from './store-content-redirects'
 import taxProperties from './tax-properties'
 import productTaxProperties from './product-tax-properties'
+import taxClasses from './tax-classes'
+import subscribers from './subscribers'
+import systemLogs from './system-logs'
 
 export {
   cartItems,
@@ -264,4 +267,7 @@ export {
   storeContentRedirects,
   taxProperties,
   productTaxProperties,
+  taxClasses,
+  subscribers,
+  systemLogs,
 }
