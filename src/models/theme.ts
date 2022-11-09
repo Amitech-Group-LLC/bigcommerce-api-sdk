@@ -58,3 +58,27 @@ export type ThemeCustomTemplateData = {
   brand?: string[]
   page?: string[]
 }
+
+export type ThemeJobData = {
+  errors?: ThemeJobError[]
+  id?: string
+  percent_complete?: number
+  result?: ThemeJobResult[]
+  status?: 'COMPLETED' | 'QUEUED' | 'WORKING' | 'FAILED'
+  time?: string
+  warnings?: ThemeJobWarning[]
+}
+
+export type ThemeJobError = {
+  error?: string
+  message?: string
+}
+
+export type ThemeJobResult = {
+  theme_id?: string
+}
+
+export type ThemeJobWarning = {
+  message?: string
+  warning?: string
+}

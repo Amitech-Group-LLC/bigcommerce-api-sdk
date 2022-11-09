@@ -131,6 +131,11 @@ import storeContentRedirects from './store-content-redirects'
 import taxClasses from './tax-classes'
 import subscribers from './subscribers'
 import systemLogs from './system-logs'
+import themes from './themes'
+import themeActions from './theme-actions'
+import themeConfigurations from './theme-configurations'
+import themeCustomTemplates from './theme-custom-templates'
+import themeJobs from './theme-jobs'
 
 export {
   cartItems,
@@ -266,4 +271,9 @@ export {
   taxClasses,
   subscribers,
   systemLogs,
+  themes,
+  themeActions,
+  themeConfigurations,
+  themeCustomTemplates,
+  themeJobs,
 }
