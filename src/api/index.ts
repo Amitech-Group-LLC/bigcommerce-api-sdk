@@ -135,6 +135,8 @@ import subscribers from './subscribers'
 import systemLogs from './system-logs'
 import taxSettings from './tax-settings'
 import taxProviderConnections from './tax-provider-connections'
+import wishlists from './wishlists'
+import wishlistsItems from './wishlists-items'
 
 export {
   cartItems,
@@ -274,4 +276,6 @@ export {
   systemLogs,
   taxSettings,
   taxProviderConnections,
+  wishlists,
+  wishlistsItems,
 }

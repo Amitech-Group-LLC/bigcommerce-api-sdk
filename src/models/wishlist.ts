@@ -32,3 +32,7 @@ export type WishlistUpdateData = {
   name?: string
   items: WishlistDataItem[]
 }
+
+export type WishlistAddData = {
+  items: Omit<WishlistDataItem, 'id'>[]
+}
