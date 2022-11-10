@@ -125,3 +125,49 @@ export type WidgetTemplateUpdateData = {
   create_new_version?: boolean
   channel_id?: number
 }
+
+export type WidgetQueryParam = {
+  limit?: number
+  page?: number
+  query?: string
+}
+
+export type WidgetData = {
+  name?: string
+  description?: string
+  widget_configuration?: object
+  uuid?: string
+  widget_template?: WidgetTemplateData
+  date_created?: string
+  date_modified?: string
+  version_uuid?: string
+  channel_id?: number
+}
+
+export type WidgetCreateData = {
+  name: string
+  description?: string
+  widget_configuration?: object
+  widget_template_uuid: string
+  channel_id?: number
+}
+
+export type WidgetGetAllParam = {
+  limit?: number
+  page?: number
+  widget_template_kind?: string
+  widget_template_uuid?: string
+  'channel_id:in'?: number
+  name?: string
+  'name:in'?: string[]
+  'site_id:in'?: string
+}
+
+export type WidgetUpdateData = {
+  name?: string
+  description?: string
+  widget_configuration?: object
+  widget_template_uuid?: string
+  channel_id?: number
+  upgrade?: boolean
+}
