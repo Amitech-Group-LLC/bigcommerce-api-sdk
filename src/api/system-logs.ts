@@ -10,7 +10,7 @@ class SystemLogs {
     requestOptions: RequestOptions = {}
   ): Promise<ListResult<SystemLogData[]>> {
     return await http
-      .get('/v3/store/systemlogs', { ...requestOptions })
+      .get('/v3/store/systemlogs', { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
