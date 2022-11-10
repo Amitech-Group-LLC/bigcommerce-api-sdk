@@ -135,6 +135,10 @@ import subscribers from './subscribers'
 import systemLogs from './system-logs'
 import taxSettings from './tax-settings'
 import taxProviderConnections from './tax-provider-connections'
+import regions from './regions'
+import widgetTemplates from './widget-templates'
+import widgets from './widgets'
+import placements from './placements'
 
 export {
   cartItems,
@@ -274,4 +278,8 @@ export {
   systemLogs,
   taxSettings,
   taxProviderConnections,
+  regions,
+  widgetTemplates,
+  widgets,
+  placements,
 }

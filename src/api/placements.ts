@@ -1,30 +1,16 @@
-import { WidgetQueryParam, WidgetData, WidgetCreateData, WidgetGetAllParam, WidgetUpdateData } from '../models/widget'
+import { PlacementData, PlacementCreateData, PlacementParam, PlacementUpdateData } from '../models/widget'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class Widgets {
-  public async getWidgetsBySearch(
-    params: WidgetQueryParam = {},
-    requestOptions: RequestOptions = {}
-  ): Promise<ListResult<WidgetData[]>> {
-    return await http
-      .get('/v3/content/widgets/search', { ...requestOptions, params })
-      .catch(ex => {
-        if (ex.response) {
-          throw new BigcommerceApiError(ex)
-        }
-        throw ex
-      })
-  }
-
-  public async create<TData extends WidgetCreateData>(
+class Placements {
+  public async create<TData extends PlacementCreateData>(
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<WidgetData>> {
+  ): Promise<Result<PlacementData>> {
     return await http
-      .post('/v3/content/widgets', { ...requestOptions, data })
+      .post('/v3/content/placements', { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -34,11 +20,11 @@ class Widgets {
   }
 
   public async list(
-    params: WidgetGetAllParam = {},
+    params: PlacementParam = {},
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<WidgetData[]>> {
+  ): Promise<ListResult<PlacementData[]>> {
     return await http
-      .get('/v3/content/widgets', { ...requestOptions, params })
+      .get('/v3/content/placements', { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -50,9 +36,9 @@ class Widgets {
   public async get(
     uuid: string,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<WidgetData>> {
+  ): Promise<Result<PlacementData>> {
     return await http
-      .get(`/v3/content/widgets/${uuid}`, { ...requestOptions })
+      .get(`/v3/content/placements/${uuid}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -61,13 +47,13 @@ class Widgets {
       })
   }
 
-  public async update<TData extends WidgetUpdateData>(
+  public async update<TData extends PlacementUpdateData>(
     uuid: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<WidgetData>> {
+  ): Promise<Result<PlacementData>> {
     return await http
-      .put(`/v3/content/widgets/${uuid}`, { ...requestOptions, data })
+      .put(`/v3/content/placements/${uuid}`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -81,7 +67,7 @@ class Widgets {
     requestOptions: RequestOptions = {}
   ): Promise<undefined> {
     return await http
-      .delete(`/v3/content/widgets/${uuid}`, { ...requestOptions })
+      .delete(`/v3/content/placements/${uuid}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -91,4 +77,4 @@ class Widgets {
   }
 }
 
-export default new Widgets()
+export default new Placements()

@@ -171,3 +171,45 @@ export type WidgetUpdateData = {
   channel_id?: number
   upgrade?: boolean
 }
+
+export type PlacementCreateData = PlacementDefaultData & {
+  widget_uuid: string
+  template_file: string
+}
+
+export type PlacementDefaultData = {
+  channel_id?: number
+  entity_id?: string
+  sort_order?: number
+  region?: string
+  status?: 'inactive' | 'active'
+}
+
+export type PlacementData = {
+  uuid?: string
+  template_file?: string
+  date_created?: string
+  date_modified?: string
+  channel_id?: number
+  entity_id?: string
+  sort_order?: number
+  region?: string
+  status?: 'inactive' | 'active'
+  widget?: WidgetData
+}
+
+export type PlacementParam = {
+  'channel_id:in'?: string
+  limit?: number
+  page?: number
+  'site_id:in'?: string
+  template_file?: string
+  widget_template_kind?: string
+  widget_template_uuid?: string
+  widget_uuid?: string
+}
+
+export type PlacementUpdateData = PlacementDefaultData & {
+  widget_uuid?: string
+  template_file?: string
+}
