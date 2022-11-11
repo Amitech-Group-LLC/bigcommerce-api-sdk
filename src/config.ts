@@ -1,4 +1,4 @@
-import { SdkConfig } from './models/sdk-config'
+import { SdkConfig } from './management-api/models/sdk-config'
 
 class Config {
   private defaultConfig: SdkConfig = {
