@@ -1,19 +1,19 @@
-import { ImageUrl } from '../models/image'
+import { ImageUrl, ImageData } from '../models/image'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class CategoryImages {
-  public async create(
+  public async create<TData extends ImageData>(
     itemId: number,
-    imageFile: File,
+    data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<ImageUrl>> {
     return await http
       .post(`/v3/catalog/categories/${itemId}/image`, {
         ...requestOptions,
-        params: { image_file: imageFile },
+        data,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       .catch(ex => {
