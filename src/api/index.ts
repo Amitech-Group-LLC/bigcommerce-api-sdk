@@ -140,6 +140,10 @@ import themeCustomTemplates from './theme-custom-templates'
 import themeJobs from './theme-jobs'
 import taxSettings from './tax-settings'
 import taxProviderConnections from './tax-provider-connections'
+import regions from './regions'
+import widgetTemplates from './widget-templates'
+import widgets from './widgets'
+import placements from './placements'
 
 export {
   cartItems,
@@ -284,4 +288,8 @@ export {
   themeJobs,
   taxSettings,
   taxProviderConnections,
+  regions,
+  widgetTemplates,
+  widgets,
+  placements,
 }
