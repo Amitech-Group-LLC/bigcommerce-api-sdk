@@ -140,6 +140,8 @@ import themeCustomTemplates from './theme-custom-templates'
 import themeJobs from './theme-jobs'
 import taxSettings from './tax-settings'
 import taxProviderConnections from './tax-provider-connections'
+import wishlists from './wishlists'
+import wishlistsItems from './wishlists-items'
 import regions from './regions'
 import widgetTemplates from './widget-templates'
 import widgets from './widgets'
@@ -288,6 +290,8 @@ export {
   themeJobs,
   taxSettings,
   taxProviderConnections,
+  wishlists,
+  wishlistsItems,
   regions,
   widgetTemplates,
   widgets,
