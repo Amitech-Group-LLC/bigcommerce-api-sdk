@@ -133,10 +133,19 @@ import productTaxProperties from './product-tax-properties'
 import taxClasses from './tax-classes'
 import subscribers from './subscribers'
 import systemLogs from './system-logs'
+import themes from './themes'
+import themeActions from './theme-actions'
+import themeConfigurations from './theme-configurations'
+import themeCustomTemplates from './theme-custom-templates'
+import themeJobs from './theme-jobs'
 import taxSettings from './tax-settings'
 import taxProviderConnections from './tax-provider-connections'
 import wishlists from './wishlists'
 import wishlistsItems from './wishlists-items'
+import regions from './regions'
+import widgetTemplates from './widget-templates'
+import widgets from './widgets'
+import placements from './placements'
 
 export {
   cartItems,
@@ -274,8 +283,17 @@ export {
   taxClasses,
   subscribers,
   systemLogs,
+  themes,
+  themeActions,
+  themeConfigurations,
+  themeCustomTemplates,
+  themeJobs,
   taxSettings,
   taxProviderConnections,
   wishlists,
   wishlistsItems,
+  regions,
+  widgetTemplates,
+  widgets,
+  placements,
 }
