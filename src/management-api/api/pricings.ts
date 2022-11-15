@@ -1,8 +1,8 @@
 import { PricingProductPost, PricingProduct } from '../models/pricing'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class Pricings {
   public async list<TData extends PricingProductPost>(

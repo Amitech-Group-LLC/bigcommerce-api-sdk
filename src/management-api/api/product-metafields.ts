@@ -2,8 +2,8 @@ import { ProductMetafield } from '../models/product'
 import { FilterParam } from '../models/filter-param'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class ProductMetafields {
   public async list(

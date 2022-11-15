@@ -1,7 +1,7 @@
 import { ShippingMethod, ShippingMethodPost } from '../models/shipping'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class ShippingMethods {
   public async list(

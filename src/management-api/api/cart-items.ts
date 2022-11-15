@@ -1,8 +1,8 @@
 import { CartAddLineItem, Cart, CartInclude, CartUpdateLineItem } from '../models/cart'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class CartItems {
   public async add<TData extends CartAddLineItem>(

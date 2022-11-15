@@ -8,8 +8,8 @@ import {
 } from '../models/order-v3'
 import { Result, ErrorResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV3PaymentActions {
   public async capture(

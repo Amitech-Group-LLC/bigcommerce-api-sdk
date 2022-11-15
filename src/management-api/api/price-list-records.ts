@@ -1,8 +1,8 @@
 import { PriceRecordFilter, PriceRecord, PriceRecordPut, PriceRecordResult, PriceRecordCurrencyPut } from '../models/price-list'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class PriceListRecords {
   public async list(

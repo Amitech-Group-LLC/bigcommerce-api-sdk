@@ -1,7 +1,7 @@
 import { State, StateFilter, Count } from '../models/geography'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class GeographyStates {
   public async listCountryStates(

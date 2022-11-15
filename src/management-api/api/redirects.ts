@@ -1,8 +1,8 @@
 import { RedirectFilter, Redirect, RedirectPut } from '../models/redirect'
 import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class Redirects {
   public async list(

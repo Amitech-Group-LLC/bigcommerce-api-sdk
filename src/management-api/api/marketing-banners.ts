@@ -1,7 +1,7 @@
 import { MarketingBanner, MarketingBannerPost, MarketingBannerPut, MarketingCount } from '../models/marketing'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class MarketingBanners {
   public async list(

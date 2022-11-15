@@ -1,8 +1,8 @@
 import { OrdersV3MetafieldParam, OrdersV3MetafieldData, OrdersV3MetafieldCreateData } from '../models/order-v3'
 import { ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV3Metafields {
   public async list(

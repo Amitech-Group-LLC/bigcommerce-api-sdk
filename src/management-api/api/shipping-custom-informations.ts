@@ -4,8 +4,8 @@ import {
 } from '../models/shipping'
 import { ListResult, DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class ShippingCustomInformations {
   public async list(

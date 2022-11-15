@@ -1,7 +1,7 @@
 import { CustomerV2Filter, CustomerV2, CustomerV2Post, CustomerCount, CustomerV2Response } from '../models/customer'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class CustomersV2 {
   public async list(

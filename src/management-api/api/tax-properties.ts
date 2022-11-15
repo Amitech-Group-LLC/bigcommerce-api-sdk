@@ -1,8 +1,8 @@
 import { TaxPropertyData, TaxPropertyParam, TaxPropertyUpdateData, TaxPropertyCreateData, TaxPropertyDeleteParam } from '../models/tax-property'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class TaxProperties {
   public async list(

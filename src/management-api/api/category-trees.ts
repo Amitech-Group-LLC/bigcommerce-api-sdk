@@ -1,8 +1,8 @@
 import { Tree, CategoryTree, CategoryTreeFilter } from '../models/category-tree'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class CategoryTrees {
   public async list(

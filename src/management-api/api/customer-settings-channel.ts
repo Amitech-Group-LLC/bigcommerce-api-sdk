@@ -1,7 +1,7 @@
 import { CustomerSettingsPerChannelData, UpdateCustomerSettingsPerChannelData } from '../models/customer'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class CustomerSettingsChannels {
   public async get(

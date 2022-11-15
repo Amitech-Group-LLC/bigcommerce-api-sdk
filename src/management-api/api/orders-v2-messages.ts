@@ -1,8 +1,8 @@
 import { OrdersV2MessageData, OrdersV2MessageParam } from '../models/orders-v2'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class OrdersV2Messages {
   public async list(

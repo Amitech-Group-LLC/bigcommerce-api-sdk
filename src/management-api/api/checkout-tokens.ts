@@ -1,8 +1,8 @@
 import { CheckoutTokenParam, CheckoutTokenData } from '../models/checkout'
 import { DataResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class CheckoutTokens {
   public async create<TData extends CheckoutTokenParam>(

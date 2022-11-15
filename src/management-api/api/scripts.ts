@@ -1,8 +1,8 @@
 import { ScriptData, ScriptResult, ScriptParams, ScriptDeleteData } from '../models/script'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class Scripts {
   public async create<TData extends ScriptData>(

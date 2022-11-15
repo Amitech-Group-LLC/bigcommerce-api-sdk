@@ -1,7 +1,7 @@
 import { ChannelMetafield, ChannelMetafieldPost, ChannelMetafieldPut } from '../models/channel'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class ChannelMetafields {
   public async list(

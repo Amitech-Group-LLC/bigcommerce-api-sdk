@@ -4,8 +4,8 @@ import {
 } from '../models/storefront-api-token'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class StorefrontCustomerApiTokens {
   public async create<TData extends StorefrontCustomerApiTokenData>(

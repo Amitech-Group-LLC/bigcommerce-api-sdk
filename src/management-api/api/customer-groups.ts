@@ -1,7 +1,7 @@
 import { CustomerV2Group, CustomerCount, CustomerV2GroupPost } from '../models/customer'
 import { RequestOptions } from '../models/request-options'
-import http from '../../utils/http-clients'
-import { BigcommerceApiError } from '../../utils/error'
+import http from '../utils/http-clients'
+import { BigcommerceApiError } from '../utils/error'
 
 class CustomersV2Groups {
   public async list(
