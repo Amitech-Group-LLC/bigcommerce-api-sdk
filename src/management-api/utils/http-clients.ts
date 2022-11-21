@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import Config from '../config'
-import paramsSerializer from './params-serializer'
 
 type RequestConfig = AxiosRequestConfig
 
