@@ -36,7 +36,7 @@ class HttpClient {
     config
   ) {
     const requestConfig = await this._buildRequestConfig(config)
-    const baseApiUrl = `https://store-${Config.get().storeHash}.mybigcommerce.com/${path}`
+    const baseApiUrl = `https://store-${Config.get().storeHash}.mybigcommerce.com${path}`
     if (verb === 'put' || verb === 'post' || verb === 'patch') {
       const requestBody = requestConfig.data
       delete requestConfig.data
