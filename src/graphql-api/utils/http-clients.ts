@@ -10,7 +10,7 @@ class HttpClient {
     }
   }
 
-  public post = async (config?: RequestConfig): Promise<any> => {        
+  public request = async (config?: RequestConfig): Promise<any> => {        
     return await this.makeApiCall('post', config)
   }
 
