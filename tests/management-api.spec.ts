@@ -1,10 +1,10 @@
 import mockAxios from 'axios'
-import { carts, config, CartInclude } from '../src'
+import { carts, config, CartInclude } from '../src/management-api'
 
 describe('Carts api', () => {
   it('Get cart', async () => {
     const configParams = {
-      storeHash: 'hash',
+      storeHash: 'storeHash',
       apiToken: 'token',
       apiClientId: 'clientId',
     }
