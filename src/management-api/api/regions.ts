@@ -1,16 +1,16 @@
-import { SystemLogData, SystemLogParam } from '../models/system-log'
-import { ListResult } from '../models/result'
+import { WidgetRegionParam, WidgetRegionData } from '../models/widget'
+import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class SystemLogs {
+class Regions {
   public async list(
-    params: SystemLogParam = {},
+    params: WidgetRegionParam,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<SystemLogData[]>> {
+  ): Promise<Result<WidgetRegionData[]>> {
     return await http
-      .get('/v3/store/systemlogs', { ...requestOptions, params })
+      .get('/v3/content/regions', { ...requestOptions, params })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -20,4 +20,4 @@ class SystemLogs {
   }
 }
 
-export default new SystemLogs()
+export default new Regions()

@@ -1,21 +1,17 @@
-import { ImageUrl, ImageData } from '../models/image'
-import { Result } from '../models/result'
+import { ThemeUpload, ThemeActionData, ThemeActionActivateData } from '../models/theme'
+import { ScriptDeleteData } from '../models/script'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class BrandImages {
-  public async create<TData extends ImageData>(
-    itemId: number,
+class ThemeActions {
+  public async download<TData extends ThemeActionData>(
+    uuid: string,
     data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ImageUrl>> {
+  ): Promise<ThemeUpload> {
     return await http
-      .post(`/v3/catalog/brands/${itemId}/image`, {
-        ...requestOptions,
-        data,
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
+      .post(`/v3/themes/${uuid}/actions/download`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -24,12 +20,12 @@ class BrandImages {
       })
   }
 
-  public async delete(
-    itemId: number,
+  public async activate<TData extends ThemeActionActivateData>(
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<ScriptDeleteData> {
     return await http
-      .delete(`/v3/catalog/brands/${itemId}/image`, { ...requestOptions })
+      .post('/v3/themes/actions/activate', { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -39,4 +35,4 @@ class BrandImages {
   }
 }
 
-export default new BrandImages()
+export default new ThemeActions()

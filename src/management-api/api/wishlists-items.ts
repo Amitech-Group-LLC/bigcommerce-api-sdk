@@ -1,21 +1,17 @@
-import { ImageUrl, ImageData } from '../models/image'
+import { WishlistData, WishlistAddData } from '../models/wishlist'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class BrandImages {
-  public async create<TData extends ImageData>(
+class WishlistsItems {
+  public async delete(
     itemId: number,
-    data: TData,
+    wishlistId: number,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<ImageUrl>> {
+  ): Promise<Result<WishlistData>> {
     return await http
-      .post(`/v3/catalog/brands/${itemId}/image`, {
-        ...requestOptions,
-        data,
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
+      .delete(`/v3/wishlists/${wishlistId}/items/${itemId}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -24,12 +20,13 @@ class BrandImages {
       })
   }
 
-  public async delete(
-    itemId: number,
+  public async add<TData extends WishlistAddData>(
+    wishlistId: number,
+    data: TData,
     requestOptions: RequestOptions = {}
-  ): Promise<undefined> {
+  ): Promise<Result<WishlistData>> {
     return await http
-      .delete(`/v3/catalog/brands/${itemId}/image`, { ...requestOptions })
+      .post(`/v3/wishlists/${wishlistId}/items`, { ...requestOptions, data })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -39,4 +36,4 @@ class BrandImages {
   }
 }
 
-export default new BrandImages()
+export default new WishlistsItems()

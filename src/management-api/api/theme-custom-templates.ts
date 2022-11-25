@@ -1,16 +1,16 @@
-import { SystemLogData, SystemLogParam } from '../models/system-log'
-import { ListResult } from '../models/result'
+import { ThemeCustomTemplateData } from '../models/theme'
+import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
-class SystemLogs {
-  public async list(
-    params: SystemLogParam = {},
+class ThemeCustomTemplates {
+  public async get(
+    versionUuid: string,
     requestOptions: RequestOptions = {}
-  ): Promise<ListResult<SystemLogData[]>> {
+  ): Promise<Result<ThemeCustomTemplateData>> {
     return await http
-      .get('/v3/store/systemlogs', { ...requestOptions, params })
+      .get(`/v3/themes/custom-templates/${versionUuid}`, { ...requestOptions })
       .catch(ex => {
         if (ex.response) {
           throw new BigcommerceApiError(ex)
@@ -20,4 +20,4 @@ class SystemLogs {
   }
 }
 
-export default new SystemLogs()
+export default new ThemeCustomTemplates()
