@@ -1,7 +1,7 @@
 export class BigcommerceApiError extends Error {
   status: number
   res: Response
-  data: any
+  data: any 
 
   constructor(res) {
     super(res)
