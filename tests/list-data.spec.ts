@@ -1,6 +1,4 @@
-import mockAxios from 'axios'
-import { config } from '../src/graphql-api'
-import { getAllItems, handleList, ListResult } from '../src/management-api'
+import { getAllItems, handleList } from '../src/management-api'
 
 describe('List Data', () => {
   describe('getAllItems', () => {
@@ -54,6 +52,17 @@ describe('List Data', () => {
       const result = await getAllItems(() => getResult())
       expect(result).toHaveLength(11)
       expect(result).toEqual([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4])
+    })
+  })
+
+  describe('handleList', () => {
+    it('Should call callback for each item', async () => {
+      const callback = jest.fn()
+      await handleList([1,2,3], callback)
+      expect(callback).toHaveBeenCalledTimes(3)
+      expect(callback).toHaveBeenNthCalledWith(1, 1)
+      expect(callback).toHaveBeenNthCalledWith(2, 2)
+      expect(callback).toHaveBeenNthCalledWith(3, 3)
     })
   })
 
