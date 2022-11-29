@@ -1,3 +1,4 @@
+import customers from "./customers";
 import checkouts from "./checkouts";
 import checkoutBillingAddresses from "./checkout-billing-addresses";
 import checkoutCartItems from "./checkout-cart-items";
@@ -16,4 +17,5 @@ export {
   checkoutGiftCertificates,
   checkoutSpamProtections,
   checkoutStoreCredits,
+  customers,
 }
