@@ -1,4 +1,4 @@
-import customerLogins from "./customer-logins";
+import customerLogins from './customer-logins';
 
 export {
   customerLogins,
