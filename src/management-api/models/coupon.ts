@@ -7,6 +7,8 @@ export enum CouponType {
   Promotion,
 }
 
+export type DiscountType = Exclude<CouponType, CouponType.Promotion>
+
 export type AppliedCoupon = {
   code: string
   id?: string
@@ -26,7 +28,7 @@ export type CartCouponCode = {
   id?: number
   code?: string
   name?: string
-  discountType?: 0 | 1 | 2 | 3 | 4
+  discountType?: DiscountType
   discountAmount?: number
   expiresDate?: number
   totalDiscount?: number
