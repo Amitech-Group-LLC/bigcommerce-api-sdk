@@ -128,9 +128,9 @@ export type CartGiftWrapping = {
   name?: string
 }
 
-export type CartCreateData = CartCreateRequestObject1 | CartCreateRequestObject2 | CartCreateRequestObject3
+export type CartCreateData = CartCreateRequestLineItem | CartCreateRequestGiftCertificate | CartCreateRequestObject
 
-export type CartCreateRequestObject1 = {
+export type CartCreateRequestLineItem = {
   lineItems: (CartCreateLineItemSimpleProduct | CartCreateLineItemWithVariant | CartCreateLineItemDefault)[]
   locale?: string
 }
@@ -151,7 +151,7 @@ export type CartCreateLineItemSimpleProduct = Pick<CartCreateLineItemDefault, 'p
 
 export type CartCreateLineItemWithVariant = Omit<CartCreateLineItemDefault, 'optionSelections'>
 
-export type CartCreateRequestObject2 = {
+export type CartCreateRequestGiftCertificate = {
   giftCertificates: CartCreateGiftCertificate[]
   locale: string
 }
@@ -166,13 +166,11 @@ export type CartCreateGiftCertificate = {
   theme: 'Birthday' | 'Boy' | 'Celebration' | 'Christmas' | 'General' | 'Girl'
 }
 
-export type CartCreateRequestObject3 = {
-  lineItems: (CartCreateLineItemSimpleProduct | CartCreateLineItemWithVariant | CartCreateLineItemDefault)[]
+export type CartCreateRequestObject = CartCreateRequestLineItem & {
   giftCertificates: CartCreateGiftCertificate
-  locale: string
 }
 
-export type CartItemLineItem = Omit<CartCreateRequestObject1, 'locale'> | Omit<CartCreateRequestObject2, 'locale'> | Omit<CartCreateRequestObject3, 'locale'>
+export type CartItemLineItem = Omit<CartCreateRequestLineItem, 'locale'> | Omit<CartCreateRequestGiftCertificate, 'locale'> | Omit<CartCreateRequestObject, 'locale'>
 
 export type CartCurrenciesData = {
   currencyCode: string
