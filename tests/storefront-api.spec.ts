@@ -1,13 +1,14 @@
 import mockAxios from 'axios'
-import { formFields, config } from '../src/storefront-api'
+import { config } from '../src/storefront-api'
+import http from '../src/storefront-api/utils/http-clients'
 
-describe('Form Fields api', () => {
-  it('Get form-field', async () => {
+describe('Storefront api', () => {
+  it('Get Storefront', async () => {
     const configParams = {
-      storeHash: '80nb9ltj6u',
+      storeHash: 'storeHash',
     }
     config.set(configParams)
-    await formFields.get({filter: 'billingAddress'})
+    await http.get('api/storefront/form-fields', {params: {filter: 'billingAddress'}})
   
 
     expect(mockAxios.get).toHaveBeenCalledTimes(1)
