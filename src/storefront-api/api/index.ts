@@ -1,3 +1,4 @@
+import currentCustomers from "./current-customers";
 import customers from "./customers";
 import checkouts from "./checkouts";
 import checkoutBillingAddresses from "./checkout-billing-addresses";
@@ -18,4 +19,5 @@ export {
   checkoutSpamProtections,
   checkoutStoreCredits,
   customers,
+  currentCustomers,
 }
