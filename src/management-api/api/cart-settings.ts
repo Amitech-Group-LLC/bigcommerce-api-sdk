@@ -1,4 +1,4 @@
-import { CartSetting } from '../models/cart-setting'
+import { CartSetting, CartUpdateSetting } from '../models/cart-setting'
 import { Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
@@ -18,7 +18,7 @@ class CartSettings {
       })
   }
 
-  public async update<TData extends CartSetting>(
+  public async update<TData extends CartUpdateSetting>(
     data: TData,
     requestOptions: RequestOptions = {}
   ): Promise<Result<CartSetting>> {
