@@ -1,3 +1,4 @@
+import customerLogins from './customer-logins';
 import cookieConsents from "./cookie-consents";
 import carts from "./carts";
 import cartItems from "./cart-items";
@@ -28,4 +29,5 @@ export {
   cartItems,
   carts,
   cookieConsents,
+  customerLogins,
 }
