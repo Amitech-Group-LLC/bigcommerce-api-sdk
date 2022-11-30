@@ -1,3 +1,4 @@
+export * from './email-subscription'
 export * from './cookie-consent'
 export * from './cart'
 export * from './current-customer'

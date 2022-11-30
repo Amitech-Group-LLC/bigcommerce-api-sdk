@@ -1,3 +1,4 @@
+import emailSubscriptions from './email-subscriptions';
 import customerLogins from './customer-logins';
 import cookieConsents from "./cookie-consents";
 import carts from "./carts";
@@ -30,4 +31,5 @@ export {
   carts,
   cookieConsents,
   customerLogins,
+  emailSubscriptions,
 }
