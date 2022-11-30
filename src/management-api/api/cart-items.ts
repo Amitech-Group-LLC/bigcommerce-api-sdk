@@ -8,9 +8,9 @@ class CartItems {
   public async add<TData extends CartAddLineItem>(
     cartId: string,
     data: TData,
-    include?: CartInclude[],
+    include?: CartInclude,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Cart>> {
+  ): Promise<Cart> {
     return await http
       .post(`/v3/carts/${cartId}/items`, { ...requestOptions, data, params: { include } })
       .catch(ex => {
@@ -25,9 +25,9 @@ class CartItems {
     cartId: string,
     itemId: string,
     data: TData,
-    include?: CartInclude[],
+    include?: CartInclude,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Cart>> {
+  ): Promise<Cart> {
     return await http
       .put(`/v3/carts/${cartId}/items/${itemId}`, { ...requestOptions, data, params: { include } })
       .catch(ex => {
@@ -41,7 +41,7 @@ class CartItems {
   public async delete(
     cartId: string,
     itemId: string,
-    include?: CartInclude[],
+    include?: CartInclude,
     requestOptions: RequestOptions = {}
   ): Promise<Result<Cart>> {
     return await http

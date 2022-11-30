@@ -69,11 +69,11 @@ export type OrderLinePhysicalItem = {
   type?: string
   addedByPromotion?: boolean
   isShippingRequired?: boolean
-  giftWrapping?: PhysicalItemGiftWrapping
+  giftWrapping?: PhysicalGiftWrappingItem
   categories?: object[]
 }
 
-export type PhysicalItemGiftWrapping = {
+export type PhysicalGiftWrappingItem = {
   name?: string
   message?: string
   amount?: number

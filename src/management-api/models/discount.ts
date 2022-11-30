@@ -1,4 +1,4 @@
 export type AppliedDiscount = {
-  id: string
-  discounted_amount: number
+  id?: string | number
+  discounted_amount?: number
 }
