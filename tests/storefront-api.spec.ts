@@ -12,7 +12,7 @@ describe('Storefront api', () => {
   
 
     expect(mockAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockAxios.get).toHaveBeenCalledWith(`https://store-${configParams.storeHash}.mybigcommerce.com/api/storefront/form-fields`, {
+    expect(mockAxios.get).toHaveBeenCalledWith(`https://store-hash.mybigcommerce.com/api/storefront/form-fields`, {
       params: {
         filter: 'billingAddress'
       },
