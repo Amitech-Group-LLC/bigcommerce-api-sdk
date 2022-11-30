@@ -139,21 +139,21 @@ export type OrderCustomField = {
 }
 
 export enum OrderStatus {
-  inComplete = 'INCOMPLETE',
-  pending = 'PENDING',
-  shipped = 'SHIPPED',
-  partiallyShipped = 'PARTIALLY_SHIPPED',
-  refunded = 'REFUNDED',
-  cancelled = 'CANCELLED',
-  declined = 'DECLINED',
-  awaitingPayment = 'AWAITING_PAYMENT',
-  awaitingPickup = 'AWAITING_PICKUP',
-  awaitingShipment = 'AWAITING_SHIPMENT',
-  completed = 'COMPLETED',
-  awaitingFulfillment = 'AWAITING_FULFILLMENT',
-  manualVerificationRequired = 'MANUAL_VERIFICATION_REQUIRED',
-  disputed = 'DISPUTED',
-  partiallyRefunded = 'PARTIALLY_REFUNDED'
+  InComplete = 'INCOMPLETE',
+  Pending = 'PENDING',
+  Shipped = 'SHIPPED',
+  PartiallyShipped = 'PARTIALLY_SHIPPED',
+  Refunded = 'REFUNDED',
+  Cancelled = 'CANCELLED',
+  Declined = 'DECLINED',
+  AwaitingPayment = 'AWAITING_PAYMENT',
+  AwaitingPickup = 'AWAITING_PICKUP',
+  AwaitingShipment = 'AWAITING_SHIPMENT',
+  Completed = 'COMPLETED',
+  AwaitingFulfillment = 'AWAITING_FULFILLMENT',
+  ManualVerificationRequired = 'MANUAL_VERIFICATION_REQUIRED',
+  Disputed = 'DISPUTED',
+  PartiallyRefunded = 'PARTIALLY_REFUNDED'
 }
 
 export type OrderTax = {
