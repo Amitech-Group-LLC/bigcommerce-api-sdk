@@ -86,7 +86,7 @@ export type CartItemAction = {
       | 'LEAST_EXPENSIVE_ONLY'
       | 'MOST_EXPENSIVE'
       | 'MOST_EXPENSIVE_ONLY'
-      quantity?: number
+    quantity?: number
   }
 }
 
@@ -127,24 +127,21 @@ export type AutomaticPromotionRuleCondition = {
   }
 }
 
-export type AutomaticPromotionRule = {
+export type Rule = {
   action: CartItemAction | Action | FixedPriceSetAction | ShippingAction
   apply_once?: boolean
   stop?: boolean
-  condition?: {
-    not?: AutomaticPromotionRuleCondition
-  } | AutomaticPromotionRuleCondition
+  condition?:
+    | {
+        not?: AutomaticPromotionRuleCondition
+      }
+    | AutomaticPromotionRuleCondition
 }
 
 export type AutomaticPromotionNotification = {
   content: string
-  type: 'UPSELL' |
-  'ELIGIBLE' |
-  'APPLIED'
-  locations: 'HOME_PAGE' |
-  'PRODUCT_PAGE' |
-  'CART_PAGE' |
-  'CHECKOUT_PAGE'
+  type: 'UPSELL' | 'ELIGIBLE' | 'APPLIED'
+  locations: 'HOME_PAGE' | 'PRODUCT_PAGE' | 'CART_PAGE' | 'CHECKOUT_PAGE'
 }
 
 export type CountryRuleInfo = {
@@ -155,44 +152,51 @@ export type AutomaticPromotionShippingAddress = {
   countries: CountryRuleInfo[]
 }
 
-export type WeekDays = 'Monday' |
-'Tuesday' |
-'Wednesday' |
-'Thursday' |
-'Friday' |
-'Saturday' |
-'Sunday'
+export type WeekDays =
+  | 'Monday'
+  | 'Tuesday'
+  | 'Wednesday'
+  | 'Thursday'
+  | 'Friday'
+  | 'Saturday'
+  | 'Sunday'
+
+export type CustomerSegment =
+  | {
+      id: string[]
+    }
+  | {
+      not: {
+        id: string[]
+      }
+    }
 
 export type AutomaticPromotion = {
   id?: number
   redemption_type: 'AUTOMATIC' | 'COUPON'
   name: string
-  channels?: Pick<AutomaticPromotion, 'id'>[]
-  customers?: {
+  channels?: Required<Pick<AutomaticPromotion, 'id'>>[]
+  customer?: {
     group_ids?: number[]
     minimum_order_count?: number
     excluded_group_ids?: number[]
-    segments?:
-      | Required<Pick<AutomaticPromotion, 'id'>>
-      | {
-          not: Required<Pick<AutomaticPromotion, 'id'>>
-        }
+    segments?: CustomerSegment
   }
-  rules: AutomaticPromotionRule[]
+  rules: Rule[]
   current_uses?: number
   max_uses?: number
-  status?: 'ENABLED' |
-  'DISABLED' |
-  'INVALID'
+  status?: 'ENABLED' | 'DISABLED' | 'INVALID'
   start_date?: string
   end_date?: string
   stop?: boolean
   can_be_used_with_other_promotions?: boolean
   currency_code?: string
   notifications?: AutomaticPromotionNotification[]
-  shipping_address?: {
-    not: AutomaticPromotionShippingAddress
-  } | AutomaticPromotionShippingAddress
+  shipping_address?:
+    | {
+        not: AutomaticPromotionShippingAddress
+      }
+    | AutomaticPromotionShippingAddress
   schedule?: {
     week_frequency: number
     week_days: WeekDays[]
@@ -201,8 +205,21 @@ export type AutomaticPromotion = {
   }
 }
 
-export type CouponPromotion = {
-  id?: number
+export type CouponPromotion = AutomaticPromotion & {
+  coupon_overrides_automatic_when_offering_higher_discounts?: boolean
 }
 
 export type Promotion = AutomaticPromotion | CouponPromotion
+
+export type PromotionPost = Omit<Promotion, 'id'>
+
+export type Coupon = {
+  id?: number
+  code: string
+  current_uses?: number
+  max_uses?: number
+  max_uses_per_customer?: number
+  created?: string
+}
+
+export type CouponPost = Omit<Coupon, 'id' | 'current_uses' | 'created'>
