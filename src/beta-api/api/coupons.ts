@@ -5,6 +5,10 @@ import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
 
 class Coupons {
+  /**
+   * @beta functions
+   */
+
   public async list(
     promotionId: number,
     requestOptions: RequestOptions = {}
@@ -20,6 +24,10 @@ class Coupons {
         throw ex
       })
   }
+
+  /**
+   * @beta functions
+   */
 
   public async deleteMany(
     promotionId: number,
@@ -41,6 +49,10 @@ class Coupons {
       })
   }
 
+  /**
+   * @beta functions
+   */
+
   public async create<TData extends CouponPost>(
     promotionId: number,
     data: TData,
@@ -58,6 +70,10 @@ class Coupons {
         throw ex
       })
   }
+
+  /**
+   * @beta functions
+   */
 
   public async delete(
     promotionId: number,
