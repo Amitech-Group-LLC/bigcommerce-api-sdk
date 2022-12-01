@@ -5,7 +5,7 @@ import http from '../src/storefront-api/utils/http-clients'
 describe('Storefront api', () => {
   it('Get Storefront', async () => {
     const configParams = {
-      storeHash: 'storeHash',
+      storeHash: 'hash',
     }
     config.set(configParams)
     await http.get('api/storefront/form-fields', {params: {filter: 'billingAddress'}})
