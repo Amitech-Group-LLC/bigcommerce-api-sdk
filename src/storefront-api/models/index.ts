@@ -1,4 +1,5 @@
 export * from './form-field'
+export * from './order'
 export * from './email-subscription'
 export * from './cookie-consent'
 export * from './cart'

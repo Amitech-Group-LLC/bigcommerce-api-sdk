@@ -1,4 +1,5 @@
 import formFields from "./form-fields";
+import orders from "./orders";
 import emailSubscriptions from './email-subscriptions';
 import customerLogins from './customer-logins';
 import cookieConsents from "./cookie-consents";
@@ -34,4 +35,5 @@ export {
   customerLogins,
   emailSubscriptions,
   formFields,
+  orders,
 }
