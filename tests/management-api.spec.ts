@@ -9,12 +9,12 @@ describe('Carts api', () => {
       apiClientId: 'clientId',
     }
     config.set(configParams)
-    await carts.get('111', [CartInclude.DigitalItemsOptions, CartInclude.PromotionsBanners])
+    await carts.get('111', CartInclude.DigitalItemsOptions)
 
     expect(mockAxios.get).toHaveBeenCalledTimes(1)
     expect(mockAxios.get).toHaveBeenCalledWith(`https://api.bigcommerce.com/stores/${configParams.storeHash}/v3/carts/111`, {
       params: {
-        include: [CartInclude.DigitalItemsOptions, CartInclude.PromotionsBanners],
+        include: CartInclude.DigitalItemsOptions,
       },
       timeout: 60000,
       headers: {
