@@ -61,10 +61,13 @@ class HttpClient {
     return {
       ...config,
       timeout: sdkConfig.timeoutInMilliseconds,
-      headers: {
+      headers: sdkConfig.apiClientId ? {
         'Content-Type': 'application/json',
         'X-Auth-Token': sdkConfig.apiToken,
         'X-Auth-Client': sdkConfig.apiClientId,
+      } : {
+        'Content-Type': 'application/json',
+        'X-Auth-Token': sdkConfig.apiToken,
       },
     }
   }
