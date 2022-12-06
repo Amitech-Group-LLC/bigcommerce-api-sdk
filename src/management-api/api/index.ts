@@ -146,6 +146,8 @@ import regions from './regions'
 import widgetTemplates from './widget-templates'
 import widgets from './widgets'
 import placements from './placements'
+import coupons from './coupons'
+import promotions from './promotions'
 
 export {
   cartItems,
@@ -296,4 +298,6 @@ export {
   widgetTemplates,
   widgets,
   placements,
+  coupons,
+  promotions,
 }
