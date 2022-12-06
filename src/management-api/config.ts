@@ -4,10 +4,6 @@ class Config {
   private defaultConfig: SdkConfig = {
     storeHash: '',
     apiToken: '',
-    timeoutInMilliseconds: 60000,
-  } || {
-    storeHash: '',
-    apiToken: '',
     apiClientId: '',
     timeoutInMilliseconds: 60000,
   }
