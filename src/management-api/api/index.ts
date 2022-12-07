@@ -146,6 +146,8 @@ import regions from './regions'
 import widgetTemplates from './widget-templates'
 import widgets from './widgets'
 import placements from './placements'
+import coupons from './coupons'
+import promotions from './promotions'
 import segments from './segments'
 import shopperProfiles from './shopper-profiles'
 import shopperProfilesSegments from './shopper-profiles-segments'
@@ -300,6 +302,8 @@ export {
   widgetTemplates,
   widgets,
   placements,
+  coupons,
+  promotions,
   segments,
   shopperProfiles,
   shopperProfilesSegments,

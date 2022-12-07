@@ -65,7 +65,7 @@ class HttpClient {
         'Content-Type': 'application/json',
         'X-Auth-Token': sdkConfig.apiToken,
         'X-Auth-Client': sdkConfig.apiClientId,
-      },
+      }
     }
   }
 }
