@@ -185,7 +185,8 @@ export type OrdersV3TransactionMethod = 'credit_card' |
   'custom' | 
   'offsite' |
   'offline' |
-  'nonce'
+  'nonce' |
+  'bigpay_token'
 
 export type OrdersV3TransactionGateway = '2checkout' |
   'adyen' |
