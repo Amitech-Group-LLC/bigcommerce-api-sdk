@@ -1,6 +1,6 @@
 export type GiftCertificate = {
   name: string
-  theme: string
+  theme: 'Birthday' | 'Celebration' | 'Christmas' | 'General' | 'Girl'
   amount: string
   quantity: number
   sender: {
@@ -11,5 +11,5 @@ export type GiftCertificate = {
     name: string
     email: string
   }
-  message: string
+  message?: string
 }

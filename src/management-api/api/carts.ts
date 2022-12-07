@@ -7,9 +7,9 @@ import { BigcommerceApiError } from '../utils/error'
 class Carts {
   public async create<TCart extends CartPostData>(
     cart: TCart,
-    include?: CartInclude[],
+    include?: CartInclude,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<TCart>> {
+  ): Promise<Cart> {
     return await http
       .post(`/v3/carts`, { ...requestOptions, data: cart, params: { include } })
       .catch(ex => {
@@ -22,9 +22,9 @@ class Carts {
 
   public async get<TCart extends Cart>(
     cartId: string,
-    include?: CartInclude[],
+    include?: CartInclude,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<TCart>> {
+  ): Promise<TCart> {
     return await http
       .get(`/v3/carts/${cartId}`, { ...requestOptions, params: { include } })
       .catch(ex => {
@@ -51,12 +51,12 @@ class Carts {
 
   public async updateCustomerId(
     cartId: string,
-    customerId: number,
-    include?: CartInclude[],
+    customerId?: number,
+    include?: CartInclude,
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Cart>> {
+  ): Promise<Cart> {
     return await http
-      .post(`/v3/carts/${cartId}`, {
+      .put(`/v3/carts/${cartId}`, {
         ...requestOptions,
         data: { customer_id: customerId },
         params: { include },

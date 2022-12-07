@@ -1,4 +1,4 @@
-import { LineItem, OptionSelection, CustomItem } from './line-item'
+import { OptionSelection, CustomItem, LineDigitalItem, LinePhysicalItem } from './line-item'
 import { AppliedDiscount } from './discount'
 import { AppliedCoupon } from './coupon'
 import { PromotionsObject } from './promotion'
@@ -12,11 +12,12 @@ export enum CartInclude {
 }
 
 export type CartPostVariant = {
-  quantity: number
-  product_id: number
+  quantity?: number
+  product_id?: number
   list_price?: number
-  variant_id: number
+  variant_id?: number
   name?: string
+  gift_wrapping?: CartPostVariantGiftWrapping
 }
 
 export type CartPostModifier = {
@@ -24,61 +25,88 @@ export type CartPostModifier = {
   product_id: number
   list_price?: number
   name?: string
-  option_selections: OptionSelection[]
+  option_selections?: OptionSelection[]
 }
 
 export type CartPostCustomItem = {
-  sku: string
-  name: string
-  quantity: number
-  list_price: number
+  sku?: string
+  name?: string
+  quantity?: number
+  list_price?: number
 }
 
 export type CartPostData = {
-  customer_id: number
-  line_items: (CartPostVariant | CartPostModifier)[]
+  customer_id?: number
+  line_items?: (CartPostVariant | CartPostModifier)[]
   custom_items?: CartPostCustomItem[]
   channel_id?: number
   currency?: {
-    code: string
+    code?: string
   }
   locale?: string
   gift_certificates?: GiftCertificate[]
 }
 
 export type CartRedirectUrls = {
-  cart_url: string
-  checkout_url: string
-  embedded_checkout_url: string
+  cart_url?: string
+  checkout_url?: string
+  embedded_checkout_url?: string
 }
 
 export type Cart = {
-  id: string
-  parent_id: string
-  customer_id: number
-  email: string
-  currency: {
-    code: string
+  id?: string
+  parent_id?: string
+  customer_id?: number
+  email?: string
+  currency?: {
+    code?: string
   }
-  tax_included: number
-  base_amount: number
-  discount_amount: number
-  cart_amount: number
-  coupons: AppliedCoupon[]
-  discounts: AppliedDiscount[]
-  line_items: {
-    physical_items: LineItem[]
-    digital_items: LineItem[]
-    gift_certificates: GiftCertificate[]
+  tax_included?: number
+  base_amount?: number
+  discount_amount?: number
+  cart_amount?: number
+  coupons?: AppliedCoupon[]
+  discounts?: AppliedDiscount[]
+  line_items?: {
+    physical_items: LinePhysicalItem[]
+    digital_items: LineDigitalItem[]
+    gift_certificates: LineGiftCertificate[]
     custom_items: CustomItem[]
   }
-  created_time: string
-  updated_time: string
-  channel_id: number
-  locale: string
+  created_time?: string
+  updated_time?: string
+  channel_id?: number
+  locale?: string
   promotions?: PromotionsObject
-  redirect_urls?: CartRedirectUrls
 }
 
 export type CartAddLineItem = Pick<CartPostData, 'line_items' | 'custom_items' | 'gift_certificates'>
-export type CartUpdateLineItem = Pick<CartPostData, 'custom_items' | 'gift_certificates'> & { line_item: CartPostData | CartPostVariant }
+export type CartUpdateLineItem = Pick<CartPostData, 'custom_items' | 'gift_certificates'> & { line_item?: CartPostModifier | CartPostVariant }
+
+
+export type LineGiftCertificate = {
+  id?: string
+  name?: string
+  theme?: 'Birthday' | 'Celebration' | 'Christmas' | 'General' | 'Girl'
+  amount?: number
+  is_taxable?: boolean
+  sender?: {
+    name?: string
+    email?: string
+  }
+  recipient?: {
+    name?: string
+    email?: string
+  }
+  message?: string
+}
+
+export type CartPostVariantGiftWrapping = {
+  wrap_together?: boolean
+  wrap_details?: GiftWrappingDetails[]
+}
+
+export type GiftWrappingDetails = {
+  id?: number
+  message?: string
+}
