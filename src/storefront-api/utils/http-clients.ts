@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import qs from 'qs'
 import Config from '../config'
 
 type RequestConfig = AxiosRequestConfig
@@ -62,6 +63,9 @@ class HttpClient {
       headers: {
         'Content-Type': 'application/json'
       },
+      paramsSerializer: {
+        encode: (params) => qs.stringify(params, { arrayFormat: 'comma' })
+      }
     }
   }
 }

@@ -15,7 +15,7 @@ export default [
         format: 'cjs',
       },
     ],
-    external: ['axios'],
+    external: ['axios', 'qs'],
     plugins: [
       typescript({
         typescript: require('typescript'),
@@ -30,6 +30,7 @@ export default [
       name: 'Bigcommerce',
       globals: {
         axios: 'axios',
+        qs: 'qs',
       },
       esModule: false,
     },
@@ -39,6 +40,6 @@ export default [
       }),
       terser(),
     ],
-    external: ['axios'],
+    external: ['axios', 'qs'],
   },
 ]
