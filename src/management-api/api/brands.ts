@@ -1,6 +1,6 @@
 import { Brand, BrandFilter } from '../models/brand'
 import { FilterParam } from '../models/filter-param'
-import { Result } from '../models/result'
+import { ListResult, Result } from '../models/result'
 import { RequestOptions } from '../models/request-options'
 import http from '../utils/http-clients'
 import { BigcommerceApiError } from '../utils/error'
@@ -9,7 +9,7 @@ class Brands {
   public async list(
     filterParams: BrandFilter = {},
     requestOptions: RequestOptions = {}
-  ): Promise<Result<Brand[]>> {
+  ): Promise<ListResult<Brand[]>> {
     return await http
       .get(`/v3/catalog/brands`, {
         ...requestOptions,

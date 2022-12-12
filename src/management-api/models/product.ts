@@ -377,7 +377,7 @@ export type ProductFilter = {
   'id:max'?: number[]
   'id:min'?: number[]
   'id:not_in'?: number[]
-  include?:
+  include?: Array<
     | 'variants'
     | 'images'
     | 'custom_fields'
@@ -386,6 +386,7 @@ export type ProductFilter = {
     | 'modifiers'
     | 'options'
     | 'videos'
+  >
   include_fields?: Array<keyof Product>
   inventory_level?: number
   'inventory_level:greater'?: number
