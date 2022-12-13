@@ -4,6 +4,7 @@ import {
   ProductPost,
   ProductDelete,
   ProductUpdate,
+  ProductInclude,
 } from '../models/product'
 import { Result, ListResult } from '../models/result'
 import { RequestOptions } from '../models/request-options'
@@ -83,7 +84,7 @@ class Products {
   public async get(
     itemId: number,
     params: {
-      include?: string
+      include?: ProductInclude[]
       include_fields?: Array<keyof Product>
       exclude_fields?: Array<keyof Omit<Product, 'id'>>
     } = {},

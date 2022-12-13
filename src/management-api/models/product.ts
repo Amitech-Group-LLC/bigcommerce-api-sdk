@@ -636,3 +636,13 @@ export type ProductCategoryFilter = {
   page?: number
   'product_id:in'?: string
 }
+
+export type ProductInclude =
+  | 'variants'
+  | 'images'
+  | 'custom_fields'
+  | 'bulk_pricing_rules'
+  | 'primary_image'
+  | 'modifiers'
+  | 'options'
+  | 'videos'

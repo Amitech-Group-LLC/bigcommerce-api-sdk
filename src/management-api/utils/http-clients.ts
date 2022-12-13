@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import qs from 'qs'
 import Config from '../config'
+import { serializeArraysInParams } from '../../utils/paramsSerializer'
 
 type RequestConfig = AxiosRequestConfig
 
@@ -61,15 +61,13 @@ class HttpClient {
     const sdkConfig = Config.get()
     return {
       ...config,
+      params: config?.params ? serializeArraysInParams(config.params) : config?.params,
       timeout: sdkConfig.timeoutInMilliseconds,
       headers: {
         'Content-Type': 'application/json',
         'X-Auth-Token': sdkConfig.apiToken,
         'X-Auth-Client': sdkConfig.apiClientId,
       },
-      paramsSerializer: {
-        encode: (params) => qs.stringify(params, { arrayFormat: 'comma' })
-      }
     }
   }
 }
