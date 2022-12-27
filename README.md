@@ -41,7 +41,7 @@ const getRouteQuery = /* GraphQL */ `
 `
 graphqlApi.client.request({
   data: {
-    query: getStoreNameQuery,
+    query: getRouteQuery,
     variables: {
       urlPath: '/category-url'
     },
