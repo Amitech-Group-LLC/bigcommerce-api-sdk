@@ -1,6 +1,6 @@
 # API SDK for BigCommerce
 
-## Getting started
+## Using Management API
 ```typescript
 import { config, products } from '@amitechgrp/bigcommerce-api-sdk'
 
@@ -17,4 +17,35 @@ const getProductName = async (id: number) => {
   
   return product?.name
 }
+```
+
+## Using Graphql
+```typescript
+import { graphqlApi } from '@amitechgrp/bigcommerce-api-sdk'
+
+// setup configuration
+graphqlApi.config.set({
+  storeHash: 'storeHash',
+  bearerJWT: 'jwt token',
+})
+
+// run graphql query
+const getRouteQuery = /* GraphQL */ `
+  query getRoute($urlPath: String!) {
+    site {
+      route(path: $urlPath) {
+        ...
+      }
+    }
+  }
+`
+graphqlApi.client.request({
+  data: {
+    query: getStoreNameQuery,
+    variables: {
+      urlPath: '/category-url'
+    },
+  },
+  cookie: 'SHOP_TOKEN=123'
+})
 ```

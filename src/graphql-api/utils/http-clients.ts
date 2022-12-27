@@ -1,7 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import Config from '../config'
 
-type RequestConfig = AxiosRequestConfig
+type RequestConfig = AxiosRequestConfig & {
+  data: { query: string; variables?: Record<string, any> },
+  cookie?: string
+}
 
 class HttpClient {
   constructor() {
@@ -10,20 +13,22 @@ class HttpClient {
     }
   }
 
-  public request = async (config?: RequestConfig): Promise<any> => {        
+  public request = async (config?: RequestConfig): Promise<any> => {
     return await this.makeApiCall('post', config)
   }
 
-  private async makeApiCall(
-    verb: 'post',
-    config
-  ) {
+  private async makeApiCall(verb: 'post', config) {
     const requestConfig = await this._buildRequestConfig(config)
-    
-    const baseApiUrl = `https://store-${Config.get().storeHash}.mybigcommerce.com/graphql`
+
+    const baseApiUrl = `https://store-${
+      Config.get().storeHash
+    }.mybigcommerce.com/graphql`
     if (verb === 'post') {
+      const requestBody = requestConfig.data
+      delete requestConfig.data
       const response = await axios[verb as string](
         baseApiUrl,
+        requestBody,
         requestConfig
       )
       return response.data
@@ -36,13 +41,14 @@ class HttpClient {
   private async _buildRequestConfig(
     config?: RequestConfig
   ): Promise<RequestConfig> {
-    const sdkConfig = Config.get()        
+    const sdkConfig = Config.get()
     return {
       ...config,
       timeout: sdkConfig.timeoutInMilliseconds,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sdkConfig.bearerJWT}`,
+        Authorization: `Bearer ${sdkConfig.bearerJWT}`,
+        cookie: config?.cookie
       },
     }
   }
